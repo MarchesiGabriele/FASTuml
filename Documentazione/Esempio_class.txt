@@ -1,0 +1,16 @@
+CLASS DIAGRAM
+
+//dichiarazione delle classi
+	Nome
+	Attributi
+	Operazioni
+
+class nomeClasse {
+	attribute 
+	operation 
+}
+
+//dichiarazione delle relazioni
+
+relation nomeClasse1 [tipo di relazione] nomeclasse2
+
