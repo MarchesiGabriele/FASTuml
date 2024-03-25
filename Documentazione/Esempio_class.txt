@@ -5,12 +5,44 @@ CLASS DIAGRAM
 	Attributi
 	Operazioni
 
-class nomeClasse {
-	attribute 
-	operation 
+[abstract] class nomeClasse {
+	attribute: {visibility} [arrayType] {type} nomeAttributo[= default] {multiplicity} [readOnly] ;
+			
+	operation: {visibility} {type} nomeOperazione( [TipoParametro nomeParametro]* ): TipoRitorno
 }
 
 //dichiarazione delle relazioni
 
-relation nomeClasse1 [tipo di relazione] nomeclasse2
+relations: {
+nomeRelazione nomeClasse1 {multiplicity1} [tipo di relazione] nomeclasse2 {multiplicity2} [[tipo di relazione] nomeclasse3 {multiplicity3}] [type] 
+}
+//Se c'è inherits non ci deve essere multiplicity e nomeRelazione
+// Se * * inserire unique o non-unique (default unique)
 
+##############################################################
+
+class -> per dichiarare una nuova entità
+
+
+attribute 
+	visibility : protected, private, public, package
+	type : classici (int String char etc.) + altra entità (mettre controllo su dichiarazione precedente) + enumaration 
+	multiplicity: min:[intero >= 0] e max: [intero >= 1 oppure "inf"]
+	default: qualsiasi cosa (controllare che sia coerente rispetto a type e multiplicity [valutare per controlli])
+	property: readOnly, unique, non-unique, ordered, unordered (gestire le combinazioni valide):
+		Set: {unordered, unique} 
+		Multi-set: {unordered, non-unique}
+ 		Ordered set: {ordered, unique}
+ 		List: {ordered, non-unique}
+
+
+operation 
+	visibility : protected, private, public, package
+	parameter(s) : come in java
+
+relation
+	[tipo di relazione]: 1) - undefinid navigability, > da sx a dx, < da dx a sx
+			     2) inherits (per la gerarchica)
+			     3) shared o composed 	
+	multiplicity: min:[intero >= 0] e max: [intero >= 1 oppure "inf"]
+	type: unique o non unique se relazione **
