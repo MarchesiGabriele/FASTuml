@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.Token;
 
+import myCompilerPackage.UmlLexer;
 import myCompilerPackage.UmlTest;
 
 
@@ -21,7 +22,7 @@ public class ScannerTester {
 		try {
 			System.out.println ("Test ANTLR lexer");
 			// istanzio lo scanner passandogli un stream di ingresso
-			UmlTest lexer = new UmlTest (
+			UmlLexer lexer = new UmlLexer (
 											new ANTLRReaderStream(
 													new FileReader(fileIn)	)	); 
 			
@@ -30,7 +31,7 @@ public class ScannerTester {
 			// attivo un ciclo che scandisce lo stream dall'inizio alla fine
 			// richiedendo ogni volta allo scanner di fornire il token successivo (metodo nextToken)
 			// fino ad incontrare l' End Of File EOF
-			while ((tk = lexer.nextToken()).getType() != UmlTest.EOF) {
+			while ((tk = lexer.nextToken()).getType() != UmlLexer.EOF) {
 				// recuper le informazioni relative ai token rilevati
 				int line = tk.getLine();
 				int col = tk.getCharPositionInLine()+1;
@@ -38,7 +39,7 @@ public class ScannerTester {
 				String text = tk.getText();
 
 				// attivo questo controllo se voglio scartare i token nascosti
-				if (tk.getChannel() != UmlTest.HIDDEN)
+				if (tk.getChannel() != UmlLexer.HIDDEN)
 					// stampo le informazioni del token corrente
 					System.out.println("Token " + i++ + ": "
 							+ "(" + line + "," + col + ")\t\t" 
