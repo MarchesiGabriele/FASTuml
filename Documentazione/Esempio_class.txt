@@ -14,7 +14,7 @@ CLASS DIAGRAM
 //dichiarazione delle relazioni
 
 relations: {
-nomeRelazione nomeClasse1 {multiplicity1} [tipo di relazione] nomeclasse2 {multiplicity2} [[tipo di relazione] nomeclasse3 {multiplicity3}] [type] 
+	nomeRelazione nomeClasse1 {multiplicity1} [tipo di relazione] nomeclasse2 {multiplicity2} [[tipo di relazione] nomeclasse3 {multiplicity3}] [type] 
 }
 //Se c'è inherits non ci deve essere multiplicity e nomeRelazione
 // Se * * inserire unique o non-unique (default unique)
@@ -40,7 +40,7 @@ operation
 	visibility : protected, private, public, package
 	parameter(s) : come in java
 
-relation
+relation 
 	[tipo di relazione]: 1) - undefinid navigability, > da sx a dx, < da dx a sx
 			     2) inherits (per la gerarchica)
 			     3) shared o composed 	
