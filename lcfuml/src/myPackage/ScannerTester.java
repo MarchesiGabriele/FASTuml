@@ -8,7 +8,6 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.Token;
 
 import myCompilerPackage.UmlLexer;
-import myCompilerPackage.UmlTest;
 
 
 public class ScannerTester {
