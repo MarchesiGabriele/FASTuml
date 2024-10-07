@@ -43,8 +43,8 @@ classDefinitionRule
 	:	
 		a=ABSTRACT?
 		CLASS
-		c=ID  			{ h.manageClassName ($a, $c); }
-		classCodeRule
+		c=ID  			{ h.manageClassName ($c); }
+		classCodeRule		{ h.setClass($c); }
 	;
 	
 relationsDefinitionRule
@@ -79,10 +79,9 @@ relationCodeRule
 		mClass2=multiplicityRule
 		(
 			
-			relationTypeRule
-			nameClass3=ID
-			mClass3=multiplicityRule
-		)*
+			UNDREL
+			infoClass=ID
+		)?
 		
 	;	
 
@@ -90,11 +89,11 @@ relationCodeRule
 attributeDeclarationRule
 	:
 		v=visibilityRule 	 				
-		arrayTypeRule?
+		aType=arrayTypeRule?
 		t=typeRule
 		a=ID									
 		d=ID?								{	h.varDeclaration (v, $a, d); }
-		multiplicityRule
+		m=multiplicityRule?
 		READONLY?
 		SC
 	;	
@@ -128,7 +127,8 @@ typeRule returns [String type]
 		| t=DOUBLE_TYPE
 		| t=BOOLEAN_TYPE
 		| t=CHAR_TYPE
-		| t=STRING_TYPE   // in questa versione di (simple) Java ipotizziamo che String sia predefinito
+		| t=STRING_TYPE  
+		| t=ID
 		)									{ type = $t.getText(); }
 		
 	;	
@@ -140,7 +140,6 @@ relationTypeRule returns [String type]
 		( INHERITS )
 		|
 		( SHARED | COMPOSED )
-		
 	;	
 	
 multiplicityRule
