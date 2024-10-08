@@ -21,6 +21,7 @@ public class SemanticHandler {
 	
 	// ****** attributi semantici globali
 	ArrayList<String> classTable;
+	ArrayList<String> attTable;
 	ArrayList<String> errors;
 	ArrayList<String> warnings;
 	
@@ -28,6 +29,7 @@ public class SemanticHandler {
 		
 	public SemanticHandler () {
 		classTable = new ArrayList<String>();
+		attTable = new ArrayList<String>();
 		errors = new ArrayList<String>();
 		warnings = new ArrayList<String>();
 	}
@@ -70,11 +72,11 @@ public class SemanticHandler {
 	
 	public void setClass(Token className) {
 		currentClass = className.getText();
-		classTable.clear();
+		attTable.clear();
 	}
 	
 	public boolean isAttDeclared (String name) {
-		return classTable.contains(name);
+		return attTable.contains(name);
 	}
 
 	// CI SONO PROBLEMI A PASSARE IL MULTIPLICITY PERCHE NON E' UNA STRING
@@ -83,7 +85,7 @@ public class SemanticHandler {
 		if (isAttDeclared(name))
 			addError (ALREADY_DEF_ERROR, attName);
 		else {
-			classTable.add(name);
+			attTable.add(name);
 		}
 	}
 	

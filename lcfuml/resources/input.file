@@ -1,4 +1,8 @@
 abstract class Student {
     attribute: private String name;
+}
+
+abstract class Matteo {
+    attribute: private String name;
     attribute: private String name;
 }

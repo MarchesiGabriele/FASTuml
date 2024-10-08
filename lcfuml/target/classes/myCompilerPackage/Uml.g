@@ -42,7 +42,8 @@ options {
 // The 1st rule is the axiom
 start
 	:
-		classDefinitionRule	
+		classDefinitionRule*
+		relationsDefinitionRule?
 	;
 
 
