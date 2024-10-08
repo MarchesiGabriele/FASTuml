@@ -27,8 +27,33 @@ public class SemanticHandler {
 	String currentClass;
 		
 	public SemanticHandler () {
-		
+		classTable = new ArrayList<String>();
+		errors = new ArrayList<String>();
+		warnings = new ArrayList<String>();
 	}
+	
+	
+	// *********************** metodi di pubblico interesse
+		public boolean hasErrors () {
+			return (errors.size()!=0);
+		}
+		public ArrayList<String> getErrors () {
+			return errors;
+		}
+		public int getNErrors () {
+			return errors.size();
+		}
+
+		public boolean hasWarnings () {
+			return (warnings.size()!=0);
+		}
+		public ArrayList<String> getWarnings () {
+			return warnings;
+		}
+		public int getNWarnings () {
+			return warnings.size();
+		}
+	// ----------------------- fine metodi di pubblico interesse
 	
 	public boolean isClassDeclared (String name) {
 		return classTable.contains(name);

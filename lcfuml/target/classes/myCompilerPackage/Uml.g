@@ -39,6 +39,13 @@ options {
 			Syntactic Rule definition starts here
 ************************************************** */ 
 
+// The 1st rule is the axiom
+start
+	:
+		classDefinitionRule	
+	;
+
+
 classDefinitionRule
 	:	
 		a=ABSTRACT?

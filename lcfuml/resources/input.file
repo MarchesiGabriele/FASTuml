@@ -1,2 +1,4 @@
-class Pippo
-merdaaaa
+abstract class Student {
+    attribute: private String name;
+    attribute: private String name;
+}

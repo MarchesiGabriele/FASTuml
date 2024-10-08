@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g 2024-10-08 17:30:30
+// $ANTLR 3.5.1 C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g 2024-10-08 17:32:09
 
 	package myCompilerPackage; 		
 
@@ -149,17 +149,43 @@ public class UmlParser extends Parser {
 
 
 
+	// $ANTLR start "start"
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:43:1: start : classDefinitionRule ;
+	public final void start() throws RecognitionException {
+		try {
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:44:2: ( classDefinitionRule )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:45:3: classDefinitionRule
+			{
+			pushFollow(FOLLOW_classDefinitionRule_in_start60);
+			classDefinitionRule();
+			state._fsp--;
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "start"
+
+
+
 	// $ANTLR start "classDefinitionRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:42:1: classDefinitionRule : (a= ABSTRACT )? CLASS c= ID classCodeRule ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:49:1: classDefinitionRule : (a= ABSTRACT )? CLASS c= ID classCodeRule ;
 	public final void classDefinitionRule() throws RecognitionException {
 		Token a=null;
 		Token c=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:43:2: ( (a= ABSTRACT )? CLASS c= ID classCodeRule )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:44:3: (a= ABSTRACT )? CLASS c= ID classCodeRule
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:50:2: ( (a= ABSTRACT )? CLASS c= ID classCodeRule )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:51:3: (a= ABSTRACT )? CLASS c= ID classCodeRule
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:44:4: (a= ABSTRACT )?
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:51:4: (a= ABSTRACT )?
 			int alt1=2;
 			int LA1_0 = input.LA(1);
 			if ( (LA1_0==ABSTRACT) ) {
@@ -167,18 +193,18 @@ public class UmlParser extends Parser {
 			}
 			switch (alt1) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:44:4: a= ABSTRACT
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:51:4: a= ABSTRACT
 					{
-					a=(Token)match(input,ABSTRACT,FOLLOW_ABSTRACT_in_classDefinitionRule62); 
+					a=(Token)match(input,ABSTRACT,FOLLOW_ABSTRACT_in_classDefinitionRule78); 
 					}
 					break;
 
 			}
 
-			match(input,CLASS,FOLLOW_CLASS_in_classDefinitionRule67); 
-			c=(Token)match(input,ID,FOLLOW_ID_in_classDefinitionRule73); 
+			match(input,CLASS,FOLLOW_CLASS_in_classDefinitionRule83); 
+			c=(Token)match(input,ID,FOLLOW_ID_in_classDefinitionRule89); 
 			 h.manageClassName (c); 
-			pushFollow(FOLLOW_classCodeRule_in_classDefinitionRule83);
+			pushFollow(FOLLOW_classCodeRule_in_classDefinitionRule99);
 			classCodeRule();
 			state._fsp--;
 
@@ -199,16 +225,16 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "relationsDefinitionRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:50:1: relationsDefinitionRule : RELATIONS DP LBR ( relationCodeRule )* RBR ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:57:1: relationsDefinitionRule : RELATIONS DP LBR ( relationCodeRule )* RBR ;
 	public final void relationsDefinitionRule() throws RecognitionException {
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:51:2: ( RELATIONS DP LBR ( relationCodeRule )* RBR )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:52:3: RELATIONS DP LBR ( relationCodeRule )* RBR
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:58:2: ( RELATIONS DP LBR ( relationCodeRule )* RBR )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:59:3: RELATIONS DP LBR ( relationCodeRule )* RBR
 			{
-			match(input,RELATIONS,FOLLOW_RELATIONS_in_relationsDefinitionRule100); 
-			match(input,DP,FOLLOW_DP_in_relationsDefinitionRule104); 
-			match(input,LBR,FOLLOW_LBR_in_relationsDefinitionRule108); 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:55:3: ( relationCodeRule )*
+			match(input,RELATIONS,FOLLOW_RELATIONS_in_relationsDefinitionRule116); 
+			match(input,DP,FOLLOW_DP_in_relationsDefinitionRule120); 
+			match(input,LBR,FOLLOW_LBR_in_relationsDefinitionRule124); 
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:62:3: ( relationCodeRule )*
 			loop2:
 			while (true) {
 				int alt2=2;
@@ -219,9 +245,9 @@ public class UmlParser extends Parser {
 
 				switch (alt2) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:55:3: relationCodeRule
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:62:3: relationCodeRule
 					{
-					pushFollow(FOLLOW_relationCodeRule_in_relationsDefinitionRule112);
+					pushFollow(FOLLOW_relationCodeRule_in_relationsDefinitionRule128);
 					relationCodeRule();
 					state._fsp--;
 
@@ -233,7 +259,7 @@ public class UmlParser extends Parser {
 				}
 			}
 
-			match(input,RBR,FOLLOW_RBR_in_relationsDefinitionRule117); 
+			match(input,RBR,FOLLOW_RBR_in_relationsDefinitionRule133); 
 			}
 
 		}
@@ -250,14 +276,14 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "classCodeRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:60:1: classCodeRule : LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:67:1: classCodeRule : LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR ;
 	public final void classCodeRule() throws RecognitionException {
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:61:2: ( LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:62:3: LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:68:2: ( LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:69:3: LBR ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )* RBR
 			{
-			match(input,LBR,FOLLOW_LBR_in_classCodeRule133); 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:63:3: ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )*
+			match(input,LBR,FOLLOW_LBR_in_classCodeRule149); 
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:70:3: ( ( ATTRIBUTE DP attributeDeclarationRule ) | ( OPERATION DP operationDeclarationRule ) )*
 			loop3:
 			while (true) {
 				int alt3=3;
@@ -271,14 +297,14 @@ public class UmlParser extends Parser {
 
 				switch (alt3) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:64:4: ( ATTRIBUTE DP attributeDeclarationRule )
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:71:4: ( ATTRIBUTE DP attributeDeclarationRule )
 					{
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:64:4: ( ATTRIBUTE DP attributeDeclarationRule )
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:64:6: ATTRIBUTE DP attributeDeclarationRule
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:71:4: ( ATTRIBUTE DP attributeDeclarationRule )
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:71:6: ATTRIBUTE DP attributeDeclarationRule
 					{
-					match(input,ATTRIBUTE,FOLLOW_ATTRIBUTE_in_classCodeRule145); 
-					match(input,DP,FOLLOW_DP_in_classCodeRule147); 
-					pushFollow(FOLLOW_attributeDeclarationRule_in_classCodeRule149);
+					match(input,ATTRIBUTE,FOLLOW_ATTRIBUTE_in_classCodeRule161); 
+					match(input,DP,FOLLOW_DP_in_classCodeRule163); 
+					pushFollow(FOLLOW_attributeDeclarationRule_in_classCodeRule165);
 					attributeDeclarationRule();
 					state._fsp--;
 
@@ -287,14 +313,14 @@ public class UmlParser extends Parser {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:66:4: ( OPERATION DP operationDeclarationRule )
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:73:4: ( OPERATION DP operationDeclarationRule )
 					{
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:66:4: ( OPERATION DP operationDeclarationRule )
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:66:5: OPERATION DP operationDeclarationRule
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:73:4: ( OPERATION DP operationDeclarationRule )
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:73:5: OPERATION DP operationDeclarationRule
 					{
-					match(input,OPERATION,FOLLOW_OPERATION_in_classCodeRule162); 
-					match(input,DP,FOLLOW_DP_in_classCodeRule164); 
-					pushFollow(FOLLOW_operationDeclarationRule_in_classCodeRule166);
+					match(input,OPERATION,FOLLOW_OPERATION_in_classCodeRule178); 
+					match(input,DP,FOLLOW_DP_in_classCodeRule180); 
+					pushFollow(FOLLOW_operationDeclarationRule_in_classCodeRule182);
 					operationDeclarationRule();
 					state._fsp--;
 
@@ -308,7 +334,7 @@ public class UmlParser extends Parser {
 				}
 			}
 
-			match(input,RBR,FOLLOW_RBR_in_classCodeRule177); 
+			match(input,RBR,FOLLOW_RBR_in_classCodeRule193); 
 			}
 
 		}
@@ -325,7 +351,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "relationCodeRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:71:1: relationCodeRule : nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )? ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:78:1: relationCodeRule : nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )? ;
 	public final void relationCodeRule() throws RecognitionException {
 		Token nameRelation=null;
 		Token nameClass1=null;
@@ -333,25 +359,25 @@ public class UmlParser extends Parser {
 		Token infoClass=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:72:2: (nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )? )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:73:3: nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )?
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:79:2: (nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )? )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:80:3: nameRelation= ID nameClass1= ID mClass1= multiplicityRule relationTypeRule nameClass2= ID mClass2= multiplicityRule ( UNDREL infoClass= ID )?
 			{
-			nameRelation=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule194); 
-			nameClass1=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule203); 
-			pushFollow(FOLLOW_multiplicityRule_in_relationCodeRule209);
-			multiplicityRule();
-			state._fsp--;
-
-			pushFollow(FOLLOW_relationTypeRule_in_relationCodeRule213);
-			relationTypeRule();
-			state._fsp--;
-
-			nameClass2=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule219); 
+			nameRelation=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule210); 
+			nameClass1=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule219); 
 			pushFollow(FOLLOW_multiplicityRule_in_relationCodeRule225);
 			multiplicityRule();
 			state._fsp--;
 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:80:3: ( UNDREL infoClass= ID )?
+			pushFollow(FOLLOW_relationTypeRule_in_relationCodeRule229);
+			relationTypeRule();
+			state._fsp--;
+
+			nameClass2=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule235); 
+			pushFollow(FOLLOW_multiplicityRule_in_relationCodeRule241);
+			multiplicityRule();
+			state._fsp--;
+
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:87:3: ( UNDREL infoClass= ID )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==UNDREL) ) {
@@ -359,10 +385,10 @@ public class UmlParser extends Parser {
 			}
 			switch (alt4) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:81:4: UNDREL infoClass= ID
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:88:4: UNDREL infoClass= ID
 					{
-					match(input,UNDREL,FOLLOW_UNDREL_in_relationCodeRule234); 
-					infoClass=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule241); 
+					match(input,UNDREL,FOLLOW_UNDREL_in_relationCodeRule250); 
+					infoClass=(Token)match(input,ID,FOLLOW_ID_in_relationCodeRule257); 
 					}
 					break;
 
@@ -384,7 +410,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "attributeDeclarationRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:88:1: attributeDeclarationRule : v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:95:1: attributeDeclarationRule : v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC ;
 	public final void attributeDeclarationRule() throws RecognitionException {
 		Token a=null;
 		Token d=null;
@@ -393,14 +419,14 @@ public class UmlParser extends Parser {
 		String t =null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:89:2: (v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:90:3: v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:96:2: (v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:97:3: v= visibilityRule (aType= arrayTypeRule )? t= typeRule a= ID (d= ID )? ( multiplicityRule )? ( READONLY )? SC
 			{
-			pushFollow(FOLLOW_visibilityRule_in_attributeDeclarationRule266);
+			pushFollow(FOLLOW_visibilityRule_in_attributeDeclarationRule282);
 			v=visibilityRule();
 			state._fsp--;
 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:91:8: (aType= arrayTypeRule )?
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:98:8: (aType= arrayTypeRule )?
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0==LIST||LA5_0==MULTISET||LA5_0==ORDEREDSET||LA5_0==SET) ) {
@@ -408,9 +434,9 @@ public class UmlParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:91:8: aType= arrayTypeRule
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:98:8: aType= arrayTypeRule
 					{
-					pushFollow(FOLLOW_arrayTypeRule_in_attributeDeclarationRule279);
+					pushFollow(FOLLOW_arrayTypeRule_in_attributeDeclarationRule295);
 					aType=arrayTypeRule();
 					state._fsp--;
 
@@ -419,12 +445,12 @@ public class UmlParser extends Parser {
 
 			}
 
-			pushFollow(FOLLOW_typeRule_in_attributeDeclarationRule286);
+			pushFollow(FOLLOW_typeRule_in_attributeDeclarationRule302);
 			t=typeRule();
 			state._fsp--;
 
-			a=(Token)match(input,ID,FOLLOW_ID_in_attributeDeclarationRule292); 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:94:4: (d= ID )?
+			a=(Token)match(input,ID,FOLLOW_ID_in_attributeDeclarationRule308); 
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:101:4: (d= ID )?
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==ID) ) {
@@ -432,15 +458,15 @@ public class UmlParser extends Parser {
 			}
 			switch (alt6) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:94:4: d= ID
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:101:4: d= ID
 					{
-					d=(Token)match(input,ID,FOLLOW_ID_in_attributeDeclarationRule307); 
+					d=(Token)match(input,ID,FOLLOW_ID_in_attributeDeclarationRule323); 
 					}
 					break;
 
 			}
 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:95:3: ( multiplicityRule )?
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:102:3: ( multiplicityRule )?
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==MIN) ) {
@@ -448,9 +474,9 @@ public class UmlParser extends Parser {
 			}
 			switch (alt7) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:95:3: multiplicityRule
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:102:3: multiplicityRule
 					{
-					pushFollow(FOLLOW_multiplicityRule_in_attributeDeclarationRule320);
+					pushFollow(FOLLOW_multiplicityRule_in_attributeDeclarationRule336);
 					multiplicityRule();
 					state._fsp--;
 
@@ -459,7 +485,7 @@ public class UmlParser extends Parser {
 
 			}
 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:96:3: ( READONLY )?
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:103:3: ( READONLY )?
 			int alt8=2;
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0==READONLY) ) {
@@ -467,15 +493,15 @@ public class UmlParser extends Parser {
 			}
 			switch (alt8) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:96:3: READONLY
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:103:3: READONLY
 					{
-					match(input,READONLY,FOLLOW_READONLY_in_attributeDeclarationRule339); 
+					match(input,READONLY,FOLLOW_READONLY_in_attributeDeclarationRule355); 
 					}
 					break;
 
 			}
 
-			match(input,SC,FOLLOW_SC_in_attributeDeclarationRule344); 
+			match(input,SC,FOLLOW_SC_in_attributeDeclarationRule360); 
 			 h.attDeclaration (v, aType, t, a, d); 
 			}
 
@@ -493,7 +519,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "visibilityRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:100:1: visibilityRule returns [String visibility] : (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE ) ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:107:1: visibilityRule returns [String visibility] : (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE ) ;
 	public final String visibilityRule() throws RecognitionException {
 		String visibility = null;
 
@@ -501,10 +527,10 @@ public class UmlParser extends Parser {
 		Token t=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:101:2: ( (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE ) )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:102:3: (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:108:2: ( (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:109:3: (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE )
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:102:3: (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:109:3: (t= PUBLIC |t= PROTECTED |t= PRIVATE |t= PACKAGE )
 			int alt9=4;
 			switch ( input.LA(1) ) {
 			case PUBLIC:
@@ -534,27 +560,27 @@ public class UmlParser extends Parser {
 			}
 			switch (alt9) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:102:5: t= PUBLIC
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:109:5: t= PUBLIC
 					{
-					t=(Token)match(input,PUBLIC,FOLLOW_PUBLIC_in_visibilityRule377); 
+					t=(Token)match(input,PUBLIC,FOLLOW_PUBLIC_in_visibilityRule393); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:103:5: t= PROTECTED
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:110:5: t= PROTECTED
 					{
-					t=(Token)match(input,PROTECTED,FOLLOW_PROTECTED_in_visibilityRule385); 
+					t=(Token)match(input,PROTECTED,FOLLOW_PROTECTED_in_visibilityRule401); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:104:5: t= PRIVATE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:111:5: t= PRIVATE
 					{
-					t=(Token)match(input,PRIVATE,FOLLOW_PRIVATE_in_visibilityRule393); 
+					t=(Token)match(input,PRIVATE,FOLLOW_PRIVATE_in_visibilityRule409); 
 					}
 					break;
 				case 4 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:105:5: t= PACKAGE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:112:5: t= PACKAGE
 					{
-					t=(Token)match(input,PACKAGE,FOLLOW_PACKAGE_in_visibilityRule401); 
+					t=(Token)match(input,PACKAGE,FOLLOW_PACKAGE_in_visibilityRule417); 
 					}
 					break;
 
@@ -578,7 +604,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "arrayTypeRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:111:1: arrayTypeRule returns [String arrayType] : (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET ) ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:118:1: arrayTypeRule returns [String arrayType] : (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET ) ;
 	public final String arrayTypeRule() throws RecognitionException {
 		String arrayType = null;
 
@@ -586,10 +612,10 @@ public class UmlParser extends Parser {
 		Token t=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:112:2: ( (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET ) )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:113:3: (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:119:2: ( (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:120:3: (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET )
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:113:3: (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:120:3: (t= SET |t= MULTISET |t= LIST |t= ORDEREDSET )
 			int alt10=4;
 			switch ( input.LA(1) ) {
 			case SET:
@@ -619,27 +645,27 @@ public class UmlParser extends Parser {
 			}
 			switch (alt10) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:113:5: t= SET
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:120:5: t= SET
 					{
-					t=(Token)match(input,SET,FOLLOW_SET_in_arrayTypeRule444); 
+					t=(Token)match(input,SET,FOLLOW_SET_in_arrayTypeRule460); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:114:5: t= MULTISET
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:121:5: t= MULTISET
 					{
-					t=(Token)match(input,MULTISET,FOLLOW_MULTISET_in_arrayTypeRule452); 
+					t=(Token)match(input,MULTISET,FOLLOW_MULTISET_in_arrayTypeRule468); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:115:5: t= LIST
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:122:5: t= LIST
 					{
-					t=(Token)match(input,LIST,FOLLOW_LIST_in_arrayTypeRule460); 
+					t=(Token)match(input,LIST,FOLLOW_LIST_in_arrayTypeRule476); 
 					}
 					break;
 				case 4 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:116:5: t= ORDEREDSET
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:123:5: t= ORDEREDSET
 					{
-					t=(Token)match(input,ORDEREDSET,FOLLOW_ORDEREDSET_in_arrayTypeRule468); 
+					t=(Token)match(input,ORDEREDSET,FOLLOW_ORDEREDSET_in_arrayTypeRule484); 
 					}
 					break;
 
@@ -663,7 +689,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "typeRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:121:1: typeRule returns [String type] : (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID ) ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:128:1: typeRule returns [String type] : (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID ) ;
 	public final String typeRule() throws RecognitionException {
 		String type = null;
 
@@ -671,10 +697,10 @@ public class UmlParser extends Parser {
 		Token t=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:122:2: ( (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID ) )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:123:3: (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:129:2: ( (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:130:3: (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID )
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:123:3: (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:130:3: (t= INT_TYPE |t= FLOAT_TYPE |t= LONG_TYPE |t= DOUBLE_TYPE |t= BOOLEAN_TYPE |t= CHAR_TYPE |t= STRING_TYPE |t= ID )
 			int alt11=8;
 			switch ( input.LA(1) ) {
 			case INT_TYPE:
@@ -724,51 +750,51 @@ public class UmlParser extends Parser {
 			}
 			switch (alt11) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:123:5: t= INT_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:130:5: t= INT_TYPE
 					{
-					t=(Token)match(input,INT_TYPE,FOLLOW_INT_TYPE_in_typeRule509); 
+					t=(Token)match(input,INT_TYPE,FOLLOW_INT_TYPE_in_typeRule525); 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:124:5: t= FLOAT_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:131:5: t= FLOAT_TYPE
 					{
-					t=(Token)match(input,FLOAT_TYPE,FOLLOW_FLOAT_TYPE_in_typeRule517); 
+					t=(Token)match(input,FLOAT_TYPE,FOLLOW_FLOAT_TYPE_in_typeRule533); 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:125:5: t= LONG_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:132:5: t= LONG_TYPE
 					{
-					t=(Token)match(input,LONG_TYPE,FOLLOW_LONG_TYPE_in_typeRule525); 
+					t=(Token)match(input,LONG_TYPE,FOLLOW_LONG_TYPE_in_typeRule541); 
 					}
 					break;
 				case 4 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:126:5: t= DOUBLE_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:133:5: t= DOUBLE_TYPE
 					{
-					t=(Token)match(input,DOUBLE_TYPE,FOLLOW_DOUBLE_TYPE_in_typeRule533); 
+					t=(Token)match(input,DOUBLE_TYPE,FOLLOW_DOUBLE_TYPE_in_typeRule549); 
 					}
 					break;
 				case 5 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:127:5: t= BOOLEAN_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:134:5: t= BOOLEAN_TYPE
 					{
-					t=(Token)match(input,BOOLEAN_TYPE,FOLLOW_BOOLEAN_TYPE_in_typeRule541); 
+					t=(Token)match(input,BOOLEAN_TYPE,FOLLOW_BOOLEAN_TYPE_in_typeRule557); 
 					}
 					break;
 				case 6 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:128:5: t= CHAR_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:135:5: t= CHAR_TYPE
 					{
-					t=(Token)match(input,CHAR_TYPE,FOLLOW_CHAR_TYPE_in_typeRule549); 
+					t=(Token)match(input,CHAR_TYPE,FOLLOW_CHAR_TYPE_in_typeRule565); 
 					}
 					break;
 				case 7 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:129:5: t= STRING_TYPE
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:136:5: t= STRING_TYPE
 					{
-					t=(Token)match(input,STRING_TYPE,FOLLOW_STRING_TYPE_in_typeRule557); 
+					t=(Token)match(input,STRING_TYPE,FOLLOW_STRING_TYPE_in_typeRule573); 
 					}
 					break;
 				case 8 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:130:5: t= ID
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:137:5: t= ID
 					{
-					t=(Token)match(input,ID,FOLLOW_ID_in_typeRule567); 
+					t=(Token)match(input,ID,FOLLOW_ID_in_typeRule583); 
 					}
 					break;
 
@@ -792,13 +818,13 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "relationTypeRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:135:1: relationTypeRule returns [String type] : ( ( UNDREL | SXREL | DXREL ) | ( INHERITS ) | ( SHARED | COMPOSED ) );
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:142:1: relationTypeRule returns [String type] : ( ( UNDREL | SXREL | DXREL ) | ( INHERITS ) | ( SHARED | COMPOSED ) );
 	public final String relationTypeRule() throws RecognitionException {
 		String type = null;
 
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:136:2: ( ( UNDREL | SXREL | DXREL ) | ( INHERITS ) | ( SHARED | COMPOSED ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:143:2: ( ( UNDREL | SXREL | DXREL ) | ( INHERITS ) | ( SHARED | COMPOSED ) )
 			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:
 			{
 			if ( input.LA(1)==COMPOSED||input.LA(1)==DXREL||input.LA(1)==INHERITS||input.LA(1)==SHARED||input.LA(1)==SXREL||input.LA(1)==UNDREL ) {
@@ -826,30 +852,30 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "multiplicityRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:144:1: multiplicityRule : ( ( MIN n= ID ) ( MAX m= ID ) ) ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:151:1: multiplicityRule : ( ( MIN n= ID ) ( MAX m= ID ) ) ;
 	public final void multiplicityRule() throws RecognitionException {
 		Token n=null;
 		Token m=null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:145:2: ( ( ( MIN n= ID ) ( MAX m= ID ) ) )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:146:3: ( ( MIN n= ID ) ( MAX m= ID ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:152:2: ( ( ( MIN n= ID ) ( MAX m= ID ) ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:153:3: ( ( MIN n= ID ) ( MAX m= ID ) )
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:146:3: ( ( MIN n= ID ) ( MAX m= ID ) )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:147:3: ( MIN n= ID ) ( MAX m= ID )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:153:3: ( ( MIN n= ID ) ( MAX m= ID ) )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:154:3: ( MIN n= ID ) ( MAX m= ID )
 			{
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:147:3: ( MIN n= ID )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:147:4: MIN n= ID
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:154:3: ( MIN n= ID )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:154:4: MIN n= ID
 			{
-			match(input,MIN,FOLLOW_MIN_in_multiplicityRule663); 
-			n=(Token)match(input,ID,FOLLOW_ID_in_multiplicityRule667); 
+			match(input,MIN,FOLLOW_MIN_in_multiplicityRule679); 
+			n=(Token)match(input,ID,FOLLOW_ID_in_multiplicityRule683); 
 			}
 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:148:3: ( MAX m= ID )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:148:4: MAX m= ID
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:155:3: ( MAX m= ID )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:155:4: MAX m= ID
 			{
-			match(input,MAX,FOLLOW_MAX_in_multiplicityRule673); 
-			m=(Token)match(input,ID,FOLLOW_ID_in_multiplicityRule677); 
+			match(input,MAX,FOLLOW_MAX_in_multiplicityRule689); 
+			m=(Token)match(input,ID,FOLLOW_ID_in_multiplicityRule693); 
 			}
 
 			}
@@ -870,7 +896,7 @@ public class UmlParser extends Parser {
 
 
 	// $ANTLR start "operationDeclarationRule"
-	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:152:1: operationDeclarationRule : v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP ;
+	// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:159:1: operationDeclarationRule : v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP ;
 	public final void operationDeclarationRule() throws RecognitionException {
 		Token a=null;
 		Token pID=null;
@@ -879,20 +905,20 @@ public class UmlParser extends Parser {
 		String pType =null;
 
 		try {
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:153:2: (v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP )
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:154:3: v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:160:2: (v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP )
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:161:3: v= visibilityRule t= typeRule a= ID LP (pType= typeRule pID= ID )* RP
 			{
-			pushFollow(FOLLOW_visibilityRule_in_operationDeclarationRule708);
+			pushFollow(FOLLOW_visibilityRule_in_operationDeclarationRule724);
 			v=visibilityRule();
 			state._fsp--;
 
-			pushFollow(FOLLOW_typeRule_in_operationDeclarationRule714);
+			pushFollow(FOLLOW_typeRule_in_operationDeclarationRule730);
 			t=typeRule();
 			state._fsp--;
 
-			a=(Token)match(input,ID,FOLLOW_ID_in_operationDeclarationRule720); 
-			match(input,LP,FOLLOW_LP_in_operationDeclarationRule724); 
-			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:158:3: (pType= typeRule pID= ID )*
+			a=(Token)match(input,ID,FOLLOW_ID_in_operationDeclarationRule736); 
+			match(input,LP,FOLLOW_LP_in_operationDeclarationRule740); 
+			// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:165:3: (pType= typeRule pID= ID )*
 			loop12:
 			while (true) {
 				int alt12=2;
@@ -903,13 +929,13 @@ public class UmlParser extends Parser {
 
 				switch (alt12) {
 				case 1 :
-					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:159:4: pType= typeRule pID= ID
+					// C:\\Users\\tiron\\Desktop\\Unibg\\2Magistrale\\ANNO I\\I Semestre\\Linguaggi formali e compilatori\\Progetto\\LFC2324_Project\\lcfuml\\src\\myCompilerPackage\\Uml.g:166:4: pType= typeRule pID= ID
 					{
-					pushFollow(FOLLOW_typeRule_in_operationDeclarationRule735);
+					pushFollow(FOLLOW_typeRule_in_operationDeclarationRule751);
 					pType=typeRule();
 					state._fsp--;
 
-					pID=(Token)match(input,ID,FOLLOW_ID_in_operationDeclarationRule742); 
+					pID=(Token)match(input,ID,FOLLOW_ID_in_operationDeclarationRule758); 
 					}
 					break;
 
@@ -918,7 +944,7 @@ public class UmlParser extends Parser {
 				}
 			}
 
-			match(input,RP,FOLLOW_RP_in_operationDeclarationRule751); 
+			match(input,RP,FOLLOW_RP_in_operationDeclarationRule767); 
 			}
 
 		}
@@ -936,64 +962,65 @@ public class UmlParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_ABSTRACT_in_classDefinitionRule62 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_CLASS_in_classDefinitionRule67 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_classDefinitionRule73 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_classCodeRule_in_classDefinitionRule83 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_RELATIONS_in_relationsDefinitionRule100 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_DP_in_relationsDefinitionRule104 = new BitSet(new long[]{0x0000040000000000L});
-	public static final BitSet FOLLOW_LBR_in_relationsDefinitionRule108 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_relationCodeRule_in_relationsDefinitionRule112 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000001L});
-	public static final BitSet FOLLOW_RBR_in_relationsDefinitionRule117 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LBR_in_classCodeRule133 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
-	public static final BitSet FOLLOW_ATTRIBUTE_in_classCodeRule145 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_DP_in_classCodeRule147 = new BitSet(new long[]{0x7800000000000000L});
-	public static final BitSet FOLLOW_attributeDeclarationRule_in_classCodeRule149 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
-	public static final BitSet FOLLOW_OPERATION_in_classCodeRule162 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_DP_in_classCodeRule164 = new BitSet(new long[]{0x7800000000000000L});
-	public static final BitSet FOLLOW_operationDeclarationRule_in_classCodeRule166 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
-	public static final BitSet FOLLOW_RBR_in_classCodeRule177 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_relationCodeRule194 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_relationCodeRule203 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_multiplicityRule_in_relationCodeRule209 = new BitSet(new long[]{0x0000002000410000L,0x0000000000009040L});
-	public static final BitSet FOLLOW_relationTypeRule_in_relationCodeRule213 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_classDefinitionRule_in_start60 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ABSTRACT_in_classDefinitionRule78 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_CLASS_in_classDefinitionRule83 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_classDefinitionRule89 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_classCodeRule_in_classDefinitionRule99 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_RELATIONS_in_relationsDefinitionRule116 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_DP_in_relationsDefinitionRule120 = new BitSet(new long[]{0x0000040000000000L});
+	public static final BitSet FOLLOW_LBR_in_relationsDefinitionRule124 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_relationCodeRule_in_relationsDefinitionRule128 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000001L});
+	public static final BitSet FOLLOW_RBR_in_relationsDefinitionRule133 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LBR_in_classCodeRule149 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
+	public static final BitSet FOLLOW_ATTRIBUTE_in_classCodeRule161 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_DP_in_classCodeRule163 = new BitSet(new long[]{0x7800000000000000L});
+	public static final BitSet FOLLOW_attributeDeclarationRule_in_classCodeRule165 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
+	public static final BitSet FOLLOW_OPERATION_in_classCodeRule178 = new BitSet(new long[]{0x0000000000200000L});
+	public static final BitSet FOLLOW_DP_in_classCodeRule180 = new BitSet(new long[]{0x7800000000000000L});
+	public static final BitSet FOLLOW_operationDeclarationRule_in_classCodeRule182 = new BitSet(new long[]{0x0100000000000080L,0x0000000000000001L});
+	public static final BitSet FOLLOW_RBR_in_classCodeRule193 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_relationCodeRule210 = new BitSet(new long[]{0x0000000800000000L});
 	public static final BitSet FOLLOW_ID_in_relationCodeRule219 = new BitSet(new long[]{0x0001000000000000L});
-	public static final BitSet FOLLOW_multiplicityRule_in_relationCodeRule225 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
-	public static final BitSet FOLLOW_UNDREL_in_relationCodeRule234 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_relationCodeRule241 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_visibilityRule_in_attributeDeclarationRule266 = new BitSet(new long[]{0x0408190900100900L,0x0000000000000820L});
-	public static final BitSet FOLLOW_arrayTypeRule_in_attributeDeclarationRule279 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000800L});
-	public static final BitSet FOLLOW_typeRule_in_attributeDeclarationRule286 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_attributeDeclarationRule292 = new BitSet(new long[]{0x0001000800000000L,0x0000000000000012L});
-	public static final BitSet FOLLOW_ID_in_attributeDeclarationRule307 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000012L});
-	public static final BitSet FOLLOW_multiplicityRule_in_attributeDeclarationRule320 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000012L});
-	public static final BitSet FOLLOW_READONLY_in_attributeDeclarationRule339 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-	public static final BitSet FOLLOW_SC_in_attributeDeclarationRule344 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PUBLIC_in_visibilityRule377 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PROTECTED_in_visibilityRule385 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRIVATE_in_visibilityRule393 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PACKAGE_in_visibilityRule401 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SET_in_arrayTypeRule444 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MULTISET_in_arrayTypeRule452 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LIST_in_arrayTypeRule460 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ORDEREDSET_in_arrayTypeRule468 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_TYPE_in_typeRule509 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_TYPE_in_typeRule517 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_LONG_TYPE_in_typeRule525 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DOUBLE_TYPE_in_typeRule533 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_BOOLEAN_TYPE_in_typeRule541 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CHAR_TYPE_in_typeRule549 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_TYPE_in_typeRule557 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_typeRule567 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MIN_in_multiplicityRule663 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_multiplicityRule667 = new BitSet(new long[]{0x0000800000000000L});
-	public static final BitSet FOLLOW_MAX_in_multiplicityRule673 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_multiplicityRule677 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_visibilityRule_in_operationDeclarationRule708 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000800L});
-	public static final BitSet FOLLOW_typeRule_in_operationDeclarationRule714 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_operationDeclarationRule720 = new BitSet(new long[]{0x0000200000000000L});
-	public static final BitSet FOLLOW_LP_in_operationDeclarationRule724 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000808L});
-	public static final BitSet FOLLOW_typeRule_in_operationDeclarationRule735 = new BitSet(new long[]{0x0000000800000000L});
-	public static final BitSet FOLLOW_ID_in_operationDeclarationRule742 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000808L});
-	public static final BitSet FOLLOW_RP_in_operationDeclarationRule751 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_multiplicityRule_in_relationCodeRule225 = new BitSet(new long[]{0x0000002000410000L,0x0000000000009040L});
+	public static final BitSet FOLLOW_relationTypeRule_in_relationCodeRule229 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_relationCodeRule235 = new BitSet(new long[]{0x0001000000000000L});
+	public static final BitSet FOLLOW_multiplicityRule_in_relationCodeRule241 = new BitSet(new long[]{0x0000000000000002L,0x0000000000008000L});
+	public static final BitSet FOLLOW_UNDREL_in_relationCodeRule250 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_relationCodeRule257 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_visibilityRule_in_attributeDeclarationRule282 = new BitSet(new long[]{0x0408190900100900L,0x0000000000000820L});
+	public static final BitSet FOLLOW_arrayTypeRule_in_attributeDeclarationRule295 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000800L});
+	public static final BitSet FOLLOW_typeRule_in_attributeDeclarationRule302 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_attributeDeclarationRule308 = new BitSet(new long[]{0x0001000800000000L,0x0000000000000012L});
+	public static final BitSet FOLLOW_ID_in_attributeDeclarationRule323 = new BitSet(new long[]{0x0001000000000000L,0x0000000000000012L});
+	public static final BitSet FOLLOW_multiplicityRule_in_attributeDeclarationRule336 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000012L});
+	public static final BitSet FOLLOW_READONLY_in_attributeDeclarationRule355 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+	public static final BitSet FOLLOW_SC_in_attributeDeclarationRule360 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PUBLIC_in_visibilityRule393 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PROTECTED_in_visibilityRule401 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRIVATE_in_visibilityRule409 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PACKAGE_in_visibilityRule417 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SET_in_arrayTypeRule460 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MULTISET_in_arrayTypeRule468 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LIST_in_arrayTypeRule476 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ORDEREDSET_in_arrayTypeRule484 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_TYPE_in_typeRule525 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_TYPE_in_typeRule533 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LONG_TYPE_in_typeRule541 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DOUBLE_TYPE_in_typeRule549 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_BOOLEAN_TYPE_in_typeRule557 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CHAR_TYPE_in_typeRule565 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_TYPE_in_typeRule573 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_typeRule583 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MIN_in_multiplicityRule679 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_multiplicityRule683 = new BitSet(new long[]{0x0000800000000000L});
+	public static final BitSet FOLLOW_MAX_in_multiplicityRule689 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_multiplicityRule693 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_visibilityRule_in_operationDeclarationRule724 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000800L});
+	public static final BitSet FOLLOW_typeRule_in_operationDeclarationRule730 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_operationDeclarationRule736 = new BitSet(new long[]{0x0000200000000000L});
+	public static final BitSet FOLLOW_LP_in_operationDeclarationRule740 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000808L});
+	public static final BitSet FOLLOW_typeRule_in_operationDeclarationRule751 = new BitSet(new long[]{0x0000000800000000L});
+	public static final BitSet FOLLOW_ID_in_operationDeclarationRule758 = new BitSet(new long[]{0x0000110900100900L,0x0000000000000808L});
+	public static final BitSet FOLLOW_RP_in_operationDeclarationRule767 = new BitSet(new long[]{0x0000000000000002L});
 }
