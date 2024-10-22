@@ -7,10 +7,10 @@ public class Attribute {
 	Visibility visibility;
 	String type; // String perchè potrebbe essere anche definitio dall'utente
 	ArrayType arrayType; // tipo dell'array
-	int multiplicity; // min e max in una lista (min?, max?)
+	int[] multiplicity; // min e max in una lista (min?, max?)
 	boolean readOnly; // non puoi modificare la variabile
 
-	public Attribute(String name, Visibility visibility, String type, ArrayType arrayType, int multiplicity,
+	public Attribute(String name, Visibility visibility, String type, ArrayType arrayType, int[] multiplicity,
 			boolean readOnly) {
 		super();
 		this.name = name;
@@ -37,7 +37,7 @@ public class Attribute {
 		return arrayType;
 	}
 
-	public int getMultiplicity() {
+	public int[] getMultiplicity() {
 		return multiplicity;
 	}
 
