@@ -3,8 +3,9 @@ package myCompilerPackage;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.*;
+
 
 
 public class SemanticHandler {

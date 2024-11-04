@@ -34,14 +34,12 @@
   </build>
     
  	<dependencies>
- 	
-		<dependency>
-		    <groupId>org.antlr</groupId>
-		    <artifactId>antlr</artifactId>
-		    <version>3.5.2</version>
-		</dependency>
-
-	    
+	<dependency> 
+	  <groupId>org.antlr</groupId> 
+	  <artifactId>antlr4</artifactId> 
+	  <version>4.13.2</version> 
+	</dependency> 
+		    
 	    <dependency>
 	        <groupId>net.sourceforge.plantuml</groupId>
 	        <artifactId>plantuml</artifactId>
