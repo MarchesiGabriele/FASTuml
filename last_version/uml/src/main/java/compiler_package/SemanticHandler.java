@@ -1,4 +1,4 @@
-package myCompilerPackage;
+package compiler_package;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

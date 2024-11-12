@@ -1,6 +1,6 @@
 // Generated from Uml.g4 by ANTLR 4.13.2
 
-    package myCompilerPackage;
+    package compiler_package;
 
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -29,7 +29,7 @@ public class UmlParser extends Parser {
 		ORDEREDSET=52, LIST=53, SHORT=54, STATIC=55, THROWS=56, STRING_TYPE=57, 
 		TRUE=58, UNIQUE=59, UNORDERED=60, VOID=61, SHARED=62, COMPOSED=63, ATTRIBUTE=64, 
 		RELATIONS=65, OPERATION=66, MIN=67, MAX=68, ID=69, INT=70, FLOAT=71, COMMENT=72, 
-		WS=73, STRING=74, CHAR=75;
+		WS=73, STRING=74, CHAR=75, ERROR_TOKEN=76;
 	public static final int
 		RULE_start = 0, RULE_classDefinitionRule = 1, RULE_relationsDefinitionRule = 2, 
 		RULE_classCodeRule = 3, RULE_relationCodeRule = 4, RULE_attributeDeclarationRule = 5, 
@@ -70,7 +70,7 @@ public class UmlParser extends Parser {
 			"READONLY", "SET", "MULTISET", "ORDEREDSET", "LIST", "SHORT", "STATIC", 
 			"THROWS", "STRING_TYPE", "TRUE", "UNIQUE", "UNORDERED", "VOID", "SHARED", 
 			"COMPOSED", "ATTRIBUTE", "RELATIONS", "OPERATION", "MIN", "MAX", "ID", 
-			"INT", "FLOAT", "COMMENT", "WS", "STRING", "CHAR"
+			"INT", "FLOAT", "COMMENT", "WS", "STRING", "CHAR", "ERROR_TOKEN"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -124,19 +124,6 @@ public class UmlParser extends Parser {
 
 	    public SemanticHandler getHandler() {
 	        return h;
-	    }
-
-	    @Override
-	    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
-	        // in tokenNames c'è la lista dei token che si sarebbe voluto trovare
-	        // token che genera l'errore
-	        Token tk = _input.LT(1); // Modifica per ANTLR 4: usa _input anziché input
-	        // header e corpo dell'errore gestito automaticamente da ANTLR
-	        String hdr = getErrorHeader(e);
-	        String msg = getErrorMessage(e, tokenNames);
-	        
-	        // passo tutto all'handler
-	        h.handleError(tokenNames, tk, e, hdr, msg);
 	    }
 
 	public UmlParser(TokenStream input) {
@@ -267,10 +254,10 @@ public class UmlParser extends Parser {
 			match(CLASS);
 			setState(37);
 			((ClassDefinitionRuleContext)_localctx).c = match(ID);
-			 h.manageClassName(((ClassDefinitionRuleContext)_localctx).c.getText()); 
+			 h.manageClassName(((ClassDefinitionRuleContext)_localctx).c); 
 			setState(39);
 			classCodeRule();
-			 h.setClass(((ClassDefinitionRuleContext)_localctx).c.getText()); 
+			 h.setClass(((ClassDefinitionRuleContext)_localctx).c); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -1032,7 +1019,7 @@ public class UmlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001Kz\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002\u0002"+
+		"\u0004\u0001Lz\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002\u0002"+
 		"\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002\u0005"+
 		"\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002\b\u0007"+
 		"\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0001\u0000"+

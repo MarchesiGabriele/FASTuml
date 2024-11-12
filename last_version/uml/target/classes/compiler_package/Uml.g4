@@ -1,11 +1,7 @@
 grammar Uml;
 
-@parser::header {
-    package myCompilerPackage;
-}
-
-@lexer::header {
-    package myCompilerPackage;
+@header {
+    package compiler_package;
 }
 
 @members {
@@ -13,19 +9,6 @@ grammar Uml;
 
     public SemanticHandler getHandler() {
         return h;
-    }
-
-    @Override
-    public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
-        // in tokenNames c'è la lista dei token che si sarebbe voluto trovare
-        // token che genera l'errore
-        Token tk = _input.LT(1); // Modifica per ANTLR 4: usa _input anziché input
-        // header e corpo dell'errore gestito automaticamente da ANTLR
-        String hdr = getErrorHeader(e);
-        String msg = getErrorMessage(e, tokenNames);
-        
-        // passo tutto all'handler
-        h.handleError(tokenNames, tk, e, hdr, msg);
     }
 }
 
@@ -38,8 +21,8 @@ start
     ;
 
 classDefinitionRule
-    : ABSTRACT? CLASS c=ID { h.manageClassName($c.getText()); }
-      classCodeRule { h.setClass($c.getText()); }
+    : ABSTRACT? CLASS c=ID { h.manageClassName($c); }
+      classCodeRule { h.setClass($c); }
     ;
 
 relationsDefinitionRule
@@ -190,3 +173,10 @@ fragment OCTAL_ESC
 fragment UNICODE_ESC
     : '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
+    
+
+ERROR_TOKEN 
+	: 
+		. //  {	$channel = HIDDEN;	}
+	;
+

@@ -1,4 +1,7 @@
 // Generated from Uml.g4 by ANTLR 4.13.2
+
+    package compiler_package;
+
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
