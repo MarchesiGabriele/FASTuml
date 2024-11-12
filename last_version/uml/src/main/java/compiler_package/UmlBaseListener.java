@@ -19,168 +19,168 @@ public class UmlBaseListener implements UmlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterStart(UmlParser.StartContext ctx) { }
+	@Override public void enterStart(UmlParser.StartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitStart(UmlParser.StartContext ctx) { }
+	@Override public void exitStart(UmlParser.StartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) { }
+	@Override public void enterClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) { }
+	@Override public void exitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { }
+	@Override public void enterRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { }
+	@Override public void exitRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { }
+	@Override public void enterClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { }
+	@Override public void exitClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) { }
+	@Override public void enterRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) { }
+	@Override public void exitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterAttributeDeclarationRule(UmlParser.AttributeDeclarationRuleContext ctx) { }
+	@Override public void enterAttributeDeclarationRule(UmlParser.AttributeDeclarationRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitAttributeDeclarationRule(UmlParser.AttributeDeclarationRuleContext ctx) { }
+	@Override public void exitAttributeDeclarationRule(UmlParser.AttributeDeclarationRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterVisibilityRule(UmlParser.VisibilityRuleContext ctx) { }
+	@Override public void enterVisibilityRule(UmlParser.VisibilityRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitVisibilityRule(UmlParser.VisibilityRuleContext ctx) { }
+	@Override public void exitVisibilityRule(UmlParser.VisibilityRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterArrayTypeRule(UmlParser.ArrayTypeRuleContext ctx) { }
+	@Override public void enterArrayTypeRule(UmlParser.ArrayTypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitArrayTypeRule(UmlParser.ArrayTypeRuleContext ctx) { }
+	@Override public void exitArrayTypeRule(UmlParser.ArrayTypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterTypeRule(UmlParser.TypeRuleContext ctx) { }
+	@Override public void enterTypeRule(UmlParser.TypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitTypeRule(UmlParser.TypeRuleContext ctx) { }
+	@Override public void exitTypeRule(UmlParser.TypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterRelationTypeRule(UmlParser.RelationTypeRuleContext ctx) { }
+	@Override public void enterRelationTypeRule(UmlParser.RelationTypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitRelationTypeRule(UmlParser.RelationTypeRuleContext ctx) { }
+	@Override public void exitRelationTypeRule(UmlParser.RelationTypeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterMultiplicityRule(UmlParser.MultiplicityRuleContext ctx) { }
+	@Override public void enterMultiplicityRule(UmlParser.MultiplicityRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitMultiplicityRule(UmlParser.MultiplicityRuleContext ctx) { }
+	@Override public void exitMultiplicityRule(UmlParser.MultiplicityRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) { }
+	@Override public void enterOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) { }
+	@Override public void exitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void enterEveryRule(ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void exitEveryRule(ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void visitTerminal(TerminalNode node) { }
+	@Override public void visitTerminal(TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	 public void visitErrorNode(ErrorNode node) { }
+	@Override public void visitErrorNode(ErrorNode node) { }
 }

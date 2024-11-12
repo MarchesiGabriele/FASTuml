@@ -1,9 +1,12 @@
 package compiler_package;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.tree.ParseTree;
+
+import compiler_package.UmlParser.TypeRuleContext;
 
 public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
@@ -75,8 +78,9 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         String visibility = visit(ctx.visibilityRule());
         String attrType = ctx.typeRule().getText();
         String attrName = ctx.a.getText();
+        attrType = attrType.equals("String") ? "str" : attrType;
 
-        return String.format("%s%s: %s", visibility, attrName, attrType);
+        return String.format("%s%s: %s = None", visibility, attrName, attrType);
     }
 
     // Visita la dichiarazione di un'operazione (metodo)
@@ -87,9 +91,16 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         String visibility = visit(ctx.visibilityRule());
         String returnType = ctx.typeRule(0).getText();
         String methodName = ctx.a.getText();
-
+        returnType = returnType.equals("String") ? "str" : returnType;
+       
+        List<String> params = new ArrayList<>(); 
         // Parametri del metodo
-        List<String> params = ctx.LP() != null ? ctx.typeRule().stream().map(UmlParser.TypeRuleContext::getText).collect(Collectors.toList()) : List.of();
+        for (int i = 1; i < ctx.typeRule().size(); i++) {
+            params.add(ctx.ID(i).getText() + ":"+ctx.typeRule(i).getText());
+        }
+        
+        
+        //List<String> params = ctx.LP() != null ? ctx.typeRule().stream().map(UmlParser.TypeRuleContext::getText).collect(Collectors.toList()) : List.of();
         params.add(0, "self");  // aggiunge `self` come primo parametro
 
         method.append(String.format("%sdef %s(%s) -> %s:\n        pass", visibility, methodName, String.join(", ", params), returnType));

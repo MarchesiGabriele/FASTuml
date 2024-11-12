@@ -86,8 +86,8 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         operationCode.append(visibility).append(" ").append(returnType).append(" ").append(methodName).append("(");
         
         // Aggiungi i parametri
-        for (int i = 0; i < ctx.typeRule().size(); i++) {
-            if (i > 0) operationCode.append(", ");
+        for (int i = 1; i < ctx.typeRule().size(); i++) {
+            if (i > 1) operationCode.append(", ");
             operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i).getText());
         }
         

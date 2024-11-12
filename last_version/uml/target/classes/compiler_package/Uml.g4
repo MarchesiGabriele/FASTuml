@@ -40,7 +40,7 @@ relationCodeRule
     ;
 
 attributeDeclarationRule
-    : v=visibilityRule arrayTypeRule? t=typeRule a=ID d=ID? multiplicityRule? READONLY? SC
+    : v=visibilityRule arrayTypeRule? t=typeRule a=ID d=(ID | INT | FLOAT)? multiplicityRule? READONLY? SC
       //{ h.attDeclaration(v, $arrayTypeRule.getText(), t, $a.getText(), $d != null ? $d.getText() : null); }
     ;
 

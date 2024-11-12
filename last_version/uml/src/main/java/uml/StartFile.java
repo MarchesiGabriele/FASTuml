@@ -9,12 +9,22 @@ import compiler_package.UmlParser;
 import compiler_package.UmlPythonVisitor;
 
 
+/**
+ * 
+ * @author march
+ * 
+ * TODO: controllare che il tipo default sia coerente con tupo variabile
+ * TODO: aggiungere / togliere puunto e virgola a fine riga (operations)
+ * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python
+ * TODO: quando ho le relazioni, controllare che le classi già esistano
+ */
+
 public class StartFile {
     public static void main(String[] args) throws Exception {
         String sourceCode = "class Employee{\r\n"
-				+ "        attribute: public int employeeId;\r\n"
-				+ "        attribute: public String department;\r\n"
-				+ "        operation: public String work()\r\n"
+				+ "        attribute: public int employeeId 15;\r\n"
+				+ "        attribute: public String department paolo6;\r\n"
+				+ "        operation: public String work(int paolo)\r\n"
 				+ "        operation: public String attendMeeting()\r\n"
 				+ "}";
         
