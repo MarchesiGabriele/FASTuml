@@ -21,7 +21,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         if (ctx.relationsDefinitionRule() != null) {
             result.append(visit(ctx.relationsDefinitionRule()));
         }
-
+        System.out.println("RIGA24 " + result);
         return result.toString();
     }
 
@@ -51,7 +51,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
             result.insert(0, "from abc import ABC, abstractmethod\n\n");
             result.insert(result.indexOf("class " + className) + ("class " + className).length(), "(ABC)");
         }
-
+        System.out.println("RIGA54 " + result);
         return result.toString();
     }
 
@@ -62,9 +62,10 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Aggiungi attributi e metodi
         for (ParseTree child : ctx.children) {
+        	if(visit(child) == null) continue;
             result.append("    ").append(visit(child)).append("\n");
         }
-
+        System.out.println("RIGA67" + result);
         return result.length() > 0 ? result.toString() : "    pass\n";
     }
 
@@ -78,6 +79,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         return String.format("%s%s: %s", visibility, attrName, attrType);
     }
 
+    // Visita la dichiarazione di un'operazione (metodo)
     @Override
     public String visitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) {
         StringBuilder method = new StringBuilder();
@@ -87,12 +89,11 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         String methodName = ctx.a.getText();
 
         // Parametri del metodo
-        List<String> params = ctx.LP() != null 
-            ? ctx.typeRule().stream().map(UmlParser.TypeRuleContext::getText).collect(Collectors.toList()) 
-            : new ArrayList<>(); // Inizializza come una nuova ArrayList vuota
+        List<String> params = ctx.LP() != null ? ctx.typeRule().stream().map(UmlParser.TypeRuleContext::getText).collect(Collectors.toList()) : List.of();
         params.add(0, "self");  // aggiunge `self` come primo parametro
 
-        method.append(String.format("%sdef %s(%s) -> %s:\n    pass", visibility, methodName, String.join(", ", params), returnType));
+        method.append(String.format("%sdef %s(%s) -> %s:\n        pass", visibility, methodName, String.join(", ", params), returnType));
+        System.out.println("RIGA95 " + method);
 
         return method.toString();
     }
@@ -114,6 +115,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         for (UmlParser.RelationCodeRuleContext relCtx : ctx.relationCodeRule()) {
             relations.append(visit(relCtx)).append("\n");
         }
+        System.out.println("RIGA117 " + relations);
 
         return relations.toString();
     }

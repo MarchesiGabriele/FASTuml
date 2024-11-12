@@ -6,6 +6,7 @@ import compiler_package.UmlJavaVisitor;
 // Importa la classe generata automaticamente da ANTLR
 import compiler_package.UmlLexer;
 import compiler_package.UmlParser;
+import compiler_package.UmlPythonVisitor;
 
 
 public class StartFile {
@@ -13,7 +14,6 @@ public class StartFile {
         String sourceCode = "class Employee{\r\n"
 				+ "        attribute: public int employeeId;\r\n"
 				+ "        attribute: public String department;\r\n"
-				+ "        \r\n"
 				+ "        operation: public String work()\r\n"
 				+ "        operation: public String attendMeeting()\r\n"
 				+ "}";
@@ -30,5 +30,16 @@ public class StartFile {
         String javaCode = visitor.visit(tree);
 
         System.out.println(javaCode);
+        
+        System.out.println("////////////////////// PYTONEEEEEEEEEEEEEEE //////////////////");
+        
+        
+        // Crea un visitor e avvia la visita
+        UmlPythonVisitor visitorp = new UmlPythonVisitor();
+        String javaCodep = visitorp.visit(tree);
+
+        
+        System.out.println(javaCodep);
+        
     }
 }
