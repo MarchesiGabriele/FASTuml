@@ -2,6 +2,7 @@ package compiler_package;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -11,10 +12,13 @@ import org.antlr.v4.runtime.tree.*;
 public class SemanticHandler {
 	
 	// ****** codici per i messaggi d'errore
-	public static int LEXICAL_ERROR 		= 0;
-	public static int SYNTAX_ERROR 			= 1;
-	public static int ALREADY_DEF_ERROR 	= 11;
-	public static int NO_DECLARATION_ERROR 	= 12;
+	public static int LEXICAL_ERROR 					= 0;
+	public static int SYNTAX_ERROR 						= 1;
+	public static int ALREADY_DEF_ERROR 				= 110;
+	public static int ALREADY_DEF_OP_ERROR 				= 111;
+	public static int NO_DECLARATION_ERROR 				= 12;
+	public static int INCORRECT_VALUE 					= 13;
+	public static int INVALID_CONSTRUCTOR_ERROR 		= 14;
 	
 	// ??
 	public static int FIRST_WARNING 		= 100;
@@ -23,6 +27,7 @@ public class SemanticHandler {
 	// ****** attributi semantici globali
 	ArrayList<String> classTable;
 	ArrayList<String> attTable;
+	ArrayList<String> opTable;
 	ArrayList<String> errors;
 	ArrayList<String> warnings;
 	
@@ -31,6 +36,7 @@ public class SemanticHandler {
 	public SemanticHandler () {
 		classTable = new ArrayList<String>();
 		attTable = new ArrayList<String>();
+		opTable = new ArrayList<String>();
 		errors = new ArrayList<String>();
 		warnings = new ArrayList<String>();
 	}
@@ -58,8 +64,22 @@ public class SemanticHandler {
 		}
 	// ----------------------- fine metodi di pubblico interesse
 	
+	public void setClass(Token className) {
+		currentClass = className.getText();
+		attTable.clear();
+		opTable.clear();
+	}
+		
 	public boolean isClassDeclared (String name) {
 		return classTable.contains(name);
+	}
+	
+	public boolean isAttDeclared (String name) {
+		return attTable.contains(name);
+	}
+	
+	public boolean isOpDeclared (String name) {
+		return opTable.contains(name);
 	}
 	
 	public void manageClassName(Token className) {
@@ -71,22 +91,88 @@ public class SemanticHandler {
 		}
 	}
 	
-	public void setClass(Token className) {
-		currentClass = className.getText();
-		attTable.clear();
+	public boolean isDefaultValueCorrect(String type, String value) {
+	    try {
+	        switch (type.toLowerCase()) {
+	            case "int":
+	                Integer.parseInt(value);  
+	                return true;
+	            case "float":
+	                Float.parseFloat(value);
+	                return true;
+	            case "double":
+	                Double.parseDouble(value);
+	                return true;
+	            case "boolean":
+	                if ("true".equalsIgnoreCase(value) || "false".equalsIgnoreCase(value)) {
+	                    return true;
+	                } else {
+	                    return false;
+	                }
+	            case "string":
+	                return true;
+	            default:
+	                return false;
+	        }
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
 	}
 	
-	public boolean isAttDeclared (String name) {
-		return attTable.contains(name);
+	public boolean isConstructor(String methodName, String returnType) {
+	    return !currentClass.equals(methodName) && returnType == null;
 	}
 
-	// CI SONO PROBLEMI A PASSARE IL MULTIPLICITY PERCHE NON E' UNA STRING
 	public void attDeclaration(String visibility, String arrayType, String type, Token attName, Token defaultValue) {
 		String name = attName.getText();
-		if (isAttDeclared(name))
+		String value = defaultValue.getText();
+		if (isAttDeclared(name)) {
 			addError (ALREADY_DEF_ERROR, attName);
+		}
+		else if(!isDefaultValueCorrect(type, value)) {
+			addError (INCORRECT_VALUE, defaultValue);
+		}
 		else {
 			attTable.add(name);
+		}
+	}
+	
+	public String getOpKey(String methodName, String returnType, List<String> paramTypes, List<String> paramNames) {
+	    StringBuilder keyBuilder = new StringBuilder(methodName);
+	    keyBuilder.append(":").append(returnType);
+	    int i = 0;
+	    for (String paramType : paramTypes) {
+	        keyBuilder.append(":").append(paramTypes.get(i)).append(paramNames.get(i));
+	        i++;
+	    }
+	    return keyBuilder.toString();
+	}
+	
+	public void opDeclaration(String visibility, String returnType, Token opName, List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
+	    String name = opName.getText();
+	    
+	    List<String> paramTypes = new ArrayList<>();
+        for (UmlParser.TypeRuleContext param : paramsType) {
+            String paramType = param.getText(); 
+            paramTypes.add(paramType);
+        }
+        
+        List<String> paramNames = new ArrayList<>();
+        for (Token param : paramsName) {
+            String paramName = param.getText(); 
+            paramNames.add(paramName);
+        }
+
+        String opKey = getOpKey(name, returnType, paramTypes, paramNames);
+
+	    if (isConstructor(name, returnType)) {
+	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
+	    }
+	    if(isOpDeclared(opKey)) {
+			addError (ALREADY_DEF_OP_ERROR, opName);
+		}
+		else {
+			opTable.add(opKey);
 		}
 	}
 	
@@ -119,9 +205,17 @@ public class SemanticHandler {
 		
 		String msg = "Errore Semantico in " + coors + ":\t";
 		if (errCode == ALREADY_DEF_ERROR)
- 			msg += "La variabile '" + str + "' ï¿½ giï¿½ stata dichiarata";
+ 			msg += "La variabile '" + str + "' e' gia stata dichiarata";
+		else if (errCode == ALREADY_DEF_OP_ERROR)
+ 			msg += "Il metodo '" + str + "' e' gia stato dichiarato";
  		else if (errCode == NO_DECLARATION_ERROR)
- 			msg += "La variabile '" + str + "' non ï¿½ stata dichiarata";
+ 			msg += "La variabile '" + str + "' non e' stata dichiarata";
+ 		else if (errCode == INCORRECT_VALUE)
+ 			msg += "Il valore di default " + str + " e' incompatibile con il tipo";
+ 		else if (errCode == INVALID_CONSTRUCTOR_ERROR)
+            msg += "Il costruttore '" + str + "' non è valido. Deve avere lo stesso nome della classe e un tipo di ritorno 'void'.";
+
+		
  		errors.add(msg);
 	}
 

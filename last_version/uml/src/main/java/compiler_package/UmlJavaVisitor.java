@@ -6,7 +6,9 @@ import compiler_package.UmlParser.ClassDefinitionRuleContext;
 import compiler_package.UmlParser.RelationCodeRuleContext;
 
 public class UmlJavaVisitor extends UmlBaseVisitor<String> {
-
+	
+	String currentClass;
+	
     @Override
     public String visitStart(UmlParser.StartContext ctx) {
         StringBuilder javaCode = new StringBuilder();
@@ -27,6 +29,7 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
     @Override
     public String visitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) {
         String className = ctx.c.getText();
+        currentClass = className;
         String classKeyword = ctx.ABSTRACT() != null ? "abstract class" : "class";
         
         StringBuilder classCode = new StringBuilder();
@@ -66,7 +69,7 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         }
 
         StringBuilder attrCode = new StringBuilder();
-        attrCode.append(visibility).append(" ").append(type).append(" ").append(attributeName);
+        attrCode.append("\t").append(visibility).append(" ").append(type).append(" ").append(attributeName);
         
         if (ctx.d != null) {
             attrCode.append(" = ").append(ctx.d.getText());
@@ -79,19 +82,27 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
     @Override
     public String visitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) {
         String visibility = visit(ctx.visibilityRule());
-        String returnType = ctx.typeRule(0).getText(); // TODO FIX
         String methodName = ctx.a.getText();
         
         StringBuilder operationCode = new StringBuilder();
-        operationCode.append(visibility).append(" ").append(returnType).append(" ").append(methodName).append("(");
+        operationCode.append("\t").append(visibility);
+        
+        if(!methodName.equals(currentClass)) {
+        	operationCode.append(" ").append(ctx.typeRule(0).getText());
+        }else {
+        	//ctx.typeRule().add(ctx.typeRule(0));
+        	//System.out.println(ctx.typeRule(0).getText());
+        }
+        
+        operationCode.append(" ").append(methodName).append("(");
         
         // Aggiungi i parametri
-        for (int i = 1; i < ctx.typeRule().size(); i++) {
+        for (int i=1; i < ctx.typeRule().size(); i++) {
             if (i > 1) operationCode.append(", ");
             operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i).getText());
         }
         
-        operationCode.append(") {\n    // TODO: implement\n}\n");
+        operationCode.append(") {\n\t\t// TODO: implement\n\t}\n");
         return operationCode.toString();
     }
 

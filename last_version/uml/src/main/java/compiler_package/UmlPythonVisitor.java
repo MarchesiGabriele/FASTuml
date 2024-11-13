@@ -9,7 +9,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import compiler_package.UmlParser.TypeRuleContext;
 
 public class UmlPythonVisitor extends UmlBaseVisitor<String> {
-
+	
+	String currentClass;
+	
     // Visita la regola di inizio (start)
     @Override
     public String visitStart(UmlParser.StartContext ctx) {
@@ -24,7 +26,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         if (ctx.relationsDefinitionRule() != null) {
             result.append(visit(ctx.relationsDefinitionRule()));
         }
-        System.out.println("RIGA24 " + result);
         return result.toString();
     }
 
@@ -38,6 +39,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Ottiene il nome della classe
         String className = ctx.c.getText();
+        currentClass = className;
         result.append("class ").append(className);
 
         // Controlla se c'è una classe padre
@@ -54,7 +56,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
             result.insert(0, "from abc import ABC, abstractmethod\n\n");
             result.insert(result.indexOf("class " + className) + ("class " + className).length(), "(ABC)");
         }
-        System.out.println("RIGA54 " + result);
         return result.toString();
     }
 
@@ -68,7 +69,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         	if(visit(child) == null) continue;
             result.append("    ").append(visit(child)).append("\n");
         }
-        System.out.println("RIGA67" + result);
         return result.length() > 0 ? result.toString() : "    pass\n";
     }
 
@@ -88,23 +88,42 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
     public String visitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) {
         StringBuilder method = new StringBuilder();
 
+        // Extract visibility, method name, and return type (which could be null)
         String visibility = visit(ctx.visibilityRule());
-        String returnType = ctx.typeRule(0).getText();
         String methodName = ctx.a.getText();
-        returnType = returnType.equals("String") ? "str" : returnType;
-       
-        List<String> params = new ArrayList<>(); 
-        // Parametri del metodo
-        for (int i = 1; i < ctx.typeRule().size(); i++) {
-            params.add(ctx.ID(i).getText() + ":"+ctx.typeRule(i).getText());
+        String returnType = methodName.equals(currentClass) ? null : ctx.typeRule(0).getText(); // Handle null return type
+
+        if (returnType == null) {
+            methodName = "__init__";
+        	//ctx.typeRule().add(0, ctx.typeRule(0));
+        	//ctx.ID().add(0, ctx.ID(0));
         }
         
-        
-        //List<String> params = ctx.LP() != null ? ctx.typeRule().stream().map(UmlParser.TypeRuleContext::getText).collect(Collectors.toList()) : List.of();
-        params.add(0, "self");  // aggiunge `self` come primo parametro
+        if ("String".equals(returnType)) {
+            returnType = "str";
+        }
 
-        method.append(String.format("%sdef %s(%s) -> %s:\n        pass", visibility, methodName, String.join(", ", params), returnType));
-        System.out.println("RIGA95 " + method);
+        // List to hold parameters
+        List<String> params = new ArrayList<>(); 
+
+        // Add parameters from typeRule and ID (skipping the first one, which is typically the return type)
+        for (int i = 1; i < ctx.typeRule().size(); i++) {
+            params.add(ctx.ID(i).getText() + ":" + ctx.typeRule(i).getText());
+        }
+
+        // Always add `self` as the first parameter
+        params.add(0, "self");
+
+        // Start building the method signature
+        String methodSignature = String.format("%sdef %s(%s)", visibility, methodName, String.join(", ", params));
+
+        // If returnType is non-null and non-empty (not "void"), add it to the signature
+        if (returnType != null && !returnType.isEmpty() && !"void".equals(returnType)) {
+            methodSignature += " -> " + returnType;
+        }
+
+        // Add the method body with a placeholder "pass"
+        method.append(methodSignature).append(":\n        pass");
 
         return method.toString();
     }
@@ -126,7 +145,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         for (UmlParser.RelationCodeRuleContext relCtx : ctx.relationCodeRule()) {
             relations.append(visit(relCtx)).append("\n");
         }
-        System.out.println("RIGA117 " + relations);
 
         return relations.toString();
     }

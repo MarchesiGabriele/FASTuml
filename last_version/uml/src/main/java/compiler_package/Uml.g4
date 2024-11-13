@@ -21,8 +21,8 @@ start
     ;
 
 classDefinitionRule
-    : ABSTRACT? CLASS c=ID { h.manageClassName($c); }
-      classCodeRule { h.setClass($c); }
+    : ABSTRACT? CLASS c=ID { h.manageClassName($c); h.setClass($c); }
+      classCodeRule 
     ;
 
 relationsDefinitionRule
@@ -40,8 +40,8 @@ relationCodeRule
     ;
 
 attributeDeclarationRule
-    : v=visibilityRule arrayTypeRule? t=typeRule a=ID d=(ID | INT | FLOAT)? multiplicityRule? READONLY? SC
-      //{ h.attDeclaration(v, $arrayTypeRule.getText(), t, $a.getText(), $d != null ? $d.getText() : null); }
+    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID d=(ID | INT | FLOAT)? READONLY? SC
+      { h.attDeclaration($v.text, $ar.text != null ? $ar.text : null, $t.text, $a, $d != null ? $d : null); }
     ;
 
 visibilityRule
@@ -53,7 +53,7 @@ arrayTypeRule
     ;
 
 typeRule
-    : ( INT_TYPE | FLOAT_TYPE | LONG_TYPE | DOUBLE_TYPE | BOOLEAN_TYPE | CHAR_TYPE | STRING_TYPE | ID )
+    : ( INT_TYPE | FLOAT_TYPE | LONG_TYPE | DOUBLE_TYPE | BOOLEAN_TYPE | CHAR_TYPE | STRING_TYPE | VOID_TYPE | ID )
     ;
 
 relationTypeRule
@@ -65,7 +65,8 @@ multiplicityRule
     ;
 
 operationDeclarationRule
-    : v=visibilityRule t=typeRule a=ID LP (typeRule ID)* RP
+    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP
+        { h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); }
     ;
 
 /* ***********************************************
@@ -134,7 +135,7 @@ STRING_TYPE : 'String';
 TRUE : 'true';
 UNIQUE : 'unique';
 UNORDERED : 'unordered';
-VOID : 'void';
+VOID_TYPE : 'void';
 SHARED : 'shared';
 COMPOSED : 'composed';
 ATTRIBUTE : 'attribute';

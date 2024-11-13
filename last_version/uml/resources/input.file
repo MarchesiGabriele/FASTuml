@@ -1,0 +1,17 @@
+class Employee {
+        attribute: private int employeeId 13;
+        attribute: public String department paolo6;
+
+        operation: public String work(int taskCode String ciao)
+        operation: private String work(int taskCode)
+        operation: private Employee()
+}
+
+class Employeer {
+        attribute: private int employeeId 13;
+        attribute: public String department paolo6;
+
+        operation: public String work(int taskCode String ciao)
+        operation: private String work(int taskCode)
+        operation: private Employeer()
+}
