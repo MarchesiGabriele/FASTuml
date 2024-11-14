@@ -1,17 +1,23 @@
-class Employee {
-        attribute: private int employeeId 13;
-        attribute: public String department paolo6;
+class Studente {
+    attribute: protected Set String matricola "12345";
+    attribute: public String corso "Informatica";
+    attribute: private Libro libro;
 
-        operation: public String work(int taskCode String ciao)
-        operation: private String work(int taskCode)
-        operation: private Employee()
+    operation: public String studia(int ore String materia)
+    operation: private void iscriviCorso(String codiceCorso)
+    operation: public Studente(String mango)
 }
 
-class Employeer {
-        attribute: private int employeeId 13;
-        attribute: public String department paolo6;
+class Libro {
+    attribute: private String titolo "Il Signore degli Anelli";
+    attribute: public String autore "Tolkien";
+    attribute: public int pagine 1000;
 
-        operation: public String work(int taskCode String ciao)
-        operation: private String work(int taskCode)
-        operation: private Employeer()
+    operation: public void leggi(int pagina)
+    operation: private void aggiornaCopertina(String nuovaCopertina)
+    operation: public Libro()
+}
+
+relations: {
+    listaLibri Studente min 1 max 2 inherits Libro min 1 max 2
 }

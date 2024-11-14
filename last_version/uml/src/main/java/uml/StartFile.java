@@ -1,5 +1,8 @@
 package uml;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.v4.runtime.*;
@@ -62,7 +65,8 @@ public class StartFile {
 	            UmlJavaVisitor javaVisitor = new UmlJavaVisitor();
 	            String javaCode = javaVisitor.visit(tree);
 	            System.out.println(javaCode);
-	            
+	            generateJavaFile("generated.java", javaCode);
+
 	            System.out.println("////////////////////// Codice Python //////////////////");
 	            
 	            UmlPythonVisitor pythonVisitor = new UmlPythonVisitor();
@@ -87,5 +91,18 @@ public class StartFile {
     			System.out.println ("Parsing con ANTLR abortito\n\n");
     			e.printStackTrace();
       	} 
+    }
+    
+    public static void generateJavaFile(String fileName, String codeContent) {
+        // Crea un oggetto File per il file Java
+        File file = new File(fileName);
+
+        // Scrivi il contenuto nel file
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(codeContent);
+            System.out.println("File Java generato con successo: " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.err.println("Errore durante la scrittura del file: " + e.getMessage());
+        }
     }
 }

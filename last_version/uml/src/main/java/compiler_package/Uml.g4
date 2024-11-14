@@ -37,10 +37,13 @@ classCodeRule
 relationCodeRule
     : nameRelation=ID nameClass1=ID multiplicityRule relationTypeRule
       nameClass2=ID multiplicityRule (UNDREL infoClass=ID)?
+      { 
+        h.relDeclaration($nameRelation, $nameClass1, $relationTypeRule.text, $nameClass2);
+      }
     ;
 
 attributeDeclarationRule
-    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID d=(ID | INT | FLOAT)? READONLY? SC
+    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID d=(STRING | INT | FLOAT)? READONLY? SC
       { h.attDeclaration($v.text, $ar.text != null ? $ar.text : null, $t.text, $a, $d != null ? $d : null); }
     ;
 
@@ -61,7 +64,7 @@ relationTypeRule
     ;
 
 multiplicityRule
-    : (MIN n=ID MAX m=ID)
+    : (MIN n=INT MAX m=INT)
     ;
 
 operationDeclarationRule
