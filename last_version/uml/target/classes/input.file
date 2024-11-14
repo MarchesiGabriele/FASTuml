@@ -1,4 +1,4 @@
-abstract class ClasseA {
+class ClasseA {
     attribute: public List int a;
     attribute: private String name;
     attribute: protected List int numbers;

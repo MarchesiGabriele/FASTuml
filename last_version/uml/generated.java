@@ -1,4 +1,4 @@
-abstract class ClasseA extends ClasseB {
+class ClasseA extends ClasseB {
 	public List<int> a = new ArrayList<int>();
 	private String name;
 	protected List<int> numbers = new ArrayList<int>();

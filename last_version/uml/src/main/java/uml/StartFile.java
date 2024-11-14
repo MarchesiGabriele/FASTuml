@@ -25,7 +25,9 @@ import compiler_package.UmlLexer;
  * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python 
  * TODO: quando ho le relazioni, controllare che le classi già esistano OK
  * TODO: gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
+ * ENUM da gestire
  */
+
 
 public class StartFile {
     public static void main(String[] args) throws Exception {
@@ -56,7 +58,6 @@ public class StartFile {
             	    
     	    // 5. mi faccio restituire l'handler semantico per analizzare i risultati
     	    SemanticHandler h = parser.getHandler();
-    	    h.finalValidatio();
     	    if (!h.hasErrors()) {
     	    	System.out.println ("*** Parsing completato ***\n\n");
         	    

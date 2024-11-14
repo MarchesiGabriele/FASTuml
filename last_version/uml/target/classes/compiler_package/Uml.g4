@@ -26,7 +26,7 @@ classDefinitionRule
     ;
 
 relationsDefinitionRule
-    : RELATIONS DP LBR relationCodeRule* RBR
+    : RELATIONS DP LBR relationCodeRule* { h.relationsCoherent(); } RBR
     ;
 
 classCodeRule

@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 
 
@@ -27,16 +30,20 @@ public class SemanticHandler {
 	
 	// ****** attributi semantici globali
 	ArrayList<String> classTable;
+	Dictionary<String, List<String>> classRelTable;
+	Dictionary<String, List<String>> relationsTable;
+	ArrayList<String> warnings;    
 	ArrayList<String> attTable;
 	ArrayList<String> relTable;
 	ArrayList<String> opTable;
 	ArrayList<String> errors;
-	ArrayList<String> warnings;
 	
 	String currentClass;
 		
 	public SemanticHandler () {
 		classTable = new ArrayList<String>();
+		classRelTable = new Hashtable<>();
+		relationsTable = new Hashtable<>();
 		attTable = new ArrayList<String>();
 		opTable = new ArrayList<String>();
 		relTable = new ArrayList<String>();
@@ -69,6 +76,10 @@ public class SemanticHandler {
 	
 	public void setClass(Token className) {
 		currentClass = className.getText();
+		List<String> listAtt = new ArrayList<>();
+		List<String> listRel = new ArrayList<>();
+		classRelTable.put(currentClass, listAtt);	
+		relationsTable.put(currentClass, listRel);	
 		attTable.clear();
 		opTable.clear();
 	}
@@ -131,6 +142,22 @@ public class SemanticHandler {
 	public boolean isConstructor(String methodName, String returnType) {
 	    return !currentClass.equals(methodName) && returnType == null;
 	}
+	
+	public boolean isType(String type) {
+	    switch (type.toLowerCase()) {
+	        case "int":
+	        case "float":
+	        case "long":
+	        case "double":
+	        case "boolean":
+	        case "char":
+	        case "string":
+	        case "void":
+	            return false;
+	        default:
+	            return true;
+	    }
+	}
 
 	public void attDeclaration(String visibility, String arrayType, String type, Token attName, Token defaultValue) {
 		String name = attName.getText();
@@ -142,6 +169,11 @@ public class SemanticHandler {
 		}
 		else {
 			attTable.add(name);
+			if(isType(type)) {
+				List<String> listAtt = classRelTable.get(currentClass);
+				listAtt.add(type);
+				classRelTable.put(currentClass, listAtt);
+			}
 		}
 	}
 	
@@ -158,11 +190,20 @@ public class SemanticHandler {
 	
 	public void opDeclaration(String visibility, String returnType, Token opName, List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
 	    String name = opName.getText();
+		List<String> listAtt = classRelTable.get(currentClass);
+	    	    
+	    if(returnType != null && isType(returnType)) {
+			listAtt.add(returnType);
+		}
 	    
 	    List<String> paramTypes = new ArrayList<>();
         for (UmlParser.TypeRuleContext param : paramsType) {
             String paramType = param.getText(); 
             paramTypes.add(paramType);
+            
+            if(isType(paramType)) {
+    			listAtt.add(paramType);
+    		}
         }
         
         List<String> paramNames = new ArrayList<>();
@@ -182,6 +223,7 @@ public class SemanticHandler {
 		else {
 			opTable.add(opKey);
 		}
+		classRelTable.put(currentClass, listAtt);
 	}
 	
 	public void relDeclaration(Token nameRelation, Token nameClass1, String relationType, Token nameClass2) {
@@ -191,6 +233,13 @@ public class SemanticHandler {
         }
         if (!isClassDeclared(nameClass2.getText())) {
             addError(NO_DECLARATION_ERROR, nameClass2);
+        }
+        
+        //check for shared or composition if correct
+        if(relationType != "<") {
+    		List<String> listRel = relationsTable.get(nameClass1.getText());
+    		listRel.add(nameClass2.getText());
+    		relationsTable.put(nameClass1.getText(), listRel);
         }
 
         String relKey = nameRelation.getText() + ":" + relationType + ":" + nameClass1.getText() + "->" + nameClass2.getText();
@@ -248,9 +297,25 @@ public class SemanticHandler {
 	}
 
 	
-	public void finalValidation() {
+	public void relationsCoherent() {
 		
-	}
+		Enumeration<String> keys = classRelTable.keys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            List<String> lista1 = classRelTable.get(key);
+            List<String> lista2 = relationsTable.get(key);
+            
+            List<String> unione = new ArrayList<>(lista1);
+            unione.addAll(lista2);
+            
+            List<String> intersezione = new ArrayList<>(lista1);
+            intersezione.retainAll(lista2);
+            
+            unione.removeAll(intersezione);
+
+            System.out.println("Classe " + key + "  unione senza intersezione: " + unione);
+        }
+    }
 
 
 	
