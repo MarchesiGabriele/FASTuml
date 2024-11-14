@@ -1,23 +1,26 @@
-class Studente {
-    attribute: protected Set String matricola "12345";
-    attribute: public String corso "Informatica";
-    attribute: private Libro libro;
-
-    operation: public String studia(int ore String materia)
-    operation: private void iscriviCorso(String codiceCorso)
-    operation: public Studente(String mango)
+class ClasseA {
+    attribute: public int a;
+    attribute: private String name;
+    attribute: protected List int numbers;
+    
+    operation: public void methodA()
+    operation: protected int methodB(int x String y)
 }
 
-class Libro {
-    attribute: private String titolo "Il Signore degli Anelli";
-    attribute: public String autore "Tolkien";
-    attribute: public int pagine 1000;
+class ClasseB {
+    attribute: public boolean isActive;
+    attribute: private Set String tags;
 
-    operation: public void leggi(int pagina)
-    operation: private void aggiornaCopertina(String nuovaCopertina)
-    operation: public Libro()
+    operation: public void methodC()
+}
+
+class ClasseC {
+    attribute: public float price;
+    operation: public void methodD()
 }
 
 relations: {
-    listaLibri Studente min 1 max 2 inherits Libro min 1 max 2
+    rel1 ClasseA min 1 max 1 inherits ClasseB min 1 max 1
+    rel2 ClasseB min 0 max 10 shared ClasseC min 1 max 2
+    rel3 ClasseA min 0 max 5 composed ClasseC min 1 max 3
 }

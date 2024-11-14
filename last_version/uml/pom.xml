@@ -11,5 +11,11 @@
 	  <artifactId>antlr4</artifactId> 
 	  <version>4.13.2</version> 
 	</dependency> 
+	
+	<dependency>
+    	<groupId>org.nasdanika.core</groupId>
+	    <artifactId>mxgraph</artifactId>
+	    <version>4.2.2.1</version>
+	</dependency>
   </dependencies>
 </project>

@@ -14,6 +14,8 @@ import compiler_package.UmlJavaVisitor;
 import compiler_package.UmlLexer;
 import compiler_package.UmlParser;
 import compiler_package.UmlPythonVisitor;
+import converter.ConverterMain;
+import converter.UMLDiagram;
 
 /**
  * 
@@ -58,20 +60,21 @@ public class StartFile {
     	    SemanticHandler h = parser.getHandler();
     	    if (!h.hasErrors()) {
     	    	System.out.println ("*** Parsing completato ***\n\n");
-    	    	
-	            System.out.println("////////////////////// Codice Java //////////////////");
-	    	    
-	    	    // Crea un visitor e avvia la visita
+        	    
+        	    //UMLDiagram convert = new UMLDiagram(fileIn);
 	            UmlJavaVisitor javaVisitor = new UmlJavaVisitor();
 	            String javaCode = javaVisitor.visit(tree);
-	            System.out.println(javaCode);
 	            generateJavaFile("generated.java", javaCode);
+    	    	
+	            /*System.out.println("////////////////////// Codice Java //////////////////");
+	    	    
+	    	    // Crea un visitor e avvia la visita
 
 	            System.out.println("////////////////////// Codice Python //////////////////");
 	            
 	            UmlPythonVisitor pythonVisitor = new UmlPythonVisitor();
 	            String pythonCode = pythonVisitor.visit(tree);
-	            System.out.println(pythonCode);
+	            System.out.println(pythonCode);*/
 	        }
     	    else {
     	    	System.out.println ("*** Errore");
