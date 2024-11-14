@@ -1,5 +1,5 @@
-abstract class ClasseA {
-    attribute: public List int a;
+class ClasseA {
+    attribute: public int a;
     attribute: private String name;
     attribute: protected List int numbers;
     
@@ -10,20 +10,17 @@ abstract class ClasseA {
 class ClasseB {
     attribute: public boolean isActive;
     attribute: private Set String tags;
-    attribute: private pippo paolo;
 
-    operation: private void methodC()
-    operation: public ClasseB(int att1)
+    operation: public void methodC()
 }
 
 class ClasseC {
     attribute: public float price;
     operation: public void methodD()
-    attribute: private ClasseB paolo;
 }
 
 relations: {
     rel1 ClasseA min 1 max 1 inherits ClasseB min 1 max 1
-    rel2 ClasseB min 0 max 10 > ClasseC min 1 max 2
+    rel2 ClasseB min 0 max 10 shared ClasseC min 1 max 2
     rel3 ClasseA min 0 max 5 composed ClasseC min 1 max 3
 }

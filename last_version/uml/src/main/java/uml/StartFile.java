@@ -1,21 +1,20 @@
 package uml;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.antlr.runtime.ANTLRReaderStream;
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import compiler_package.SemanticHandler;
 import compiler_package.UmlJavaVisitor;
-// Importa la classe generata automaticamente da ANTLR
-import compiler_package.UmlLexer;
 import compiler_package.UmlParser;
 import compiler_package.UmlPythonVisitor;
-import converter.ConverterMain;
 import converter.UMLDiagram;
+import compiler_package.UmlLexer;
 
 /**
  * 
@@ -23,10 +22,9 @@ import converter.UMLDiagram;
  * 
  * TODO: controllare che il tipo default sia coerente con tupo variabile OK FATTO
  * TODO: aggiungere / togliere puunto e virgola a fine riga (operations)
- * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python
- * TODO: quando ho le relazioni, controllare che le classi già esistano
+ * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python 
+ * TODO: quando ho le relazioni, controllare che le classi già esistano OK
  * TODO: gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
- * TODO: costruttore o funzione private in python non corretta
  */
 
 public class StartFile {
@@ -58,15 +56,16 @@ public class StartFile {
             	    
     	    // 5. mi faccio restituire l'handler semantico per analizzare i risultati
     	    SemanticHandler h = parser.getHandler();
+    	    h.finalValidatio();
     	    if (!h.hasErrors()) {
     	    	System.out.println ("*** Parsing completato ***\n\n");
         	    
-        	    //UMLDiagram convert = new UMLDiagram(fileIn);
+        	    UMLDiagram convert = new UMLDiagram(fileIn);
 	            UmlJavaVisitor javaVisitor = new UmlJavaVisitor();
 	            String javaCode = javaVisitor.visit(tree);
 	            generateJavaFile("generated.java", javaCode);
     	    	
-	            /*System.out.println("////////////////////// Codice Java //////////////////");
+	            System.out.println("////////////////////// Codice Java //////////////////");
 	    	    
 	    	    // Crea un visitor e avvia la visita
 
@@ -74,7 +73,7 @@ public class StartFile {
 	            
 	            UmlPythonVisitor pythonVisitor = new UmlPythonVisitor();
 	            String pythonCode = pythonVisitor.visit(tree);
-	            System.out.println(pythonCode);*/
+	            System.out.println(pythonCode);
 	        }
     	    else {
     	    	System.out.println ("*** Errore");

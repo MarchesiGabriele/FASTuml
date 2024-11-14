@@ -115,7 +115,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         params.add(0, "self");
 
         // Start building the method signature
-        String methodSignature = String.format("%sdef %s(%s)", visibility, methodName, String.join(", ", params));
+        String methodSignature = String.format("def %s%s(%s)", visibility, methodName, String.join(", ", params));
 
         // If returnType is non-null and non-empty (not "void"), add it to the signature
         if (returnType != null && !returnType.isEmpty() && !"void".equals(returnType)) {
@@ -124,7 +124,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Add the method body with a placeholder "pass"
         method.append(methodSignature).append(":\n        pass");
-
         return method.toString();
     }
 

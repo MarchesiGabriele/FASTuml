@@ -247,6 +247,11 @@ public class SemanticHandler {
  		errors.add(msg);
 	}
 
+	
+	public void finalValidation() {
+		
+	}
+
 
 	
 }

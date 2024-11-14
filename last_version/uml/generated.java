@@ -1,5 +1,5 @@
-class ClasseA extends ClasseB {
-	public int a;
+abstract class ClasseA extends ClasseB {
+	public List<int> a = new ArrayList<int>();
 	private String name;
 	protected List<int> numbers = new ArrayList<int>();
 	public void methodA() {
@@ -15,7 +15,12 @@ class ClasseA extends ClasseB {
 class ClasseB {
 	public boolean isActive;
 	private Set<String> tags = new HashSet<String>();
-	public void methodC() {
+	private pippo paolo;
+	private void methodC() {
+		// TODO: implement
+	}
+
+	public ClasseB() {
 		// TODO: implement
 	}
 
@@ -27,4 +32,8 @@ class ClasseC {
 		// TODO: implement
 	}
 
+	private ClasseB paolo;
 }
+
+// Association between ClasseB and ClasseC
+// Composition between ClasseA and ClasseC
