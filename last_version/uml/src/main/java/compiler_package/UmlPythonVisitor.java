@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import compiler_package.UmlParser.TypeRuleContext;
@@ -16,6 +17,13 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
     @Override
     public String visitStart(UmlParser.StartContext ctx) {
         StringBuilder result = new StringBuilder();
+        
+        // Gestione degli import all'inizio
+        boolean needsEnumImport = !ctx.enumDefinitionRule().isEmpty();
+        if (needsEnumImport) {
+            result.append("from enum import Enum\n\n");
+        }
+
 
         // Visita tutte le definizioni di classe
         for (UmlParser.ClassDefinitionRuleContext classDefCtx : ctx.classDefinitionRule()) {
@@ -24,10 +32,41 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Visita tutte le relazioni
         if (ctx.relationsDefinitionRule() != null) {
-            result.append(visit(ctx.relationsDefinitionRule()));
+            result.append(visit(ctx.relationsDefinitionRule())).append("\n\n");
         }
+        
+        // Visita tutte le definizioni di enum
+        for (UmlParser.EnumDefinitionRuleContext enumDefCtx : ctx.enumDefinitionRule()) {
+            result.append(visit(enumDefCtx)).append("\n\n");
+        }        
+        
         return result.toString();
     }
+    
+    
+    @Override
+    public String visitEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx) {
+        StringBuilder result = new StringBuilder();
+
+        // Ottieni il nome dell'enum
+        String enumName = ctx.n.getText(); // Il nome dell'enum è associato al token n=ID
+
+        // Inizia la definizione dell'enum in Python
+        result.append("class ").append(enumName).append("(Enum):\n");
+
+        // Ottieni i valori dell'enum
+        if (ctx.enumCodeRule() != null) {
+            for (Token value : ctx.enumCodeRule().eName) { // eName è la lista di ID raccolti
+                result.append("    ").append(value.getText().toUpperCase())
+                      .append(" = '").append(value.getText()).append("'\n");
+            }
+        }
+
+        return result.toString();
+    }
+
+
+
 
     // Visita la definizione di una classe
     @Override
