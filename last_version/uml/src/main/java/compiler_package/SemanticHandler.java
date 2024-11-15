@@ -3,6 +3,7 @@ package compiler_package;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Set;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -217,6 +218,24 @@ public class SemanticHandler {
 		}
 	}
 	
+	public void paramOpDeclaration(String visibility, String arrayType, String type, Token attName, Token defaultValue) {
+		String name = attName.getText();
+		if (isAttDeclared(name)) {
+			addError (ALREADY_DEF_ERROR, attName);
+		}
+		else if(defaultValue != null && !isDefaultValueCorrect(type, defaultValue.getText())) {
+			addError (INCORRECT_VALUE, defaultValue);
+		}
+		else {
+			attTable.add(name);
+			if(isType(type)) {
+				List<String> listAtt = classRelTable.get(currentClass);
+				listAtt.add(type);
+				classRelTable.put(currentClass, listAtt);
+			}
+		}
+	}
+	
 	public void enumDeclaration(List<Token> tEnums) {
 		for(Token tEnum : tEnums) {
 			String name = tEnum.getText();
@@ -276,11 +295,19 @@ public class SemanticHandler {
     		}
         }
         
+        Set<String> duplicates = new HashSet<>();
+        Set<String> seen = new HashSet<>();
         List<String> paramNames = new ArrayList<>();
         for (Token param : paramsName) {
             String paramName = param.getText(); 
             paramNames.add(paramName);
+            if (!seen.add(paramName)) { // add() ritorna false se l'elemento è già presente
+                duplicates.add(paramName);
+            }else {
+            	addError(ALREADY_DEF_ERROR, param);
+            }
         }
+        
 
         String opKey = getOpKey(name, returnType, paramTypes, paramNames);
 
@@ -308,15 +335,22 @@ public class SemanticHandler {
     		}
         }
         
+        Set<String> duplicates = new HashSet<>();
+        Set<String> seen = new HashSet<>();
         List<String> paramNames = new ArrayList<>();
         for (Token param : paramsName) {
             String paramName = param.getText(); 
             paramNames.add(paramName);
+            if (!seen.add(paramName)) { // add() ritorna false se l'elemento è già presente
+                duplicates.add(paramName);
+            }else {
+            	addError(ALREADY_DEF_ERROR, param);
+            }
         }
 
         String opKey = getConstrKey(name, paramTypes, paramNames);
 
-	    if(!isConstructor(opKey)) {
+	    if(isConstructor(opName.getText())) {
 	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
 	    }        
         

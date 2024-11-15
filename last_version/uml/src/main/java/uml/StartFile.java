@@ -45,7 +45,7 @@ public class StartFile {
                 
        //         System.out.println(javaCodep);
         try {
-        	String fileIn = ".\\resources\\input.file";
+        	String fileIn = ".\\resources\\input1.file";
         	String sourceCode = "class Employee{\r\n"
     				+ "        attribute: public int employeeId 15;\r\n"
     				+ "        attribute: public String department paolo6;\r\n"

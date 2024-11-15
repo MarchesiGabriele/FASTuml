@@ -1,15 +1,17 @@
 class ClasseA {
-	contructor {
-		public class A(int
+	constructor {
+		ClasseA (int a, double a);
+		ClasseA (int a);
+		
 	}
     attribute {
-	    public int a;
-	    private String name;
+	    public int ciao;
+	    private String ciao;
 	    protected List int numbers;
 	}
 	operation {
 		public void methodA();
-	    protected int methodB(int x String y);
+	    protected int methodB(int x, String x);
 	}
 }
 

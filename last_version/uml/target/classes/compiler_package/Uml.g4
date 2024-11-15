@@ -84,7 +84,7 @@ operationDeclarationRule
     ;
     
 constructorDeclarationRule
-    : a=ID LP (pType+=typeRule pName+=ID)* RP SC
+    : a=ID LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
         { h.constrDeclaration($a, $pType, $pName); }
     ;
 
