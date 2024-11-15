@@ -11,6 +11,7 @@ import compiler_package.UmlParser.TypeRuleContext;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Hashtable;
 
 
@@ -159,6 +160,7 @@ public class SemanticHandler {
 	                if (value.startsWith("\"") && value.endsWith("\"")) {
 	                    return true;
 	                }
+	             
 	            default:
 	                return false;
 	        }
@@ -360,9 +362,14 @@ public class SemanticHandler {
                     leftJoinResult.add(element);  // Adding matched elements
                 }
             }
+                        
+            leftJoinResult.removeAll(lista2);
             
             // Remove elements that exist in enumTable from the result list
             leftJoinResult.removeAll(enumTable);
+
+            // Remove duplicates from the result list
+            leftJoinResult = new ArrayList<>(new HashSet<>(leftJoinResult));
             
             /*for(String error : leftJoinResult) {
             	Token t = new Token(error);

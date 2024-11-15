@@ -1,35 +1,11 @@
 class ClasseA {
-    attribute: public List int a;
-    attribute: private String name;
-    attribute: protected List int numbers;
-    
-    operation: public void methodA()
-    operation: protected int methodB(int x String y)
-}
-
-class ClasseB {
-    attribute: public boolean isActive;
-    attribute: private Set String tags;
-
-    operation: private void methodC()
-    operation: public ClasseB(int att1)
-}
-
-class ClasseC {
-    attribute: public float price;
-    attribute: public DayOfWeek eventDay;
-    operation: public void methodD()
-    attribute: private ClasseB paolo;
-}
-
-enum DayOfWeek {
-	- Monday
-	- Tuesday
-	- WEDNESDAY
-}
-
-relations: {
-    rel1 ClasseB min 1 max 1 inherits ClasseA min 1 max 1
-    rel2 ClasseB min 0 max 10 > ClasseC min 1 max 2
-    rel3 ClasseA min 0 max 5 composed ClasseC min 1 max 3
+    attribute {
+    	public List int a = 10;
+    	private String name;
+    	protected List int numbers;
+    }
+	operation {
+		public void methodA();
+		protected int methodB(int x String y);
+	}
 }

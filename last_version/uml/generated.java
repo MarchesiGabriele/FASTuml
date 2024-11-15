@@ -1,5 +1,5 @@
 class ClasseA {
-	public List<int> a = new ArrayList<int>();
+	public List<int> a = new ArrayList<>(Arrays.asList(10));
 	private String name;
 	protected List<int> numbers = new ArrayList<int>();
 
@@ -12,34 +12,3 @@ class ClasseA {
 	}
 }
 
-class ClasseB extends ClasseA {
-	public boolean isActive;
-	private Set<String> tags = new HashSet<String>();
-
-	private void methodC() {
-		// TODO: implement
-	}
-
-	public ClasseB() {
-		// TODO: implement
-	}
-}
-
-class ClasseC {
-	public float price;
-	public DayOfWeek eventDay;
-
-	public void methodD() {
-		// TODO: implement
-	}
-	private ClasseB paolo;
-}
-
-public enum DayOfWeek {
-	Monday,
-	Tuesday,
-	WEDNESDAY
-
-}
-// Association between ClasseB and ClasseC
-// Composition between ClasseA and ClasseC

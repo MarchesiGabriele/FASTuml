@@ -84,7 +84,6 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         StringBuilder enumCode = new StringBuilder();
         enumCode.append("public enum ").append(enumName).append(" {\n");
 
-        // Visita il corpo dell'enum per raccogliere i valori definiti
         enumCode.append(visit(ctx.enumCodeRule())).append("\n");
 
         enumCode.append("}");
