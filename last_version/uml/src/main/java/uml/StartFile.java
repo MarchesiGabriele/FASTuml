@@ -20,12 +20,24 @@ import compiler_package.UmlLexer;
  * 
  * @author march
  * 
- * TODO: controllare che il tipo default sia coerente con tupo variabile OK FATTO
- * TODO: aggiungere / togliere puunto e virgola a fine riga (operations)
- * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python 
- * TODO: quando ho le relazioni, controllare che le classi già esistano OK
+ * --------------- P1 --------------------
+ * TODO: sistemare sintassi relazioni
+ * TODO: aggiungere / togliere punto e virgola a fine riga (operations)
+ * TODO: ENUM da gestire (controllo del valore di default)
  * TODO: gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
- * ENUM da gestire
+ * TODO: capire come posizionare le classi nel tool che disegna
+ * ---------------------------------------
+ * 
+ * --------------- P2 --------------------
+ * TODO: aggiungere una rule apposita per i costruttori
+ * TODO: non dover scrivere sempre operation e attribute
+ * TODO: quando c'è un errore di relazione mostrare numero riga e carattere (e non solo nome classe)
+ * TODO: aggiungere visibilità classi
+ * ---------------------------------------
+ * 
+ * 
+ * 
+ * TODO: quando faccio una relazione, si deve tradurre in un extends nel codice java/python 
  */
 
 
