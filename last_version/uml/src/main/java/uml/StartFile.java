@@ -72,7 +72,7 @@ public class StartFile {
     	    if (!h.hasErrors()) {
     	    	System.out.println ("*** Parsing completato ***\n\n");
         	    
-        	    //UMLDiagram convert = new UMLDiagram(fileIn);
+        	    UMLDiagram convert = new UMLDiagram(fileIn);
 	            UmlJavaVisitor javaVisitor = new UmlJavaVisitor();
 	            String javaCode = javaVisitor.visit(tree);
 	            generateJavaFile("generated.java", javaCode);

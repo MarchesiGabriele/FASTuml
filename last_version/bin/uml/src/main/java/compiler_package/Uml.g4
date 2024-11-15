@@ -22,7 +22,7 @@ start
 
 classDefinitionRule
     : ABSTRACT? CLASS c=ID { h.manageClassName($c); h.setClass($c); }
-      classCodeRule 
+      classCodeRule
     ;
 
 enumDefinitionRule
@@ -30,28 +30,28 @@ enumDefinitionRule
     ;
 
 relationsDefinitionRule
-    : RELATIONS DP LBR relationCodeRule* { h.relationsCoherent(); } RBR
+    : RELATIONS LBR relationCodeRule* { h.relationsCoherent(); } RBR
     ;
 
 classCodeRule
-    : LBR ( (ATTRIBUTE DP attributeDeclarationRule)
-          | (OPERATION DP operationDeclarationRule) )* RBR
+    : LBR ( (ATTRIBUTE LBR attributeDeclarationRule* RBR)?
+            (OPERATION LBR operationDeclarationRule* RBR)? ) RBR
     ;
 
 enumCodeRule
-    : LBR (UNDREL eName+=ID)* RBR { h.enumDeclaration($eName); }
+    : LBR (eName+=ID SC)* RBR { h.enumDeclaration($eName); }
     ;
 
 relationCodeRule
     : nameRelation=ID nameClass1=ID multiplicityRule relationTypeRule
-      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)?
+      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)? SC
       { 
         h.relDeclaration($nameRelation, $nameClass1, $relationTypeRule.text, $nameClass2);
       }
     ;
 
 attributeDeclarationRule
-    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID d=(STRING | INT | FLOAT)? READONLY? SC
+    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID (EQ  d=(STRING | INT | FLOAT))? READONLY? SC
       { h.attDeclaration($v.text, $ar.text != null ? $ar.text : null, $t.text, $a, $d != null ? $d : null); }
     ;
 
@@ -76,7 +76,7 @@ multiplicityRule
     ;
 
 operationDeclarationRule
-    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP
+    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP SC
         { h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); }
     ;
 

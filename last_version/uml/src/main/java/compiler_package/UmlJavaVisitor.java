@@ -12,7 +12,7 @@ import compiler_package.UmlParser.RelationCodeRuleContext;
 
 public class UmlJavaVisitor extends UmlBaseVisitor<String> {
     private String currentClass;
-    private Map<String, String> classInheritanceMap = new HashMap<>(); // Mappa per le relazioni di ereditarietà
+    private Map<String, String> classInheritanceMap = new HashMap<>(); // Mappa per le relazioni di ereditariet
     private StringBuilder relationsInfo = new StringBuilder(); // Per memorizzare le relazioni dettagliate
 
     @Override
@@ -84,7 +84,6 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         StringBuilder enumCode = new StringBuilder();
         enumCode.append("public enum ").append(enumName).append(" {\n");
 
-        // Visita il corpo dell'enum per raccogliere i valori definiti
         enumCode.append(visit(ctx.enumCodeRule())).append("\n");
 
         enumCode.append("}");
@@ -131,7 +130,7 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         String attributeName = ctx.a.getText();
 
         if (ctx.arrayTypeRule() != null) {
-            // Se è un tipo array, aggiungiamo "List" o "Set" a seconda del tipo
+            // Se  un tipo array, aggiungiamo "List" o "Set" a seconda del tipo
             if (ctx.arrayTypeRule().getText().equals("Set")) {
                 type = "Set<" + type + ">";
             } else if (ctx.arrayTypeRule().getText().equals("List")) {

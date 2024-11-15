@@ -22,7 +22,7 @@ start
 
 classDefinitionRule
     : ABSTRACT? CLASS c=ID { h.manageClassName($c); h.setClass($c); }
-      classCodeRule 
+      classCodeRule
     ;
 
 enumDefinitionRule
@@ -30,12 +30,12 @@ enumDefinitionRule
     ;
 
 relationsDefinitionRule
-    : RELATIONS DP LBR relationCodeRule* { h.relationsCoherent(); } RBR
+    : RELATIONS LBR relationCodeRule* { h.relationsCoherent(); } RBR
     ;
 
 classCodeRule
-    : LBR ( (ATTRIBUTE DP attributeDeclarationRule)
-          | (OPERATION DP operationDeclarationRule) )* RBR
+    : LBR ( (ATTRIBUTE LBR attributeDeclarationRule* RBR)?
+            (OPERATION LBR operationDeclarationRule* RBR)? ) RBR
     ;
 
 enumCodeRule
@@ -51,7 +51,7 @@ relationCodeRule
     ;
 
 attributeDeclarationRule
-    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID d=(STRING | INT | FLOAT)? READONLY? SC
+    : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID (EQ  d=(STRING | INT | FLOAT))? READONLY? SC
       { h.attDeclaration($v.text, $ar.text != null ? $ar.text : null, $t.text, $a, $d != null ? $d : null); }
     ;
 
