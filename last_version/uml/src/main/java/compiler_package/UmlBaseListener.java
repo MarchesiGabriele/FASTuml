@@ -43,6 +43,18 @@ public class UmlBaseListener implements UmlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -62,6 +74,18 @@ public class UmlBaseListener implements UmlListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEnumCodeRule(UmlParser.EnumCodeRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnumCodeRule(UmlParser.EnumCodeRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

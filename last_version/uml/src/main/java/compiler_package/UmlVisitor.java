@@ -25,6 +25,12 @@ public interface UmlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link UmlParser#enumDefinitionRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link UmlParser#relationsDefinitionRule}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -36,6 +42,12 @@ public interface UmlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitClassCodeRule(UmlParser.ClassCodeRuleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link UmlParser#enumCodeRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnumCodeRule(UmlParser.EnumCodeRuleContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link UmlParser#relationCodeRule}.
 	 * @param ctx the parse tree

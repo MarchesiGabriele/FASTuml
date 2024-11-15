@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
+import compiler_package.UmlParser.TypeRuleContext;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -32,21 +35,26 @@ public class SemanticHandler {
 	ArrayList<String> classTable;
 	Dictionary<String, List<String>> classRelTable;
 	Dictionary<String, List<String>> relationsTable;
+	ArrayList<String> enumTable;
 	ArrayList<String> warnings;    
 	ArrayList<String> attTable;
 	ArrayList<String> relTable;
+	ArrayList<String> enumAttributeTable;    
 	ArrayList<String> opTable;
 	ArrayList<String> errors;
 	
 	String currentClass;
+	String currentEnum;
 		
 	public SemanticHandler () {
 		classTable = new ArrayList<String>();
 		classRelTable = new Hashtable<>();
 		relationsTable = new Hashtable<>();
+		enumTable = new ArrayList<String>();
 		attTable = new ArrayList<String>();
 		opTable = new ArrayList<String>();
 		relTable = new ArrayList<String>();
+		enumAttributeTable = new ArrayList<String>();
 		errors = new ArrayList<String>();
 		warnings = new ArrayList<String>();
 	}
@@ -83,6 +91,11 @@ public class SemanticHandler {
 		attTable.clear();
 		opTable.clear();
 	}
+	
+	public void setEnum(Token enumName) {
+		currentEnum = enumName.getText();
+		enumAttributeTable.clear();
+	}
 		
 	public boolean isClassDeclared (String name) {
 		return classTable.contains(name);
@@ -90,6 +103,10 @@ public class SemanticHandler {
 	
 	public boolean isAttDeclared (String name) {
 		return attTable.contains(name);
+	}
+
+	public boolean isEnumDeclared (String name) {
+		return enumAttributeTable.contains(name);
 	}
 	
 	public boolean isOpDeclared (String name) {
@@ -106,6 +123,17 @@ public class SemanticHandler {
 			addError (ALREADY_DEF_ERROR, className);
 		else {
 			classTable.add(name);
+		}
+	}
+	
+	public void manageEnum(Token nameE) {
+		String name = nameE.getText();
+		
+		if (isClassDeclared(name))
+			addError (ALREADY_DEF_ERROR, nameE);
+		else {
+			classTable.add(name);
+			enumTable.add(name);
 		}
 	}
 	
@@ -177,6 +205,17 @@ public class SemanticHandler {
 		}
 	}
 	
+	public void enumDeclaration(List<Token> tEnums) {
+		for(Token tEnum : tEnums) {
+			String name = tEnum.getText();
+			if (isEnumDeclared(name)) {
+				addError (ALREADY_DEF_ERROR, tEnum);
+			}else {
+				enumAttributeTable.add(name);
+			}
+		}
+	}
+	
 	public String getOpKey(String methodName, String returnType, List<String> paramTypes, List<String> paramNames) {
 	    StringBuilder keyBuilder = new StringBuilder(methodName);
 	    keyBuilder.append(":").append(returnType);
@@ -188,6 +227,15 @@ public class SemanticHandler {
 	    return keyBuilder.toString();
 	}
 	
+	//cancrata -- passo sia il Token sia le Regole ? 
+	/*public void opDeclaration(String visibility, Object returnType, Token opName, List<TypeRuleContext> paramsType, List<Token> paramsName) {
+		Token retType;
+		if (returnType instanceof Token) {
+			retType = (Token) returnType;
+		}
+		
+	}*/
+	
 	public void opDeclaration(String visibility, String returnType, Token opName, List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
 	    String name = opName.getText();
 		List<String> listAtt = classRelTable.get(currentClass);
@@ -198,7 +246,7 @@ public class SemanticHandler {
 	    
 	    List<String> paramTypes = new ArrayList<>();
         for (UmlParser.TypeRuleContext param : paramsType) {
-            String paramType = param.getText(); 
+        	String paramType = param.getText(); 
             paramTypes.add(paramType);
             
             if(isType(paramType)) {
@@ -295,7 +343,6 @@ public class SemanticHandler {
 		
  		errors.add(msg);
 	}
-
 	
 	public void relationsCoherent() {
 		
@@ -305,18 +352,23 @@ public class SemanticHandler {
             List<String> lista1 = classRelTable.get(key);
             List<String> lista2 = relationsTable.get(key);
             
-            List<String> unione = new ArrayList<>(lista1);
-            unione.addAll(lista2);
+            List<String> leftJoinResult = new ArrayList<>(lista1);
             
-            List<String> intersezione = new ArrayList<>(lista1);
-            intersezione.retainAll(lista2);
+            // Add matching elements from lista2 to the result
+            for (String element : lista1) {
+                if (lista2.contains(element)) {
+                    leftJoinResult.add(element);  // Adding matched elements
+                }
+            }
             
-            unione.removeAll(intersezione);
-
-            System.out.println("Classe " + key + "  unione senza intersezione: " + unione);
+            // Remove elements that exist in enumTable from the result list
+            leftJoinResult.removeAll(enumTable);
+            
+            /*for(String error : leftJoinResult) {
+            	Token t = new Token(error);
+            }*/
+            //addError (NO_DECLARATION_ERROR, nameRelation);
+            System.out.println("Classe " + key + "  unione senza intersezione: " + leftJoinResult);
         }
     }
-
-
-	
 }

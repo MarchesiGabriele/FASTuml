@@ -71,6 +71,14 @@ public class UMLDiagram {
         styleAssociation.put(mxConstants.STYLE_FILLCOLOR, "black");
         styleAssociation.put(mxConstants.STYLE_STROKECOLOR, "black");
         graph.getStylesheet().putCellStyle("association", styleAssociation);
+        
+        // Freccia di associazione
+        Hashtable<String, Object> styleComposition = new Hashtable<>();
+        styleAssociation.put(mxConstants.STYLE_ENDARROW, mxConstants.EDGESTYLE_ENTITY_RELATION);
+        styleAssociation.put(mxConstants.STYLE_ENDFILL, 0);
+        styleAssociation.put(mxConstants.STYLE_FILLCOLOR, "black");
+        styleAssociation.put(mxConstants.STYLE_STROKECOLOR, "black");
+        graph.getStylesheet().putCellStyle("composition", styleComposition);
     }
 
     public static void parseFileAndCreateUML(File inputFile, mxGraph graph, Object parent) throws IOException {
@@ -79,6 +87,7 @@ public class UMLDiagram {
         Map<String, Object> classVertices = new HashMap<>();
         Map<String, List<String>> classAttributes = new HashMap<>();
         Map<String, List<String>> classOperations = new HashMap<>(); // To store operations
+        Map<String, List<String[]>> classRelations = new HashMap<>(); // To store operations
         int xOffset = 20; // Initial X position for the first class
         int yOffset = 20; // Initial Y position for the first class
         int verticalSpacing = 200; // Vertical spacing between rows of classes
@@ -162,6 +171,28 @@ public class UMLDiagram {
                         operations.add(operation);
                         classOperations.put(className, operations);
                     }
+                } else if (line.startsWith("relations: ")) {
+                	while ((line = reader.readLine()) != null) {
+                        line = line.trim();
+                        // Handle relationship declarations with cardinality and type
+                        String[] relationshipParts = line.split(" ");
+                        if (relationshipParts.length >= 7) {
+                            // Structure: rel1 ClassA min 1 max 1 type ClassB min 1 max 1
+                            String name = relationshipParts[0];
+                            String fromClass = relationshipParts[1];
+                            String fromMin = relationshipParts[3];
+                            String fromMax = relationshipParts[5];
+                            String type = relationshipParts[6];
+                            String toClass = relationshipParts[7];
+                            String toMin = relationshipParts[9];
+                            String toMax = relationshipParts[11];
+                            
+                            List<String[]> relations = classRelations.getOrDefault(className, new ArrayList<>());
+                            relations.add(new String[] {fromClass, fromMin, fromMax, type, toClass, toMin, toMax});
+                            
+                            classRelations.put(className, relations);
+                        }
+                	}
                 }
              }
 
@@ -201,6 +232,38 @@ public class UMLDiagram {
                 for (int i = 0; i < operations.size(); i++) {
                     int yPosition = attributeVerticalOffset + (attributes.size() + i) * attributeHeight +10;
                     graph.insertVertex(classVertex, null, operations.get(i), 10, yPosition, 10, attributeHeight, "ATTRIBUTE");
+                }
+                
+                if(classRelations.get(classNameRetrieve) != null) {                	
+                	for(String[] relationship : classRelations.get(classNameRetrieve)) {
+                		String fromClass = relationship[0];
+                		String fromMin = relationship[1];
+                		String fromMax = relationship[2];
+                		String type = relationship[3];
+                		String toClass = relationship[4];
+                		String toMin = relationship[5];
+                		String toMax = relationship[6];
+                		
+                		Object fromVertex = classVertices.get(fromClass);
+                		Object toVertex = classVertices.get(toClass);
+                		
+                		if (fromVertex != null && toVertex != null) {
+                			String style;
+                			String label = fromMin + ".." + fromMax + " " + type + " " + toMin + ".." + toMax;
+                			
+                			if (type.equals("inherits")) {
+                				style = "inheritance";
+                			} else if (type.equals(">")) {
+                				style = "association";
+                			} else if (type.equals("composed")) {
+                				style = "composition"; // Ensure you define this style in configureStyles
+                			} else {
+                				style = ""; // Default or undefined relationship type
+                			}
+                			
+                			graph.insertEdge(parent, null, label, fromVertex, toVertex, style);
+                		}
+                	}
                 }
             }
         } finally {

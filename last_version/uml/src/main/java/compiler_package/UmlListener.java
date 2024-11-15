@@ -30,6 +30,16 @@ public interface UmlListener extends ParseTreeListener {
 	 */
 	void exitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link UmlParser#enumDefinitionRule}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link UmlParser#enumDefinitionRule}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link UmlParser#relationsDefinitionRule}.
 	 * @param ctx the parse tree
 	 */
@@ -49,6 +59,16 @@ public interface UmlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitClassCodeRule(UmlParser.ClassCodeRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link UmlParser#enumCodeRule}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumCodeRule(UmlParser.EnumCodeRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link UmlParser#enumCodeRule}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumCodeRule(UmlParser.EnumCodeRuleContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link UmlParser#relationCodeRule}.
 	 * @param ctx the parse tree

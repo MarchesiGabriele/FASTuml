@@ -1,10 +1,13 @@
 package compiler_package;
 
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.HashMap;
 import java.util.Map;
 
 import compiler_package.UmlParser.ClassDefinitionRuleContext;
+import compiler_package.UmlParser.EnumCodeRuleContext;
+import compiler_package.UmlParser.EnumDefinitionRuleContext;
 import compiler_package.UmlParser.RelationCodeRuleContext;
 
 public class UmlJavaVisitor extends UmlBaseVisitor<String> {
@@ -25,6 +28,11 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         for (ClassDefinitionRuleContext classDef : ctx.classDefinitionRule()) {
             javaCode.append(visit(classDef)).append("\n");
         }
+        
+        // Visita tutte le definizioni degli enum
+        for (EnumDefinitionRuleContext enumDef : ctx.enumDefinitionRule()) {
+            javaCode.append(visit(enumDef)).append("\n");
+        }
 
         // Aggiungi informazioni sulle relazioni alla fine del codice generato
         javaCode.append(relationsInfo);
@@ -37,6 +45,7 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         String className = ctx.c.getText();
         currentClass = className;
         String classKeyword = ctx.ABSTRACT() != null ? "abstract class" : "class";
+        
 
         // Aggiungi "extends" se la classe ha una superclass
         String extendsClause = "";
@@ -62,11 +71,25 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
             if (child instanceof UmlParser.AttributeDeclarationRuleContext) {
                 code.append(visit((UmlParser.AttributeDeclarationRuleContext) child)).append("\n");
             } else if (child instanceof UmlParser.OperationDeclarationRuleContext) {
-                code.append(visit((UmlParser.OperationDeclarationRuleContext) child)).append("\n");
+                code.append("\n").append(visit((UmlParser.OperationDeclarationRuleContext) child));
             }
         }
 
         return code.toString();
+    }
+    
+    @Override
+    public String visitEnumDefinitionRule(EnumDefinitionRuleContext ctx) {
+        String enumName = ctx.n.getText();  // Nome dell'enum
+        StringBuilder enumCode = new StringBuilder();
+        enumCode.append("public enum ").append(enumName).append(" {\n");
+
+        // Visita il corpo dell'enum per raccogliere i valori definiti
+        enumCode.append(visit(ctx.enumCodeRule())).append("\n");
+
+        enumCode.append("}");
+
+        return enumCode.toString();
     }
 
     @Override
@@ -161,6 +184,23 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
 
         operationCode.append(") {\n\t\t// TODO: implement\n\t}\n");
         return operationCode.toString();
+    }
+    
+    @Override
+    public String visitEnumCodeRule(EnumCodeRuleContext ctx) {
+        StringBuilder enumValues = new StringBuilder();
+
+        // Aggiungi i valori dell'enum
+        for (Token value : ctx.eName) {
+            enumValues.append("\t").append(value.getText()).append(",\n");
+        }
+
+        // Rimuovi l'ultima virgola e aggiungi la chiusura dell'enum
+        if (enumValues.length() > 0) {
+            enumValues.deleteCharAt(enumValues.length() - 2);  // Rimuovi la virgola finale
+        }
+
+        return enumValues.toString();
     }
 
     @Override

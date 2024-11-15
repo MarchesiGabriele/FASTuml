@@ -17,7 +17,7 @@ grammar Uml;
 ************************************************** */ 
 
 start
-    : classDefinitionRule* relationsDefinitionRule?
+    : classDefinitionRule* enumDefinitionRule*? relationsDefinitionRule?
     ;
 
 classDefinitionRule
@@ -25,13 +25,21 @@ classDefinitionRule
       classCodeRule 
     ;
 
+enumDefinitionRule
+    : ENUM n=ID enumCodeRule { h.manageEnum($n); h.setEnum($n); }
+    ;
+
 relationsDefinitionRule
-    : RELATIONS DP LBR relationCodeRule* RBR
+    : RELATIONS DP LBR relationCodeRule* { h.relationsCoherent(); } RBR
     ;
 
 classCodeRule
     : LBR ( (ATTRIBUTE DP attributeDeclarationRule)
           | (OPERATION DP operationDeclarationRule) )* RBR
+    ;
+
+enumCodeRule
+    : LBR (UNDREL eName+=ID)* RBR { h.enumDeclaration($eName); }
     ;
 
 relationCodeRule

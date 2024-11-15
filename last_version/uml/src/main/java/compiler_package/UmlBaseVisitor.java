@@ -34,6 +34,13 @@ public class UmlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Um
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitEnumDefinitionRule(UmlParser.EnumDefinitionRuleContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -42,6 +49,13 @@ public class UmlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Um
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitClassCodeRule(UmlParser.ClassCodeRuleContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitEnumCodeRule(UmlParser.EnumCodeRuleContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
