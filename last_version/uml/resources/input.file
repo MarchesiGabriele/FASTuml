@@ -1,4 +1,8 @@
 class ClasseB {
+	constructor {
+		ClasseB(int a);
+	}
+	
     attribute {
     	public List int a = 10;
     	private String name;

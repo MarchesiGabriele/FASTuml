@@ -96,4 +96,10 @@ public interface UmlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link UmlParser#constructorDeclarationRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx);
 }

@@ -72,6 +72,8 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
                 code.append(visit((UmlParser.AttributeDeclarationRuleContext) child)).append("\n");
             } else if (child instanceof UmlParser.OperationDeclarationRuleContext) {
                 code.append("\n").append(visit((UmlParser.OperationDeclarationRuleContext) child));
+            }else if (child instanceof UmlParser.ConstructorDeclarationRuleContext) {
+                code.append("\n").append(visit((UmlParser.ConstructorDeclarationRuleContext) child));
             }
         }
 
@@ -179,6 +181,24 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         for (int i = 1; i < ctx.typeRule().size(); i++) {
             if (i > 1) operationCode.append(", ");
             operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i).getText());
+        }
+
+        operationCode.append(") {\n\t\t// TODO: implement\n\t}\n");
+        return operationCode.toString();
+    }
+    
+    @Override
+    public String visitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) {
+        String methodName = ctx.a.getText();
+
+        StringBuilder operationCode = new StringBuilder();
+
+        operationCode.append("\t").append(methodName).append("(");
+
+        // Aggiungi i parametri
+        for (int i = 0; i < ctx.typeRule().size(); i++) {
+            if (i > 0) operationCode.append(", ");
+            operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i+1).getText());
         }
 
         operationCode.append(") {\n\t\t// TODO: implement\n\t}\n");

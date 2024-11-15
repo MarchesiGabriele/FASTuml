@@ -149,4 +149,14 @@ public interface UmlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link UmlParser#constructorDeclarationRule}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link UmlParser#constructorDeclarationRule}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx);
 }

@@ -45,6 +45,7 @@ public class SemanticHandler {
 	ArrayList<String> relTable;
 	ArrayList<String> enumAttributeTable;    
 	ArrayList<String> opTable;
+	ArrayList<String> constrTable;
 	ArrayList<String> errors;
 	
 	String currentClass;
@@ -57,6 +58,7 @@ public class SemanticHandler {
 		enumTable = new ArrayList<String>();
 		attTable = new ArrayList<String>();
 		opTable = new ArrayList<String>();
+		constrTable = new ArrayList<String>();
 		relTable = new ArrayList<String>();
 		enumAttributeTable = new ArrayList<String>();
 		errors = new ArrayList<String>();
@@ -94,6 +96,7 @@ public class SemanticHandler {
 		relationsTable.put(currentClass, listRel);	
 		attTable.clear();
 		opTable.clear();
+		constrTable.clear();
 	}
 	
 	public void setEnum(Token enumName) {
@@ -115,6 +118,10 @@ public class SemanticHandler {
 	
 	public boolean isOpDeclared (String name) {
 		return opTable.contains(name);
+	}
+	
+	public boolean isConstrDeclared (String name) {
+		return constrTable.contains(name);
 	}
 	
 	public boolean isRelDeclared (String name) {
@@ -172,8 +179,8 @@ public class SemanticHandler {
 	    }
 	}
 	
-	public boolean isConstructor(String methodName, String returnType) {
-	    return !currentClass.equals(methodName) && returnType == null;
+	public boolean isConstructor(String methodName) {
+	    return !currentClass.equals(methodName);
 	}
 	
 	public boolean isType(String type) {
@@ -232,6 +239,16 @@ public class SemanticHandler {
 	    return keyBuilder.toString();
 	}
 	
+	public String getConstrKey(String methodName, List<String> paramTypes, List<String> paramNames) {
+	    StringBuilder keyBuilder = new StringBuilder(methodName);
+	    int i = 0;
+	    for (String paramType : paramTypes) {
+	        keyBuilder.append(":").append(paramTypes.get(i)).append(paramNames.get(i));
+	        i++;
+	    }
+	    return keyBuilder.toString();
+	}
+	
 	//cancrata -- passo sia il Token sia le Regole ? 
 	/*public void opDeclaration(String visibility, Object returnType, Token opName, List<TypeRuleContext> paramsType, List<Token> paramsName) {
 		Token retType;
@@ -267,9 +284,6 @@ public class SemanticHandler {
 
         String opKey = getOpKey(name, returnType, paramTypes, paramNames);
 
-	    if (isConstructor(name, returnType)) {
-	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
-	    }
 	    if(isOpDeclared(opKey)) {
 			addError (ALREADY_DEF_OP_ERROR, opName);
 		}
@@ -278,6 +292,43 @@ public class SemanticHandler {
 		}
 		classRelTable.put(currentClass, listAtt);
 	}
+	
+	public void constrDeclaration(Token opName, List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
+	    String name = opName.getText();
+		List<String> listAtt = classRelTable.get(currentClass);
+	    	    
+	    
+	    List<String> paramTypes = new ArrayList<>();
+        for (UmlParser.TypeRuleContext param : paramsType) {
+        	String paramType = param.getText(); 
+            paramTypes.add(paramType);
+            
+            if(isType(paramType)) {
+    			listAtt.add(paramType);
+    		}
+        }
+        
+        List<String> paramNames = new ArrayList<>();
+        for (Token param : paramsName) {
+            String paramName = param.getText(); 
+            paramNames.add(paramName);
+        }
+
+        String opKey = getConstrKey(name, paramTypes, paramNames);
+
+	    if(!isConstructor(opKey)) {
+	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
+	    }        
+        
+	    if(isConstrDeclared(opKey)) {
+			addError (ALREADY_DEF_OP_ERROR, opName);
+		}
+		else {
+			constrTable.add(opKey);
+		}
+		classRelTable.put(currentClass, listAtt);
+	}
+	
 	
 	public void relDeclaration(Token nameRelation, Token nameClass1, String relationType, Token nameClass2) {
 		

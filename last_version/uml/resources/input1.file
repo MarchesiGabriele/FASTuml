@@ -1,4 +1,7 @@
 class ClasseA {
+	contructor {
+		public class A(int
+	}
     attribute {
 	    public int a;
 	    private String name;

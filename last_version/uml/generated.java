@@ -1,4 +1,8 @@
 class ClasseB {
+
+	ClasseB(int a) {
+		// TODO: implement
+	}
 	public List<int> a = new ArrayList<>(Arrays.asList(10));
 	private String name;
 	protected List<int> numbers = new ArrayList<int>();

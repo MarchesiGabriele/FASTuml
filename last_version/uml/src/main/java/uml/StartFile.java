@@ -21,10 +21,10 @@ import compiler_package.UmlLexer;
  * 
  * --------------- P1 --------------------
  * TODO: sistemare sintassi relazioni
- * TODO: non dover scrivere sempre operation e attribute
+ * TODO: OK non dover scrivere sempre operation e attribute
  * TODO: OK aggiungere / togliere punto e virgola a fine riga (operations)
- * TODO: gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
- * TODO: capire come posizionare le classi nel tool che disegna
+ * TODO: OK gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
+ * TODO: OK capire come posizionare le classi nel tool che disegna
  * TODO: OK generazione codice python per enum
  * ---------------------------------------
  * 

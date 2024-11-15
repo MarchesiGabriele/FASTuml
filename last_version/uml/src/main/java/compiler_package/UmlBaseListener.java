@@ -182,6 +182,18 @@ public class UmlBaseListener implements UmlListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperationDeclarationRule(UmlParser.OperationDeclarationRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
