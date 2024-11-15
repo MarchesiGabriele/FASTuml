@@ -1,5 +1,6 @@
 package converter;
 
+import com.mxgraph.layout.mxOrganicLayout;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
@@ -22,6 +23,11 @@ public class UMLDiagram {
         try {
             File inputFile = new File(file); // Il tuo file di input
             parseFileAndCreateUML(inputFile, graph, parent);
+         // Applica un layout organico per sistemare le classi automaticamente
+            mxOrganicLayout layout = new mxOrganicLayout(graph); // Regola la distanza tra le classi
+            layout.setMinMoveRadius(50);
+            
+            layout.execute(graph.getDefaultParent());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +62,7 @@ public class UMLDiagram {
         attributeStyle.put(mxConstants.STYLE_SPACING_LEFT, 4);
         graph.getStylesheet().putCellStyle("ATTRIBUTE", attributeStyle);
 
-        // Freccia di ereditarietà
+        // Freccia di ereditarietï¿½
         Hashtable<String, Object> styleInheritance = new Hashtable<>();
         styleInheritance.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_BLOCK);
         styleInheritance.put(mxConstants.STYLE_ENDFILL, 0);
