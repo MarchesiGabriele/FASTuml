@@ -25,7 +25,7 @@ import compiler_package.UmlLexer;
  * TODO: OK aggiungere / togliere punto e virgola a fine riga (operations)
  * TODO: gestire un costruttore/distruttore Ci sono problemi sul numero di returnType e ID presenti.
  * TODO: capire come posizionare le classi nel tool che disegna
- * TODO: generazione codice python per enum
+ * TODO: OK generazione codice python per enum
  * ---------------------------------------
  * 
  * --------------- P2 --------------------

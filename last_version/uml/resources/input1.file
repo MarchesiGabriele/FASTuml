@@ -1,0 +1,41 @@
+class ClasseA {
+    attribute {
+	    public int a;
+	    private String name;
+	    protected List int numbers;
+	}
+	operation {
+		public void methodA();
+	    protected int methodB(int x String y);
+	}
+}
+
+class ClasseB {
+    attribute {
+	    public ClasseA isActive;
+	    private ClasseC tags;
+	}
+    operation {
+    	public void methodC();
+    }
+}
+
+class ClasseC {
+    attribute {
+    	public float price;
+    }
+    operation {
+    	public void methodD();
+    }
+}
+
+enum pippo{
+	pesce;
+	cane; 
+	sale;
+}
+
+
+relations {
+     rel1 ClasseB min 1 max 1 inherits ClasseC min 1 max 1;
+}

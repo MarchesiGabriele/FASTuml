@@ -1,6 +1,9 @@
 package compiler_package;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,18 +26,26 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         if (needsEnumImport) {
             result.append("from enum import Enum\n\n");
         }
-
-
-        // Visita tutte le definizioni di classe
-        for (UmlParser.ClassDefinitionRuleContext classDefCtx : ctx.classDefinitionRule()) {
-            result.append(visit(classDefCtx)).append("\n\n");
-        }
-
-        // Visita tutte le relazioni
+        
+        // Mappa per relazioni "inherits"
+        HashMap<String, String> inheritanceMap = new HashMap<>();
+        // Verifica se ci sono relazioni
         if (ctx.relationsDefinitionRule() != null) {
-            result.append(visit(ctx.relationsDefinitionRule())).append("\n\n");
+            for (UmlParser.RelationCodeRuleContext relCtx : ctx.relationsDefinitionRule().relationCodeRule()) {
+                String relationType = relCtx.relationTypeRule().getText();
+                if ("inherits".equals(relationType)) {
+                    String childClass = relCtx.nameClass1.getText();
+                    String parentClass = relCtx.nameClass2.getText();
+                    inheritanceMap.put(childClass, parentClass);
+                }
+            }
         }
         
+        // Genera le classi con le informazioni sull'ereditarietà
+        for (UmlParser.ClassDefinitionRuleContext classDefCtx : ctx.classDefinitionRule()) {
+            result.append(visitClassDefinitionRuleWithInheritance(classDefCtx, inheritanceMap)).append("\n\n");
+        }
+
         // Visita tutte le definizioni di enum
         for (UmlParser.EnumDefinitionRuleContext enumDefCtx : ctx.enumDefinitionRule()) {
             result.append(visit(enumDefCtx)).append("\n\n");
@@ -42,6 +53,43 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         
         return result.toString();
     }
+    
+    
+    
+    public String visitClassDefinitionRuleWithInheritance(
+            UmlParser.ClassDefinitionRuleContext ctx, HashMap<String, String> inheritanceMap) {
+        StringBuilder result = new StringBuilder();
+
+        // Verifica se la classe è astratta
+        boolean isAbstract = ctx.ABSTRACT() != null;
+
+        // Nome della classe
+        String className = ctx.c.getText();
+        currentClass = className;
+
+        // Definizione della classe
+        result.append("class ").append(className);
+
+        // Aggiunge la superclasse, se presente
+        if (inheritanceMap.containsKey(className)) {
+            String parentClass = inheritanceMap.get(className);
+            result.append("(").append(parentClass).append(")");
+        }
+
+        result.append(":\n");
+
+        // Corpo della classe
+        result.append(visit(ctx.classCodeRule()));
+
+        // Import per le classi astratte
+        if (isAbstract) {
+            result.insert(0, "from abc import ABC, abstractmethod\n\n");
+            result.insert(result.indexOf("class " + className) + ("class " + className).length(), "(ABC)");
+        }
+
+        return result.toString();
+    }
+
     
     
     @Override
@@ -187,13 +235,4 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         return relations.toString();
     }
 
-    // Visita la definizione di una relazione specifica
-    @Override
-    public String visitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) {
-        String relationName = ctx.nameRelation.getText();
-        String class1 = ctx.nameClass1.getText();
-        String class2 = ctx.nameClass2.getText();
-
-        return String.format("# %s between %s and %s", relationName, class1, class2);
-    }
 }
