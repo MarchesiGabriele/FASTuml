@@ -78,8 +78,9 @@ multiplicityRule
     ;
 
 operationDeclarationRule
-    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP SC
-        { h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); }
+    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
+        {h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); 
+        }
     ;
     
 constructorDeclarationRule
