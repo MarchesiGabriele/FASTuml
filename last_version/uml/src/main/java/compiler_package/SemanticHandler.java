@@ -295,15 +295,12 @@ public class SemanticHandler {
     		}
         }
         
-        Set<String> duplicates = new HashSet<>();
         Set<String> seen = new HashSet<>();
         List<String> paramNames = new ArrayList<>();
         for (Token param : paramsName) {
             String paramName = param.getText(); 
             paramNames.add(paramName);
             if (!seen.add(paramName)) { // add() ritorna false se l'elemento è già presente
-                duplicates.add(paramName);
-            }else {
             	addError(ALREADY_DEF_ERROR, param);
             }
         }
@@ -335,15 +332,12 @@ public class SemanticHandler {
     		}
         }
         
-        Set<String> duplicates = new HashSet<>();
         Set<String> seen = new HashSet<>();
         List<String> paramNames = new ArrayList<>();
         for (Token param : paramsName) {
             String paramName = param.getText(); 
             paramNames.add(paramName);
             if (!seen.add(paramName)) { // add() ritorna false se l'elemento è già presente
-                duplicates.add(paramName);
-            }else {
             	addError(ALREADY_DEF_ERROR, param);
             }
         }
@@ -364,7 +358,7 @@ public class SemanticHandler {
 	}
 	
 	
-	public void relDeclaration(Token nameRelation, Token nameClass1, String relationType, Token nameClass2) {
+	public void relDeclaration(Token nameClass1, String relationType, Token nameClass2) {
 		
 		if (!isClassDeclared(nameClass1.getText())) {
             addError(NO_DECLARATION_ERROR, nameClass1);
@@ -380,10 +374,10 @@ public class SemanticHandler {
     		relationsTable.put(nameClass1.getText(), listRel);
         }
 
-        String relKey = nameRelation.getText() + ":" + relationType + ":" + nameClass1.getText() + "->" + nameClass2.getText();
+        String relKey = relationType + ":" + nameClass1.getText() + "->" + nameClass2.getText();
 
         if (isRelDeclared(relKey))
-			addError (ALREADY_DEF_REL_ERROR, nameRelation);
+			addError (ALREADY_DEF_REL_ERROR, nameClass1);
 		else {
 			relTable.add(relKey);
 		}

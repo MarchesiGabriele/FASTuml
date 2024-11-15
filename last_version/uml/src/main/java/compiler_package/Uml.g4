@@ -45,10 +45,10 @@ enumCodeRule
     ;
 
 relationCodeRule
-    : nameRelation=ID nameClass1=ID multiplicityRule relationTypeRule
-      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)? SC
+    : nameClass1=ID multiplicityRule relationTypeRule
+      nameClass2=ID multiplicityRule SC
       { 
-        h.relDeclaration($nameRelation, $nameClass1, $relationTypeRule.text, $nameClass2);
+        h.relDeclaration($nameClass1, $relationTypeRule.text, $nameClass2);
       }
     ;
 
@@ -74,7 +74,7 @@ relationTypeRule
     ;
 
 multiplicityRule
-    : (MIN n=INT MAX m=INT)
+    : (n=INT COMMA m=INT)
     ;
 
 operationDeclarationRule

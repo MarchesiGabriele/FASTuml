@@ -1,6 +1,6 @@
 class ClasseA {
 
-	ClasseA(int a, double a) {
+	ClasseA(int a, double b) {
 		// TODO: implement
 	}
 
@@ -8,14 +8,14 @@ class ClasseA {
 		// TODO: implement
 	}
 	public int ciao;
-	private String name;
+	private String sale;
 	protected List<int> numbers = new ArrayList<int>();
 
 	public void methodA() {
 		// TODO: implement
 	}
 
-	protected int methodB(int x, String x) {
+	protected int methodB(int x, String k) {
 		// TODO: implement
 	}
 }
