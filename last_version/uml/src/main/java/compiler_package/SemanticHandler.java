@@ -34,7 +34,10 @@ public class SemanticHandler {
 	
 	// ****** attributi semantici globali
 	ArrayList<String> classTable;
+	// key -> nome classe, value -> tutti tipi degli attributi / tipi ritorno funzioni / tipi parametri 
+	// che fanno parte di tipi primitivi (int, bool etc).
 	Dictionary<String, List<String>> classRelTable;
+	// key -> nome classe, value -> lista di classi con cui la classe key ha relazioni.
 	Dictionary<String, List<String>> relationsTable;
 	ArrayList<String> enumTable;
 	ArrayList<String> warnings;    
@@ -340,7 +343,7 @@ public class SemanticHandler {
  		else if (errCode == INCORRECT_VALUE)
  			msg += "Il valore di default " + str + " e' incompatibile con il tipo";
  		else if (errCode == INVALID_CONSTRUCTOR_ERROR)
-            msg += "Il costruttore '" + str + "' non è valido. Deve avere lo stesso nome della classe e un tipo di ritorno 'void'.";
+            msg += "Il costruttore '" + str + "' non ï¿½ valido. Deve avere lo stesso nome della classe e un tipo di ritorno 'void'.";
 
 		
  		errors.add(msg);
