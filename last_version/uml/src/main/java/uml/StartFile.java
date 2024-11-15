@@ -18,7 +18,6 @@ import compiler_package.UmlLexer;
 
 /**
  * 
- * @author march
  * 
  * --------------- P1 --------------------
  * TODO: sistemare sintassi relazioni

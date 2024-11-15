@@ -3,24 +3,29 @@ class ClasseA {
     attribute: private String name;
     attribute: protected List int numbers;
     
-    operation: public void methodA()
-    operation: protected int methodB(int x String y)
+    operation: public void methodA();
+    operation: protected int methodB(int x String y);
 }
 
 class ClasseB {
     attribute: public ClasseA isActive;
     attribute: private ClasseC tags;
 
-    operation: public void methodC()
+    operation: public void methodC();
 }
 
 class ClasseC {
     attribute: public float price;
-    operation: public void methodD()
+    operation: public void methodD();
 }
 
-relations: {
+enum pippo{
+	pesce;
+	cane; 
+	sale;
+}
 
+
+relations: {
     
-    ClasseB 1,1 > ClasseA 1,1
 }

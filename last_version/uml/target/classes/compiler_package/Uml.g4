@@ -39,12 +39,12 @@ classCodeRule
     ;
 
 enumCodeRule
-    : LBR (UNDREL eName+=ID)* RBR { h.enumDeclaration($eName); }
+    : LBR (eName+=ID SC)* RBR { h.enumDeclaration($eName); }
     ;
 
 relationCodeRule
     : nameRelation=ID nameClass1=ID multiplicityRule relationTypeRule
-      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)?
+      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)? SC
       { 
         h.relDeclaration($nameRelation, $nameClass1, $relationTypeRule.text, $nameClass2);
       }
@@ -76,7 +76,7 @@ multiplicityRule
     ;
 
 operationDeclarationRule
-    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP
+    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP SC
         { h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); }
     ;
 
