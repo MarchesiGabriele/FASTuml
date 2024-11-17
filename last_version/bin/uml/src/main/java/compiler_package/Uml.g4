@@ -34,7 +34,9 @@ relationsDefinitionRule
     ;
 
 classCodeRule
-    : LBR ( (ATTRIBUTE LBR attributeDeclarationRule* RBR)?
+    : LBR ( 
+    		(CONSTRUCTOR LBR constructorDeclarationRule* RBR)?
+    		(ATTRIBUTE LBR attributeDeclarationRule* RBR)?
             (OPERATION LBR operationDeclarationRule* RBR)? ) RBR
     ;
 
@@ -43,10 +45,10 @@ enumCodeRule
     ;
 
 relationCodeRule
-    : nameRelation=ID nameClass1=ID multiplicityRule relationTypeRule
-      nameClass2=ID multiplicityRule (UNDREL infoClass=ID)? SC
+    : nameClass1=ID multiplicityRule relationTypeRule
+      nameClass2=ID multiplicityRule SC
       { 
-        h.relDeclaration($nameRelation, $nameClass1, $relationTypeRule.text, $nameClass2);
+        h.relDeclaration($nameClass1, $relationTypeRule.text, $nameClass2);
       }
     ;
 
@@ -72,13 +74,21 @@ relationTypeRule
     ;
 
 multiplicityRule
-    : (MIN n=INT MAX m=INT)
+    : (n=INT COMMA m=INT)
     ;
 
 operationDeclarationRule
-    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID)* RP SC
-        { h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); }
+    : v=visibilityRule t=typeRule? a=ID LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
+        {h.opDeclaration($v.text, $t.text != null ? $t.text : null, $a, $pType, $pName); 
+        }
     ;
+    
+constructorDeclarationRule
+    : a=ID LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
+        { h.constrDeclaration($a, $pType, $pName); }
+    ;
+
+    
 
 /* ***********************************************
             Tokens definition part starts here
@@ -115,6 +125,7 @@ BOOLEAN_TYPE : 'boolean';
 BYTE : 'byte';
 CHAR_TYPE : 'char';
 CLASS : 'class';
+CONSTRUCTOR: 'constructor';
 CONST : 'const';
 DOUBLE_TYPE : 'double';
 ENUM : 'enum';

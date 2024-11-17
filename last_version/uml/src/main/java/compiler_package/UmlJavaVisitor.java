@@ -14,10 +14,14 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
     private String currentClass;
     private Map<String, String> classInheritanceMap = new HashMap<>(); // Mappa per le relazioni di ereditariet
     private StringBuilder relationsInfo = new StringBuilder(); // Per memorizzare le relazioni dettagliate
-
+    
+    Map<String, String> primitiveToWrapper = new HashMap<>();
+    
     @Override
     public String visitStart(UmlParser.StartContext ctx) {
         StringBuilder javaCode = new StringBuilder();
+        
+        primitiveWrapper();
 
         // Memorizza le relazioni prima di visitare le classi
         if (ctx.relationsDefinitionRule() != null) {
@@ -40,7 +44,18 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         return javaCode.toString();
     }
 
-    @Override
+    private void primitiveWrapper() {
+        primitiveToWrapper.put("int", "Integer");
+        primitiveToWrapper.put("double", "Double");
+        primitiveToWrapper.put("char", "Character");
+        primitiveToWrapper.put("boolean", "Boolean");
+        primitiveToWrapper.put("float", "Float");
+        primitiveToWrapper.put("long", "Long");
+        primitiveToWrapper.put("short", "Short");
+        primitiveToWrapper.put("byte", "Byte");
+	}
+
+	@Override
     public String visitClassDefinitionRule(UmlParser.ClassDefinitionRuleContext ctx) {
         String className = ctx.c.getText();
         currentClass = className;
@@ -132,6 +147,9 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         String attributeName = ctx.a.getText();
 
         if (ctx.arrayTypeRule() != null) {
+        	if (primitiveToWrapper.containsKey(type)) {
+                type = primitiveToWrapper.get(type);
+            }
             // Se  un tipo array, aggiungiamo "List" o "Set" a seconda del tipo
             if (ctx.arrayTypeRule().getText().equals("Set")) {
                 type = "Set<" + type + ">";
@@ -153,9 +171,9 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
             }
         } else {
             if (type.startsWith("Set<")) {
-                attrCode.append(" = new HashSet<" + type.substring(4, type.length() - 1) + ">()");
+                attrCode.append(" = new HashSet<>()");
             } else if (type.startsWith("List<")) {
-                attrCode.append(" = new ArrayList<" + type.substring(5, type.length() - 1) + ">()");
+                attrCode.append(" = new ArrayList<>()");
             }
         }
 

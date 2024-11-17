@@ -28,6 +28,7 @@ public class SemanticHandler {
 	public static int NO_DECLARATION_ERROR 				= 12;
 	public static int INCORRECT_VALUE 					= 13;
 	public static int INVALID_CONSTRUCTOR_ERROR 		= 14;
+	public static int INVALID_CONSTRUCTOR_IN_OP_ERROR 	= 15;
 	
 	// ??
 	public static int FIRST_WARNING 		= 100;
@@ -181,7 +182,7 @@ public class SemanticHandler {
 	}
 	
 	public boolean isConstructor(String methodName) {
-	    return !currentClass.equals(methodName);
+	    return currentClass.equals(methodName);
 	}
 	
 	public boolean isType(String type) {
@@ -285,6 +286,10 @@ public class SemanticHandler {
 			listAtt.add(returnType);
 		}
 	    
+	    if(isConstructor(name)) {
+			addError (INVALID_CONSTRUCTOR_IN_OP_ERROR, opName);
+	    }
+	    
 	    List<String> paramTypes = new ArrayList<>();
         for (UmlParser.TypeRuleContext param : paramsType) {
         	String paramType = param.getText(); 
@@ -344,7 +349,7 @@ public class SemanticHandler {
 
         String opKey = getConstrKey(name, paramTypes, paramNames);
 
-	    if(isConstructor(opName.getText())) {
+	    if(!isConstructor(opName.getText())) {
 	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
 	    }        
         
@@ -423,6 +428,8 @@ public class SemanticHandler {
  			msg += "Il valore di default " + str + " e' incompatibile con il tipo";
  		else if (errCode == INVALID_CONSTRUCTOR_ERROR)
             msg += "Il costruttore '" + str + "' non � valido. Deve avere lo stesso nome della classe e un tipo di ritorno 'void'.";
+ 		else if (errCode == INVALID_CONSTRUCTOR_IN_OP_ERROR)
+            msg += "Il metodo '" + str + "' definito in operation non puo' avere lo stesso nome della classe.";
 
 		
  		errors.add(msg);
@@ -453,11 +460,10 @@ public class SemanticHandler {
             // Remove duplicates from the result list
             leftJoinResult = new ArrayList<>(new HashSet<>(leftJoinResult));
             
-            /*for(String error : leftJoinResult) {
-            	Token t = new Token(error);
-            }*/
-            //addError (NO_DECLARATION_ERROR, nameRelation);
-            System.out.println("Classe " + key + "  unione senza intersezione: " + leftJoinResult);
+            for(String error : leftJoinResult) {
+            	String msg = "Errore Semantico: \t La classe " + key + " utilizza la variabile " + error + " non dichiarata.";
+            	errors.add(msg);
+            }
         }
     }
 }
