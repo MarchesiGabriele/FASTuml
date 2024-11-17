@@ -42,5 +42,5 @@ enum pippo{
 
 
 relations {
-     ClasseB 1,1 inherits ClasseC 1,1;
+     ClasseB 1,1 inherits ClasseA 1,1;
 }

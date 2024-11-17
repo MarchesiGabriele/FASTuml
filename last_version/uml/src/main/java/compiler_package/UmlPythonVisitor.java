@@ -180,11 +180,6 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         String methodName = ctx.a.getText();
         String returnType = methodName.equals(currentClass) ? null : ctx.typeRule(0).getText(); // Handle null return type
 
-        if (returnType == null) {
-            methodName = "__init__";
-        	//ctx.typeRule().add(0, ctx.typeRule(0));
-        	//ctx.ID().add(0, ctx.ID(0));
-        }
         
         if ("String".equals(returnType)) {
             returnType = "str";
@@ -208,6 +203,29 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
         if (returnType != null && !returnType.isEmpty() && !"void".equals(returnType)) {
             methodSignature += " -> " + returnType;
         }
+
+        // Add the method body with a placeholder "pass"
+        method.append(methodSignature).append(":\n        pass");
+        return method.toString();
+    }
+    
+    @Override
+    public String visitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) {
+        StringBuilder method = new StringBuilder();
+        
+        // List to hold parameters
+        List<String> params = new ArrayList<>(); 
+
+        // Add parameters from typeRule and ID (skipping the first one, which is typically the return type)
+        for (int i = 0; i < ctx.typeRule().size(); i++) {
+            params.add(ctx.ID(i+1).getText() + ":" + ctx.typeRule(i).getText());
+        }
+
+        // Always add `self` as the first parameter
+        params.add(0, "self");
+        
+
+        String methodSignature = String.format("def __init__(%s)", String.join(", ", params));
 
         // Add the method body with a placeholder "pass"
         method.append(methodSignature).append(":\n        pass");

@@ -31,8 +31,8 @@ public class UMLDiagram extends UmlBaseVisitor {
 	
 	int xOffset = 20; // Initial X position for the first class
     int yOffset = 20; // Initial Y position for the first class
-    int verticalSpacing = 200; // Vertical spacing between rows of classes
-    int horizontalSpacing = 300; // Horizontal spacing between columns of classes
+    int verticalSpacing = 100; // Vertical spacing between rows of classes
+    int horizontalSpacing = 150; // Horizontal spacing between columns of classes
     int attributeVerticalOffset = 30; // Vertical offset for attributes
     int attributeHeight = 20; // Height for each attribute
     
@@ -169,13 +169,13 @@ public class UMLDiagram extends UmlBaseVisitor {
         className = ctx.c.getText();
 
         // Adjust class position dynamically
-        int adjustedXOffset = xOffset + classCount * horizontalSpacing; // Adjust horizontal position after every 3 classes
+        int adjustedXOffset = xOffset  + classCount * 10 * horizontalSpacing; // Adjust horizontal position after every 3 classes
 
         Object classVertex = graph.insertVertex(parent, null, className, adjustedXOffset, 0, horizontalSpacing, verticalSpacing, "CLASS");
 
         classVertices.put(className, classVertex);
-        classAttributes.put(className, new ArrayList<>());
-        classOperations.put(className, new ArrayList<>()); // Initialize list for operations
+        classAttributes.put(className, new ArrayList<String>());
+        classOperations.put(className, new ArrayList<String>()); // Initialize list for operations
         classCount++; // Increment class counter
         
         // Genera il codice per il corpo della classe
@@ -229,7 +229,7 @@ public class UMLDiagram extends UmlBaseVisitor {
         }
 
         // Add the attribute to the class
-        List<String> attributes = classAttributes.getOrDefault(currentClass, new ArrayList<>());
+        List<String> attributes = classAttributes.getOrDefault(currentClass, new ArrayList<String>());
         attributes.add(attrCode.toString());
         classAttributes.put(currentClass, attributes);
         
@@ -261,7 +261,7 @@ public class UMLDiagram extends UmlBaseVisitor {
 
         
         // Add the operation to the class
-        List<String> operations = classOperations.getOrDefault(currentClass, new ArrayList<>());
+        List<String> operations = classOperations.getOrDefault(currentClass, new ArrayList<String>());
         operations.add(operationCode.toString());
         classOperations.put(currentClass, operations);
         
@@ -284,7 +284,7 @@ public class UMLDiagram extends UmlBaseVisitor {
 
         operationCode.append(")");
         
-        List<String> operations = classOperations.getOrDefault(currentClass, new ArrayList<>());
+        List<String> operations = classOperations.getOrDefault(currentClass, new ArrayList<String>());
         operations.add(operationCode.toString());
         classOperations.put(currentClass, operations);
         return "";
@@ -301,11 +301,14 @@ public class UMLDiagram extends UmlBaseVisitor {
     @Override
     public String visitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx) {
         String class1 = ctx.nameClass1.getText();
-        String class2 = ctx.nameClass2.getText();
+        String class2 = ctx.nameClass2.getText(); 
+        String multiplicity1 = ctx.multiplicityRule(0).getText(); // First multiplicity
+        String multiplicity2 = ctx.multiplicityRule(1).getText(); // Second multiplicity
+
         String relationType = ctx.relationTypeRule().getText();
         
-        List<String[]> relations = classRelations.getOrDefault(currentClass, new ArrayList<>());
-        relations.add(new String[] {class1, "0", "0", relationType, class2, "0", "0"});
+        List<String[]> relations = classRelations.getOrDefault(currentClass, new ArrayList<String[]>());
+        relations.add(new String[] {class1, multiplicity1, relationType, class2, multiplicity2});
         
         classRelations.put(currentClass, relations);
 
@@ -318,12 +321,12 @@ public class UMLDiagram extends UmlBaseVisitor {
         currentClass = enumName;
 
         // Adjust position for enum
-        int adjustedXOffset = xOffset + classCount * horizontalSpacing;
-        Object enumVertex = graph.insertVertex(parent, null, "<<enumeration>>\n" + enumName, adjustedXOffset, 0, horizontalSpacing, verticalSpacing, "ENUM");
+        int adjustedXOffset = xOffset + classCount * 2 * horizontalSpacing;
+        Object enumVertex = graph.insertVertex(parent, null, "<<enum>>\n" + enumName, adjustedXOffset, 0, horizontalSpacing, verticalSpacing, "ENUM");
 
         classVertices.put(enumName, enumVertex);
-        classAttributes.put(enumName, new ArrayList<>());
-        classOperations.put(enumName, new ArrayList<>()); // Initialize list for operations
+        classAttributes.put(enumName, new ArrayList<String>());
+        classOperations.put(enumName, new ArrayList<String>()); // Initialize list for operations
         classCount++; // Increment for next class or enum
         
         // Handle the values for the Enum (if any)
@@ -339,10 +342,10 @@ public class UMLDiagram extends UmlBaseVisitor {
     @Override
     public String visitEnumCodeRule(UmlParser.EnumCodeRuleContext ctx) {
 
-        List<String> values = classAttributes.getOrDefault(currentClass, new ArrayList<>());
+        List<String> values = classAttributes.getOrDefault(currentClass, new ArrayList<String>());
     	for(Token token : ctx.eName) {
             values.add("\t" + token.getText());
-    	}        // Insert enum values as attributes
+    	} 
         classAttributes.put(currentClass, values);
         
         return "";
@@ -369,7 +372,7 @@ public class UMLDiagram extends UmlBaseVisitor {
 	
 	        mxGeometry geometry = graph.getModel().getGeometry(classVertex);
 	
-	        int classWidth = 1;  // Base width is based on the class name length
+	        int classWidth = classNameRetrieve.length()*10;  // Base width is based on the class name length
 	
 	        for (String attribute : attributes) {
 	            classWidth = Math.max(classWidth, attribute.length() * 10);  // Update width based on the longest attribute
@@ -403,19 +406,17 @@ public class UMLDiagram extends UmlBaseVisitor {
 	        if(classRelations.get(classNameRetrieve) != null) {                	
 	        	for(String[] relationship : classRelations.get(classNameRetrieve)) {
 	        		String fromClass = relationship[0];
-	        		String fromMin = relationship[1];
-	        		String fromMax = relationship[2];
-	        		String type = relationship[3];
-	        		String toClass = relationship[4];
-	        		String toMin = relationship[5];
-	        		String toMax = relationship[6];
+	        		String fromMult = relationship[1];
+	        		String type = relationship[2];
+	        		String toClass = relationship[3];
+	        		String toMult = relationship[4];
 	        		
 	        		Object fromVertex = classVertices.get(fromClass);
 	        		Object toVertex = classVertices.get(toClass);
 	        		
 	        		if (fromVertex != null && toVertex != null) {
 	        			String style;
-	        			String label = fromMin + ".." + fromMax + " " + type + " " + toMin + ".." + toMax;
+	        			String label = fromMult + " " + type + " " + toMult;
 	        			
 	        			if (type.equals("inherits")) {
 	        				style = "inheritance";

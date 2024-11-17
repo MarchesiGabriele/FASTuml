@@ -99,6 +99,7 @@ public class SemanticHandler {
 		else
 			errors.add("Errore Sintattico in " + coors + ":\t" +msg+"\t"+tk.getText());
 	}
+	
 	// gestore gli errori semantici
 	void addError (int errCode, Token tk) {
 		String str = tk.getText();

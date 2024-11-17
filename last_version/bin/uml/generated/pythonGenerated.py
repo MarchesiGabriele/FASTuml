@@ -1,8 +1,6 @@
 from enum import Enum
 
 class ClasseB(ClasseA):
-    def __init__(self, a:int):
-        pass
     a: int = None
     __ma: int = None
     __name: str = None
@@ -14,8 +12,6 @@ class ClasseB(ClasseA):
 
 
 class ClasseA:
-    def __init__(self, a:int):
-        pass
     a: int = None
     __name: str = None
     _numbers: int = None

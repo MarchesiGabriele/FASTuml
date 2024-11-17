@@ -5,7 +5,10 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.*;
 
 import compiler_package.UmlParser.TypeRuleContext;
@@ -29,6 +32,7 @@ public class SemanticHandler {
 	public static int INCORRECT_VALUE 					= 13;
 	public static int INVALID_CONSTRUCTOR_ERROR 		= 14;
 	public static int INVALID_CONSTRUCTOR_IN_OP_ERROR 	= 15;
+	public static int MULTIPLICITY_ERROR 				= 16;
 	
 	// ??
 	public static int FIRST_WARNING 		= 100;
@@ -388,51 +392,37 @@ public class SemanticHandler {
 		}
     }
 	
-	// *********************** gestione degli errori
-	public void handleError(String[] tokenNames, Token tk, RecognitionException e, String hdr, String msg) {
-		// TODO Auto-generated method stub
-		// caso banale		
-					//errors.add("ERRORE SINTATTICO \t *" + hdr + " *\t* " + msg );
+	void addError(int errCode, Token tk) {
+	    String str = tk.getText();
+	    String coors = "[" + tk.getLine() + ", " + (tk.getCharPositionInLine() + 1) + "]";
 
-					
-		/*	distinzione tra errori lessicali e sintattici	
-		if (tk.getType() == SimpleJava2023Lexer.ERROR_TOKEN)
-			errors.add("ERRORE LESSICALE \t" + hdr + "\t" + msg );
-		else
-			errors.add("ERRORE SINTATTICO \t" + hdr + "\t" + msg );
-		 */	
-		
-		// Cominciamo a gestire noi gli errori...
-		String coors = "[" + tk.getLine() + ", " + (tk.getCharPositionInLine()+1) + "]";
-		if (tk.getType() == UmlLexer.ERROR_TOKEN) 
-			errors.add("Errore Lessicale in " + coors + ":\t" +msg+"\t"+tk.getText());
-		else
-			errors.add("Errore Sintattico in " + coors + ":\t" +msg+"\t"+tk.getText());
+	    String msg = "Semantic Error at " + coors + ":\t";
+	    if (errCode == ALREADY_DEF_ERROR)
+	        msg += "The variable '" + str + "' has already been declared";
+	    else if (errCode == ALREADY_DEF_OP_ERROR)
+	        msg += "The method '" + str + "' has already been declared";
+	    else if (errCode == ALREADY_DEF_REL_ERROR)
+	        msg += "The relation '" + str + "' has already been declared";
+	    else if (errCode == NO_DECLARATION_ERROR)
+	        msg += "The variable '" + str + "' has not been declared";
+	    else if (errCode == INCORRECT_VALUE)
+	        msg += "The default value '" + str + "' is incompatible with the type";
+	    else if (errCode == INVALID_CONSTRUCTOR_ERROR)
+	        msg += "The constructor '" + str + "' is invalid. It must have the same name as the class and a return type of 'void'.";
+	    else if (errCode == INVALID_CONSTRUCTOR_IN_OP_ERROR)
+	        msg += "The method '" + str + "' defined in operation cannot have the same name as the class.";
+	    else if (errCode == MULTIPLICITY_ERROR)
+	        msg += "Invalid multiplicity";
+
+	    errors.add(msg);
 	}
-	
-	// gestore gli errori semantici
-	void addError (int errCode, Token tk) {
-		String str = tk.getText();
-		String coors = "[" + tk.getLine() + ", " + (tk.getCharPositionInLine()+1) + "]";
-		
-		String msg = "Errore Semantico in " + coors + ":\t";
-		if (errCode == ALREADY_DEF_ERROR)
- 			msg += "La variabile '" + str + "' e' gia stata dichiarata";
-		else if (errCode == ALREADY_DEF_OP_ERROR)
- 			msg += "Il metodo '" + str + "' e' gia stato dichiarato";
-		else if (errCode == ALREADY_DEF_REL_ERROR)
- 			msg += "La relazione '" + str + "' e' gia stata dichiarat";
- 		else if (errCode == NO_DECLARATION_ERROR)
- 			msg += "La variabile '" + str + "' non e' stata dichiarata";
- 		else if (errCode == INCORRECT_VALUE)
- 			msg += "Il valore di default " + str + " e' incompatibile con il tipo";
- 		else if (errCode == INVALID_CONSTRUCTOR_ERROR)
-            msg += "Il costruttore '" + str + "' non � valido. Deve avere lo stesso nome della classe e un tipo di ritorno 'void'.";
- 		else if (errCode == INVALID_CONSTRUCTOR_IN_OP_ERROR)
-            msg += "Il metodo '" + str + "' definito in operation non puo' avere lo stesso nome della classe.";
 
-		
- 		errors.add(msg);
+	public void manageMultiplicity(Token min, Token max) {
+		if(max.getType() != UmlLexer.MUL) {
+			if(Integer.parseInt(min.getText()) > Integer.parseInt(max.getText())) {
+				addError (MULTIPLICITY_ERROR, min);
+			}
+		}
 	}
 	
 	public void relationsCoherent() {
@@ -460,9 +450,9 @@ public class SemanticHandler {
             // Remove duplicates from the result list
             leftJoinResult = new ArrayList<>(new HashSet<>(leftJoinResult));
             
-            for(String error : leftJoinResult) {
-            	String msg = "Errore Semantico: \t La classe " + key + " utilizza la variabile " + error + " non dichiarata.";
-            	errors.add(msg);
+            for (String error : leftJoinResult) {
+                String msg = "Semantic Error: \t The class " + key + " uses the undeclared variable " + error + ".";
+                errors.add(msg);
             }
         }
     }

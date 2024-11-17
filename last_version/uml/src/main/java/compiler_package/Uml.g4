@@ -74,7 +74,7 @@ relationTypeRule
     ;
 
 multiplicityRule
-    : (n=INT COMMA m=INT)
+    : (n=INT COMMA m=(MUL|INT) { h.manageMultiplicity($n, $m);})
     ;
 
 operationDeclarationRule
@@ -196,10 +196,4 @@ fragment OCTAL_ESC
 fragment UNICODE_ESC
     : '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
-    
-
-ERROR_TOKEN 
-	: 
-		. //  {	$channel = HIDDEN;	}
-	;
 

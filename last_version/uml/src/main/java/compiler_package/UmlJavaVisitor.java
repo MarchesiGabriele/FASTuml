@@ -219,7 +219,7 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
             operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i+1).getText());
         }
 
-        operationCode.append(") {\n\t\t// TODO: implement\n\t}\n");
+        operationCode.append(") {\n\t\tsuper();\n\t\t// TODO: implement\n\t}\n");
         return operationCode.toString();
     }
     
