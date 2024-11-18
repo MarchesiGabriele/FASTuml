@@ -1,4 +1,4 @@
-package uml;
+package uml;	
 
 import java.io.File;
 import java.io.FileWriter;
@@ -35,8 +35,8 @@ import compiler_package.UmlLexer;
  * 
  * --------------- P2 --------------------
  * TODO: OK aggiungere una rule apposita per i costruttori
- * TODO: IMPOSSIBILE quando c'è un errore di relazione mostrare numero riga e carattere (e non solo nome classe)
- * TODO: NO aggiungere visibilità classi
+ * TODO: IMPOSSIBILE quando c'ï¿½ un errore di relazione mostrare numero riga e carattere (e non solo nome classe)
+ * TODO: NO aggiungere visibilitï¿½ classi
  * ---------------------------------------
  * 
  * 
@@ -52,7 +52,7 @@ public class StartFile {
 	
     public static void main(String[] args) throws Exception {
         try {
-        	
+        	/*
         	if (args.length < 1) {
                 System.out.println("Please provide a file.");
                 return;
@@ -66,13 +66,15 @@ public class StartFile {
                 System.out.println("File doesn't exist: " + filePath);
                 return;
             }
+            */
             
             String fileIn = ".\\resources\\input.file";
             
             final List<String> errorMessages = new ArrayList<>();
 
             // Inizializza il lexer e il parser
-            CharStream charStream = CharStreams.fromFileName(file.getName());            
+            CharStream charStream = CharStreams.fromFileName(fileIn);            
+            //CharStream charStream = CharStreams.fromFileName(file.getName());            
             UmlLexer lexer = new UmlLexer(charStream);
             lexer.removeErrorListeners();
             lexer.addErrorListener(new BaseErrorListener() {

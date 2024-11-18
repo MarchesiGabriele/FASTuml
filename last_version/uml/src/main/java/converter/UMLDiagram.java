@@ -13,6 +13,7 @@ import compiler_package.UmlParser.RelationCodeRuleContext;
 
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxRectangle;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -78,7 +79,7 @@ public class UMLDiagram extends UmlBaseVisitor {
         enumStyle.put(mxConstants.STYLE_STARTSIZE, 30);
         graph.getStylesheet().putCellStyle("ENUM", enumStyle);
 
-        // Freccia di ereditarietà
+        // Freccia di ereditarietï¿½
         Hashtable<String, Object> styleInheritance = new Hashtable<>();
         styleInheritance.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_BLOCK);
         styleInheritance.put(mxConstants.STYLE_ENDFILL, 0);
@@ -146,9 +147,21 @@ public class UMLDiagram extends UmlBaseVisitor {
         frame.setVisible(true);*/
         
         try {
-            // Get the image from the graph
-            Image image = mxCellRenderer.createBufferedImage(graph, null, 1, Color.WHITE, true, null);
+            // Calcola i limiti del grafico
+            mxRectangle bounds = graph.getGraphBounds();
             
+            // Aggiungi il padding (esempio: 50 unitÃ  di padding su tutti i lati)
+            int padding = 70;
+            mxRectangle paddedBounds = new mxRectangle(
+                bounds.getX() - padding,
+                bounds.getY() - padding,
+                bounds.getWidth() + 2 * padding,
+                bounds.getHeight() + 2 * padding
+            );
+
+            // Genera l'immagine con i limiti aggiornati
+            Image image = mxCellRenderer.createBufferedImage(graph, null, 1, Color.WHITE, true, paddedBounds);
+
             // Save the image to a file
             File file = new File("generated/image.png");
             ImageIO.write((BufferedImage) image, "PNG", file);

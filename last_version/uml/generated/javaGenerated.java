@@ -21,7 +21,6 @@ class ClasseB extends ClasseA {
 class ClasseA {
 
 	ClasseA(int a) {
-		super();
 		// TODO: implement
 	}
 	public List<Integer> a = new ArrayList<>(Arrays.asList(10));

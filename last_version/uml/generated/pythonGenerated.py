@@ -9,7 +9,7 @@ class ClasseB(ClasseA):
     _numbers: int = None
     def methodA(self):
         pass
-    def _methodB(self, x:int, y:String) -> int:
+    def _methodB(self, x:int, y:str) -> int:
         pass
 
 
@@ -21,7 +21,7 @@ class ClasseA:
     _numbers: int = None
     def methodA(self):
         pass
-    def _methodB(self, x:int, y:String) -> int:
+    def _methodB(self, x:int, y:str) -> int:
         pass
 
 
