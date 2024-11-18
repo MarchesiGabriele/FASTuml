@@ -86,26 +86,37 @@ public class UMLDiagram extends UmlBaseVisitor {
         // Freccia di ereditariet�
         Hashtable<String, Object> styleInheritance = new Hashtable<>();
         styleInheritance.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_BLOCK);
-        styleInheritance.put(mxConstants.STYLE_ENDFILL, 0);
+        styleInheritance.put(mxConstants.STYLE_ENDFILL, 1);
         styleInheritance.put(mxConstants.STYLE_FILLCOLOR, "none");
         styleInheritance.put(mxConstants.STYLE_STROKECOLOR, "black");
+        styleInheritance.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
         graph.getStylesheet().putCellStyle("inheritance", styleInheritance);
 
         // Freccia di associazione
         Hashtable<String, Object> styleAssociation = new Hashtable<>();
-        styleAssociation.put(mxConstants.STYLE_ENDARROW, mxConstants.EDGESTYLE_ENTITY_RELATION);
+        styleAssociation.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_OPEN);
         styleAssociation.put(mxConstants.STYLE_ENDFILL, 0);
-        styleAssociation.put(mxConstants.STYLE_FILLCOLOR, "black");
-        styleAssociation.put(mxConstants.STYLE_STROKECOLOR, "black");
+        styleAssociation.put(mxConstants.STYLE_FILLCOLOR, "red");
+        styleAssociation.put(mxConstants.STYLE_STROKECOLOR, "red");
+        styleAssociation.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
         graph.getStylesheet().putCellStyle("association", styleAssociation);
         
-        // Freccia di associazione
+        // Freccia di composizione
         Hashtable<String, Object> styleComposition = new Hashtable<>();
-        styleAssociation.put(mxConstants.STYLE_ENDARROW, mxConstants.EDGESTYLE_ENTITY_RELATION);
-        styleAssociation.put(mxConstants.STYLE_ENDFILL, 0);
-        styleAssociation.put(mxConstants.STYLE_FILLCOLOR, "black");
-        styleAssociation.put(mxConstants.STYLE_STROKECOLOR, "black");
+        styleComposition.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_DIAMOND);
+        styleComposition.put(mxConstants.STYLE_FILL_OPACITY, 100);
+        styleComposition.put(mxConstants.STYLE_STROKECOLOR, "green");
+        styleComposition.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
         graph.getStylesheet().putCellStyle("composition", styleComposition);
+        
+        // Freccia di shared
+        Hashtable<String, Object> styleShared = new Hashtable<>();
+        styleShared.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_DIAMOND);
+        styleShared.put(mxConstants.STYLE_ENDFILL, 0);
+        styleShared.put(mxConstants.STYLE_FILLCOLOR, "orange");
+        styleShared.put(mxConstants.STYLE_STROKECOLOR, "orange");
+        styleShared.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
+        graph.getStylesheet().putCellStyle("shared", styleShared);
     }
     
     @Override
@@ -453,11 +464,14 @@ public class UMLDiagram extends UmlBaseVisitor {
 	        			
 	        			if (type.equals("inherits")) {
 	        				style = "inheritance";
-	        			} else if (type.equals(">")) {
+	        			} else if (type.equals(">") || type.equals("<")) {
 	        				style = "association";
 	        			} else if (type.equals("composed")) {
 	        				style = "composition"; // Ensure you define this style in configureStyles
-	        			} else {
+	        			} else if (type.equals("shared")) {
+	        				style = "shared"; // Ensure you define this style in configureStyles
+	        			} 
+	        			else {
 	        				style = ""; // Default or undefined relationship type
 	        			}
 	        			
