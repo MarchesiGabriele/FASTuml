@@ -1,6 +1,9 @@
 package converter;
 
 import com.mxgraph.layout.mxOrganicLayout;
+import com.mxgraph.layout.mxCircleLayout;
+import com.mxgraph.layout.mxCompactTreeLayout;
+
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
@@ -135,8 +138,10 @@ public class UMLDiagram extends UmlBaseVisitor {
         graph.getModel().endUpdate();
         
         // Applica un layout organico per sistemare le classi automaticamente
-        mxOrganicLayout layout = new mxOrganicLayout(graph); // Regola la distanza tra le classi
-        layout.setMinMoveRadius(60);
+        mxCircleLayout layout = new mxCircleLayout(graph); // Regola la distanza tra le classi
+        
+        //layout.setMaxDistanceLimit(10);
+        //layout.setMinMoveRadius(60);
         layout.execute(graph.getDefaultParent());
         
         // Configura e mostra il grafico

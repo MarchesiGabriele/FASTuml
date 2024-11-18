@@ -1,5 +1,3 @@
-from enum import Enum
-
 class ClasseB(ClasseA):
     def __init__(self, a:int):
         pass
@@ -25,9 +23,87 @@ class ClasseA:
         pass
 
 
-class Pippo(Enum):
-    MARIO = 'mario'
-    LUIGI = 'luigi'
-    YOSHI = 'yoshi'
+class ClasseC(ClasseA):
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseD:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseE:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseF:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseG:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseH:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
+
+
+class ClasseI:
+    def __init__(self, a:int):
+        pass
+    a: int = None
+    __name: str = None
+    _numbers: int = None
+    def methodA(self):
+        pass
+    def _methodB(self, x:int, y:str) -> int:
+        pass
 
 
