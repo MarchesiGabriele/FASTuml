@@ -263,11 +263,11 @@ public class SemanticHandler {
 	    return keyBuilder.toString();
 	}
 	
-	public String getConstrKey(String methodName, List<String> paramTypes, List<String> paramNames) {
-	    StringBuilder keyBuilder = new StringBuilder(methodName);
+	public String getConstrKey(List<String> paramTypes, List<String> paramNames) {
+	    StringBuilder keyBuilder = new StringBuilder("");
 	    int i = 0;
 	    for (String paramType : paramTypes) {
-	        keyBuilder.append(":").append(paramTypes.get(i)).append(paramNames.get(i));
+	        keyBuilder.append(paramTypes.get(i)).append(paramNames.get(i));
 	        i++;
 	    }
 	    return keyBuilder.toString();
@@ -326,8 +326,7 @@ public class SemanticHandler {
 		classRelTable.put(currentClass, listAtt);
 	}
 	
-	public void constrDeclaration(Token opName, List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
-	    String name = opName.getText();
+	public void constrDeclaration(List<UmlParser.TypeRuleContext> paramsType, List<Token> paramsName) {
 		List<String> listAtt = classRelTable.get(currentClass);
 	    	    
 	    
@@ -351,14 +350,11 @@ public class SemanticHandler {
             }
         }
 
-        String opKey = getConstrKey(name, paramTypes, paramNames);
+        String opKey = getConstrKey(paramTypes, paramNames);
 
-	    if(!isConstructor(opName.getText())) {
-	        addError(INVALID_CONSTRUCTOR_ERROR, opName);
-	    }        
         
 	    if(isConstrDeclared(opKey)) {
-			addError (ALREADY_DEF_OP_ERROR, opName);
+			addError (ALREADY_DEF_OP_ERROR, paramsName.get(0));
 		}
 		else {
 			constrTable.add(opKey);

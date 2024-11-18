@@ -84,8 +84,8 @@ operationDeclarationRule
     ;
     
 constructorDeclarationRule
-    : a=ID LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
-        { h.constrDeclaration($a, $pType, $pName); }
+    : LP (pType+=typeRule pName+=ID (COMMA pType+=typeRule pName+=ID)*)? RP SC
+        { h.constrDeclaration($pType, $pName); }
     ;
 
     
@@ -125,7 +125,7 @@ BOOLEAN_TYPE : 'boolean';
 BYTE : 'byte';
 CHAR_TYPE : 'char';
 CLASS : 'class';
-CONSTRUCTOR: 'constructor';
+CONSTRUCTOR: 'uctor';
 CONST : 'const';
 DOUBLE_TYPE : 'double';
 ENUM : 'enum';
