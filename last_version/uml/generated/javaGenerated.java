@@ -166,3 +166,4 @@ class ClasseI {
 // Association between ClasseD and ClasseC
 // Shared association between ClasseD and ClasseA
 // Composition between ClasseD and ClasseB
+// Association between ClasseC and ClasseH

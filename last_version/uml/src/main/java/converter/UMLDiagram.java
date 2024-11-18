@@ -109,6 +109,14 @@ public class UMLDiagram extends UmlBaseVisitor {
         styleComposition.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
         graph.getStylesheet().putCellStyle("composition", styleComposition);
         
+        // Freccia di regular
+        Hashtable<String, Object> styleregular = new Hashtable<>();
+        styleregular.put(mxConstants.STYLE_ENDARROW, mxConstants.EDGESTYLE_ENTITY_RELATION);
+        styleregular.put(mxConstants.STYLE_FILL_OPACITY, 100);
+        styleregular.put(mxConstants.STYLE_STROKECOLOR, "black");
+        styleregular.put(mxConstants.STYLE_ENDSIZE, 30); // Dimensione della freccia (valore in pixel)
+        graph.getStylesheet().putCellStyle("regular", styleregular);
+        
         // Freccia di shared
         Hashtable<String, Object> styleShared = new Hashtable<>();
         styleShared.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_DIAMOND);
@@ -472,7 +480,7 @@ public class UMLDiagram extends UmlBaseVisitor {
 	        				style = "shared"; // Ensure you define this style in configureStyles
 	        			} 
 	        			else {
-	        				style = ""; // Default or undefined relationship type
+	        				style = "regular"; // Default or undefined relationship type
 	        			}
 	        			
 	        			graph.insertEdge(parent, null, label, fromVertex, toVertex, style);

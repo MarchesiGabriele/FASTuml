@@ -160,5 +160,7 @@ relations {
      ClasseD 1,1 > ClasseC 1,*;
      ClasseD 1,1 shared ClasseA 1,*;
      ClasseD 1,1 composed ClasseB 1,*;
+     ClasseC 1,1 - ClasseH 1,*;
+     
      
 }
