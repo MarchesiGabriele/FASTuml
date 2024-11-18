@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import compiler_package.UmlParser.InheritCodeRuleContext;
 import compiler_package.UmlParser.TypeRuleContext;
 
 public class UmlPythonVisitor extends UmlBaseVisitor<String> {
@@ -32,13 +33,10 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Verifica se ci sono relazioni
         if (ctx.relationsDefinitionRule() != null) {
-            for (UmlParser.RelationCodeRuleContext relCtx : ctx.relationsDefinitionRule().relationCodeRule()) {
-                String relationType = relCtx.relationTypeRule().getText();
-                if ("inherits".equals(relationType)) {
+            for (InheritCodeRuleContext relCtx : ctx.relationsDefinitionRule().inheritCodeRule()) {
                     String childClass = relCtx.nameClass1.getText();
                     String parentClass = relCtx.nameClass2.getText();
                     inheritanceMap.put(childClass, parentClass);
-                }
             }
         }
         
@@ -252,6 +250,13 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
             relations.append(visit(relCtx)).append("\n");
         }
 
+        return relations.toString();
+    }
+    
+    // Visita la regola delle relazioni
+    @Override
+    public String visitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx) {
+        StringBuilder relations = new StringBuilder("");
         return relations.toString();
     }
 

@@ -9,6 +9,7 @@ import compiler_package.UmlBaseVisitor;
 import compiler_package.UmlParser;
 import compiler_package.UmlParser.ClassDefinitionRuleContext;
 import compiler_package.UmlParser.EnumDefinitionRuleContext;
+import compiler_package.UmlParser.InheritCodeRuleContext;
 import compiler_package.UmlParser.RelationCodeRuleContext;
 
 import com.mxgraph.util.mxCellRenderer;
@@ -163,7 +164,7 @@ public class UMLDiagram extends UmlBaseVisitor {
             Image image = mxCellRenderer.createBufferedImage(graph, null, 1, Color.WHITE, true, paddedBounds);
 
             // Save the image to a file
-            File file = new File("generated/MyClassDiagram.png");
+            File file = new File("./MyClassDiagram.png");
             ImageIO.write((BufferedImage) image, "PNG", file);
             System.out.println("UML Diagram exported to: " + file.getAbsolutePath() + "\n");
         } catch (IOException e) {
@@ -303,6 +304,9 @@ public class UMLDiagram extends UmlBaseVisitor {
     
     @Override
     public String visitRelationsDefinitionRule(UmlParser.RelationsDefinitionRuleContext ctx) {
+        for (InheritCodeRuleContext relation : ctx.inheritCodeRule()) {
+            visit(relation);
+        }
         for (RelationCodeRuleContext relation : ctx.relationCodeRule()) {
             visit(relation);
         }
@@ -320,6 +324,19 @@ public class UMLDiagram extends UmlBaseVisitor {
         
         List<String[]> relations = classRelations.getOrDefault(currentClass, new ArrayList<String[]>());
         relations.add(new String[] {class1, multiplicity1, relationType, class2, multiplicity2});
+        
+        classRelations.put(currentClass, relations);
+
+        return "";
+    }
+    
+    @Override
+    public String visitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx) {
+        String class1 = ctx.nameClass1.getText();
+        String class2 = ctx.nameClass2.getText(); 
+   
+        List<String[]> relations = classRelations.getOrDefault(currentClass, new ArrayList<String[]>());
+        relations.add(new String[] {class1, "1,1", ctx.INHERITS.getText(), class2, "0,*"});
         
         classRelations.put(currentClass, relations);
 

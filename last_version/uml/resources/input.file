@@ -41,5 +41,5 @@ enum Pippo {
 }
 
 relations {
-     ClasseB 1,* inherits ClasseA 1,*;
+     ClasseB inherits ClasseA;
 }

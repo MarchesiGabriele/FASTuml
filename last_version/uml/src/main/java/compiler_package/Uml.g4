@@ -30,7 +30,7 @@ enumDefinitionRule
     ;
 
 relationsDefinitionRule
-    : RELATIONS LBR relationCodeRule* { h.relationsCoherent(); } RBR
+    : RELATIONS LBR (relationCodeRule | inheritCodeRule)* { h.relationsCoherent(); } RBR
     ;
 
 classCodeRule
@@ -51,6 +51,14 @@ relationCodeRule
         h.relDeclaration($nameClass1, $relationTypeRule.text, $nameClass2);
       }
     ;
+    
+inheritCodeRule
+    : nameClass1=ID INHERITS
+      nameClass2=ID SC
+      { 
+        h.relDeclaration($nameClass1, $INHERITS.text, $nameClass2);
+      }
+    ;    
 
 attributeDeclarationRule
     : v=visibilityRule ar=arrayTypeRule? t=typeRule a=ID (EQ  d=(STRING | INT | FLOAT))? READONLY? SC
@@ -70,7 +78,7 @@ typeRule
     ;
 
 relationTypeRule
-    : UNDREL | SXREL | DXREL | INHERITS | SHARED | COMPOSED
+    : UNDREL | SXREL | DXREL | SHARED | COMPOSED
     ;
 
 multiplicityRule

@@ -55,6 +55,12 @@ public interface UmlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link UmlParser#inheritCodeRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link UmlParser#attributeDeclarationRule}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

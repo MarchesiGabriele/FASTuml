@@ -103,6 +103,18 @@ public class UmlBaseListener implements UmlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInheritCodeRule(UmlParser.InheritCodeRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAttributeDeclarationRule(UmlParser.AttributeDeclarationRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}

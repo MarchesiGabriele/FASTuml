@@ -25,7 +25,7 @@ public class StartFile {
 
     public static void main(String[] args) throws Exception {
         String fileIn = ".\\resources\\input.file"; // Default input file
-        String language = "none"; // Default language to generate
+        String language = "both"; // Default language to generate
         String outputFolder = "generated"; // Default output folder
         String javaFileName = "javaGenerated.java"; // Default Java file name
         String pythonFileName = "pythonGenerated.py"; // Default Python file name

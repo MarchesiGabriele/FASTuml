@@ -80,6 +80,16 @@ public interface UmlListener extends ParseTreeListener {
 	 */
 	void exitRelationCodeRule(UmlParser.RelationCodeRuleContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link UmlParser#inheritCodeRule}.
+	 * @param ctx the parse tree
+	 */
+	void enterInheritCodeRule(UmlParser.InheritCodeRuleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link UmlParser#inheritCodeRule}.
+	 * @param ctx the parse tree
+	 */
+	void exitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link UmlParser#attributeDeclarationRule}.
 	 * @param ctx the parse tree
 	 */

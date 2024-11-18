@@ -8,6 +8,7 @@ import java.util.Map;
 import compiler_package.UmlParser.ClassDefinitionRuleContext;
 import compiler_package.UmlParser.EnumCodeRuleContext;
 import compiler_package.UmlParser.EnumDefinitionRuleContext;
+import compiler_package.UmlParser.InheritCodeRuleContext;
 import compiler_package.UmlParser.RelationCodeRuleContext;
 
 public class UmlJavaVisitor extends UmlBaseVisitor<String> {
@@ -26,7 +27,8 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         // Memorizza le relazioni prima di visitare le classi
         if (ctx.relationsDefinitionRule() != null) {
             visit(ctx.relationsDefinitionRule());
-        }
+        }  
+
 
         // Visita tutte le classi definite
         for (ClassDefinitionRuleContext classDef : ctx.classDefinitionRule()) {
@@ -113,6 +115,9 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         for (RelationCodeRuleContext relation : ctx.relationCodeRule()) {
             visit(relation);
         }
+        for (InheritCodeRuleContext relation : ctx.inheritCodeRule()) {
+            visit(relation);
+        }
         return "";
     }
 
@@ -123,9 +128,6 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
         String relationType = ctx.relationTypeRule().getText();
 
         switch (relationType) {
-            case "inherits":
-                classInheritanceMap.put(class1, class2);
-                break;
             case "shared":
                 relationsInfo.append("// Shared association between ").append(class1).append(" and ").append(class2).append("\n");
                 break;
@@ -136,6 +138,15 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
                 relationsInfo.append("// Association between ").append(class1).append(" and ").append(class2).append("\n");
                 break;
         }
+
+        return ""; // Non generiamo codice direttamente qui
+    }
+    
+    @Override
+    public String visitInheritCodeRule(UmlParser.InheritCodeRuleContext ctx) {
+        String class1 = ctx.nameClass1.getText();
+        String class2 = ctx.nameClass2.getText();
+        classInheritanceMap.put(class1, class2);
 
         return ""; // Non generiamo codice direttamente qui
     }
