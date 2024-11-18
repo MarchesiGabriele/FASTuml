@@ -125,7 +125,7 @@ BOOLEAN_TYPE : 'boolean';
 BYTE : 'byte';
 CHAR_TYPE : 'char';
 CLASS : 'class';
-CONSTRUCTOR: 'uctor';
+CONSTRUCTOR: 'constructor';
 CONST : 'const';
 DOUBLE_TYPE : 'double';
 ENUM : 'enum';

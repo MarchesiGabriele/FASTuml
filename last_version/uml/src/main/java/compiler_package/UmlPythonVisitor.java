@@ -220,7 +220,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 
         // Add parameters from typeRule and ID (skipping the first one, which is typically the return type)
         for (int i = 0; i < ctx.typeRule().size(); i++) {
-            params.add(ctx.ID(i+1).getText() + ":" + ctx.typeRule(i).getText());
+            params.add(ctx.ID(i).getText() + ":" + ctx.typeRule(i).getText());
         }
 
         // Always add `self` as the first parameter

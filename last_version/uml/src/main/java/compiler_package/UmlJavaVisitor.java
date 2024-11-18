@@ -207,16 +207,15 @@ public class UmlJavaVisitor extends UmlBaseVisitor<String> {
     
     @Override
     public String visitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) {
-        String methodName = ctx.a.getText();
 
         StringBuilder operationCode = new StringBuilder();
 
-        operationCode.append("\t").append(methodName).append("(");
+        operationCode.append("\t").append(currentClass).append("(");
 
         // Aggiungi i parametri
         for (int i = 0; i < ctx.typeRule().size(); i++) {
             if (i > 0) operationCode.append(", ");
-            operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i+1).getText());
+            operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i).getText());
         }
 
         if (classInheritanceMap.containsKey(currentClass)) {

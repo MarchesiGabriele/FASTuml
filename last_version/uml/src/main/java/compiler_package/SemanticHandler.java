@@ -27,6 +27,7 @@ public class SemanticHandler {
 	public static int SYNTAX_ERROR 						= 1;
 	public static int ALREADY_DEF_ERROR 				= 110;
 	public static int ALREADY_DEF_OP_ERROR 				= 111;
+	public static int ALREADY_DEF_CONSTR_ERROR 			= 113;
 	public static int ALREADY_DEF_REL_ERROR 			= 112;
 	public static int NO_DECLARATION_ERROR 				= 12;
 	public static int INCORRECT_VALUE 					= 13;
@@ -354,7 +355,7 @@ public class SemanticHandler {
 
         
 	    if(isConstrDeclared(opKey)) {
-			addError (ALREADY_DEF_OP_ERROR, paramsName.get(0));
+			addError (ALREADY_DEF_CONSTR_ERROR, paramsName.get(0));
 		}
 		else {
 			constrTable.add(opKey);
@@ -407,6 +408,8 @@ public class SemanticHandler {
 	        msg += "The constructor '" + str + "' is invalid. It must have the same name as the class and a return type of 'void'.";
 	    else if (errCode == INVALID_CONSTRUCTOR_IN_OP_ERROR)
 	        msg += "The method '" + str + "' defined in operation cannot have the same name as the class.";
+	    else if (errCode == ALREADY_DEF_CONSTR_ERROR)
+	        msg += "The constructor with this signature has already been declared";
 	    else if (errCode == MULTIPLICITY_ERROR)
 	        msg += "Invalid multiplicity";
 

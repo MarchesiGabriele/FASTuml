@@ -491,7 +491,7 @@ public class UmlParser extends Parser {
 				setState(75);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==ID) {
+				while (_la==LP) {
 					{
 					{
 					setState(72);
@@ -1258,7 +1258,6 @@ public class UmlParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ConstructorDeclarationRuleContext extends ParserRuleContext {
-		public Token a;
 		public TypeRuleContext typeRule;
 		public List<TypeRuleContext> pType = new ArrayList<TypeRuleContext>();
 		public Token ID;
@@ -1266,15 +1265,15 @@ public class UmlParser extends Parser {
 		public TerminalNode LP() { return getToken(UmlParser.LP, 0); }
 		public TerminalNode RP() { return getToken(UmlParser.RP, 0); }
 		public TerminalNode SC() { return getToken(UmlParser.SC, 0); }
-		public List<TerminalNode> ID() { return getTokens(UmlParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(UmlParser.ID, i);
-		}
 		public List<TypeRuleContext> typeRule() {
 			return getRuleContexts(TypeRuleContext.class);
 		}
 		public TypeRuleContext typeRule(int i) {
 			return getRuleContext(TypeRuleContext.class,i);
+		}
+		public List<TerminalNode> ID() { return getTokens(UmlParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(UmlParser.ID, i);
 		}
 		public List<TerminalNode> COMMA() { return getTokens(UmlParser.COMMA); }
 		public TerminalNode COMMA(int i) {
@@ -1307,48 +1306,46 @@ public class UmlParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(176);
-			((ConstructorDeclarationRuleContext)_localctx).a = match(ID);
-			setState(177);
 			match(LP);
-			setState(189);
+			setState(188);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (((((_la - 26)) & ~0x3f) == 0 && ((1L << (_la - 26)) & 17665200572485L) != 0)) {
 				{
-				setState(178);
+				setState(177);
 				((ConstructorDeclarationRuleContext)_localctx).typeRule = typeRule();
 				((ConstructorDeclarationRuleContext)_localctx).pType.add(((ConstructorDeclarationRuleContext)_localctx).typeRule);
-				setState(179);
+				setState(178);
 				((ConstructorDeclarationRuleContext)_localctx).ID = match(ID);
 				((ConstructorDeclarationRuleContext)_localctx).pName.add(((ConstructorDeclarationRuleContext)_localctx).ID);
-				setState(186);
+				setState(185);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==COMMA) {
 					{
 					{
-					setState(180);
+					setState(179);
 					match(COMMA);
-					setState(181);
+					setState(180);
 					((ConstructorDeclarationRuleContext)_localctx).typeRule = typeRule();
 					((ConstructorDeclarationRuleContext)_localctx).pType.add(((ConstructorDeclarationRuleContext)_localctx).typeRule);
-					setState(182);
+					setState(181);
 					((ConstructorDeclarationRuleContext)_localctx).ID = match(ID);
 					((ConstructorDeclarationRuleContext)_localctx).pName.add(((ConstructorDeclarationRuleContext)_localctx).ID);
 					}
 					}
-					setState(188);
+					setState(187);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(191);
+			setState(190);
 			match(RP);
-			setState(192);
+			setState(191);
 			match(SC);
-			 h.constrDeclaration(((ConstructorDeclarationRuleContext)_localctx).a, ((ConstructorDeclarationRuleContext)_localctx).pType, ((ConstructorDeclarationRuleContext)_localctx).pName); 
+			 h.constrDeclaration(((ConstructorDeclarationRuleContext)_localctx).pType, ((ConstructorDeclarationRuleContext)_localctx).pName); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -1363,7 +1360,7 @@ public class UmlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001L\u00c4\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001L\u00c3\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -1389,13 +1386,13 @@ public class UmlParser extends Parser {
 		"\f\u0001\f\u0001\r\u0001\r\u0003\r\u009c\b\r\u0001\r\u0001\r\u0001\r\u0001"+
 		"\r\u0001\r\u0001\r\u0001\r\u0001\r\u0005\r\u00a6\b\r\n\r\f\r\u00a9\t\r"+
 		"\u0003\r\u00ab\b\r\u0001\r\u0001\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e"+
-		"\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e"+
-		"\u0005\u000e\u00b9\b\u000e\n\u000e\f\u000e\u00bc\t\u000e\u0003\u000e\u00be"+
-		"\b\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001"+
-		"\'\u0000\u000f\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016"+
-		"\u0018\u001a\u001c\u0000\u0006\u0002\u0000GHKK\u0001\u0000.1\u0001\u0000"+
-		"36\t\u0000\u001a\u001a\u001c\u001c  %%((**::>>FF\u0004\u0000\u0004\u0005"+
-		"\n\n\'\'?@\u0002\u0000\u000b\u000bGG\u00c8\u0000!\u0001\u0000\u0000\u0000"+
+		"\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0005\u000e"+
+		"\u00b8\b\u000e\n\u000e\f\u000e\u00bb\t\u000e\u0003\u000e\u00bd\b\u000e"+
+		"\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\u000e\u0001\'\u0000"+
+		"\u000f\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018"+
+		"\u001a\u001c\u0000\u0006\u0002\u0000GHKK\u0001\u0000.1\u0001\u000036\t"+
+		"\u0000\u001a\u001a\u001c\u001c  %%((**::>>FF\u0004\u0000\u0004\u0005\n"+
+		"\n\'\'?@\u0002\u0000\u000b\u000bGG\u00c7\u0000!\u0001\u0000\u0000\u0000"+
 		"\u0002.\u0001\u0000\u0000\u0000\u00045\u0001\u0000\u0000\u0000\u0006:"+
 		"\u0001\u0000\u0000\u0000\bE\u0001\u0000\u0000\u0000\ni\u0001\u0000\u0000"+
 		"\u0000\ft\u0001\u0000\u0000\u0000\u000e|\u0001\u0000\u0000\u0000\u0010"+
@@ -1469,18 +1466,17 @@ public class UmlParser extends Parser {
 		"\u0000\u00aa\u00ab\u0001\u0000\u0000\u0000\u00ab\u00ac\u0001\u0000\u0000"+
 		"\u0000\u00ac\u00ad\u0005\u0014\u0000\u0000\u00ad\u00ae\u0005\u0010\u0000"+
 		"\u0000\u00ae\u00af\u0006\r\uffff\uffff\u0000\u00af\u001b\u0001\u0000\u0000"+
-		"\u0000\u00b0\u00b1\u0005F\u0000\u0000\u00b1\u00bd\u0005\u0013\u0000\u0000"+
-		"\u00b2\u00b3\u0003\u0014\n\u0000\u00b3\u00ba\u0005F\u0000\u0000\u00b4"+
-		"\u00b5\u0005\u0012\u0000\u0000\u00b5\u00b6\u0003\u0014\n\u0000\u00b6\u00b7"+
-		"\u0005F\u0000\u0000\u00b7\u00b9\u0001\u0000\u0000\u0000\u00b8\u00b4\u0001"+
-		"\u0000\u0000\u0000\u00b9\u00bc\u0001\u0000\u0000\u0000\u00ba\u00b8\u0001"+
-		"\u0000\u0000\u0000\u00ba\u00bb\u0001\u0000\u0000\u0000\u00bb\u00be\u0001"+
-		"\u0000\u0000\u0000\u00bc\u00ba\u0001\u0000\u0000\u0000\u00bd\u00b2\u0001"+
-		"\u0000\u0000\u0000\u00bd\u00be\u0001\u0000\u0000\u0000\u00be\u00bf\u0001"+
-		"\u0000\u0000\u0000\u00bf\u00c0\u0005\u0014\u0000\u0000\u00c0\u00c1\u0005"+
-		"\u0010\u0000\u0000\u00c1\u00c2\u0006\u000e\uffff\uffff\u0000\u00c2\u001d"+
-		"\u0001\u0000\u0000\u0000\u0014!\'+.?KOVZaen~\u0084\u0087\u009b\u00a7\u00aa"+
-		"\u00ba\u00bd";
+		"\u0000\u00b0\u00bc\u0005\u0013\u0000\u0000\u00b1\u00b2\u0003\u0014\n\u0000"+
+		"\u00b2\u00b9\u0005F\u0000\u0000\u00b3\u00b4\u0005\u0012\u0000\u0000\u00b4"+
+		"\u00b5\u0003\u0014\n\u0000\u00b5\u00b6\u0005F\u0000\u0000\u00b6\u00b8"+
+		"\u0001\u0000\u0000\u0000\u00b7\u00b3\u0001\u0000\u0000\u0000\u00b8\u00bb"+
+		"\u0001\u0000\u0000\u0000\u00b9\u00b7\u0001\u0000\u0000\u0000\u00b9\u00ba"+
+		"\u0001\u0000\u0000\u0000\u00ba\u00bd\u0001\u0000\u0000\u0000\u00bb\u00b9"+
+		"\u0001\u0000\u0000\u0000\u00bc\u00b1\u0001\u0000\u0000\u0000\u00bc\u00bd"+
+		"\u0001\u0000\u0000\u0000\u00bd\u00be\u0001\u0000\u0000\u0000\u00be\u00bf"+
+		"\u0005\u0014\u0000\u0000\u00bf\u00c0\u0005\u0010\u0000\u0000\u00c0\u00c1"+
+		"\u0006\u000e\uffff\uffff\u0000\u00c1\u001d\u0001\u0000\u0000\u0000\u0014"+
+		"!\'+.?KOVZaen~\u0084\u0087\u009b\u00a7\u00aa\u00b9\u00bc";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -1,6 +1,6 @@
 class ClasseB {
 	constructor {
-		ClasseB(int a);
+		(int a);	
 	}
 	
     attribute {
@@ -18,7 +18,7 @@ class ClasseB {
 
 class ClasseA {
 	constructor {
-		ClasseA(int a);
+		(int a);
 	}
 	
     attribute {

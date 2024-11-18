@@ -163,7 +163,7 @@ public class UMLDiagram extends UmlBaseVisitor {
             Image image = mxCellRenderer.createBufferedImage(graph, null, 1, Color.WHITE, true, paddedBounds);
 
             // Save the image to a file
-            File file = new File("generated/image.png");
+            File file = new File("generated/MyClassDiagram.png");
             ImageIO.write((BufferedImage) image, "PNG", file);
             System.out.println("UML Diagram exported to: " + file.getAbsolutePath() + "\n");
         } catch (IOException e) {
@@ -283,16 +283,14 @@ public class UMLDiagram extends UmlBaseVisitor {
     
     @Override
     public String visitConstructorDeclarationRule(UmlParser.ConstructorDeclarationRuleContext ctx) {
-        String methodName = ctx.a.getText();
-
         StringBuilder operationCode = new StringBuilder();
 
-        operationCode.append("\t").append(methodName).append("(");
+        operationCode.append("\t").append(currentClass).append("(");
 
         // Aggiungi i parametri
         for (int i = 0; i < ctx.typeRule().size(); i++) {
             if (i > 0) operationCode.append(", ");
-            operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i+1).getText());
+            operationCode.append(ctx.typeRule(i).getText()).append(" ").append(ctx.ID(i).getText());
         }
 
         operationCode.append(")");
