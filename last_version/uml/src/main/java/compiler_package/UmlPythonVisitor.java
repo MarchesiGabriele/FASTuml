@@ -15,6 +15,8 @@ import compiler_package.UmlParser.TypeRuleContext;
 public class UmlPythonVisitor extends UmlBaseVisitor<String> {
 	
 	String currentClass;
+    // Mappa per relazioni "inherits"
+    HashMap<String, String> inheritanceMap = new HashMap<>();
 	
     // Visita la regola di inizio (start)
     @Override
@@ -27,8 +29,7 @@ public class UmlPythonVisitor extends UmlBaseVisitor<String> {
             result.append("from enum import Enum\n\n");
         }
         
-        // Mappa per relazioni "inherits"
-        HashMap<String, String> inheritanceMap = new HashMap<>();
+
         // Verifica se ci sono relazioni
         if (ctx.relationsDefinitionRule() != null) {
             for (UmlParser.RelationCodeRuleContext relCtx : ctx.relationsDefinitionRule().relationCodeRule()) {

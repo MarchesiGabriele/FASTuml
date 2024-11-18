@@ -5,7 +5,7 @@ class ClasseB {
 	
     attribute {
     	public List int a = 10;
-    	private int ma;
+    	private float ma;
     	private String name = "ciao";
     	protected List int numbers;
     }

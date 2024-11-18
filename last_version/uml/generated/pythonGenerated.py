@@ -4,7 +4,7 @@ class ClasseB(ClasseA):
     def __init__(self, a:int):
         pass
     a: int = None
-    __ma: int = None
+    __ma: float = None
     __name: str = None
     _numbers: int = None
     def methodA(self):

@@ -5,7 +5,7 @@ class ClasseB extends ClasseA {
 		// TODO: implement
 	}
 	public List<Integer> a = new ArrayList<>(Arrays.asList(10));
-	private int ma;
+	private float ma;
 	private String name = "ciao";
 	protected List<Integer> numbers = new ArrayList<>();
 
