@@ -1,0 +1,169 @@
+class ClasseB {
+	constructor {
+		(int a);	
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private float ma;
+    	private String name = "pepe";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseA {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+
+class ClasseC {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseD {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseE {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseF {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseG {
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+class ClasseH{
+	constructor {
+		(int a);
+	}
+	
+    attribute {
+    	public List int a = 10;
+    	private String name = "ciao";
+    	protected List int numbers;
+    }
+    
+	operation {
+		public void methodA();
+		protected int methodB(int x, String y);
+	}
+}
+
+
+		class ClasseI {
+			constructor {
+				(int a);
+			}
+			
+		    attribute {
+		    	public List int a = 10;
+		    	private String name = "ciao";
+		    	protected List int numbers;
+		    }
+		    
+			operation {
+				public void methodA();
+				protected int methodB(int x, String y);
+			}
+		}
+		
+		relations {
+		     ClasseB inherits ClasseA;
+		     ClasseC inherits ClasseA;
+		     ClasseD 1,1 > ClasseC 1,*;
+		     ClasseD 1,1 shared ClasseA 1,*;
+		     ClasseD 1,1 composed ClasseB 1,*;
+		     ClasseC 1,1 - ClasseH 1,*;     
+		}
+		
+		
+		
+		
+		

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Basic project information -->
+  <groupId>uml</groupId>
+  <artifactId>uml</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <!-- Define the packaging type as a library (JAR) -->
+  <packaging>jar</packaging>
+
+  <!-- Dependencies -->
+  <dependencies>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4</artifactId>
+      <version>4.13.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.nasdanika.core</groupId>
+      <artifactId>mxgraph</artifactId>
+      <version>4.2.2.1</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Build settings -->
+  <build>
+    <plugins>
+      <!-- Ensure that the project is packaged as a JAR file -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
