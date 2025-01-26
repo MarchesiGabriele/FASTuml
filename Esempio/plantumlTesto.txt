@@ -1,9 +1,0 @@
-@startuml
-participant Participant [
-=Tetro
-----
-""SubTitle""
-]
-participant Bob
-Participant -> Bob
-@enduml
